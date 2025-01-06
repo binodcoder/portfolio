@@ -29,7 +29,7 @@ class MyCv extends StatelessWidget {
                     children: [
                       CustomCircleAvatar(
                         radius: 60.0,
-                        imagePath: "assets/images/beach.jpg",
+                        imagePath: "assets/images/photo.jpg",
                       ),
                       SizedBox(
                         height: 15.0,
@@ -162,23 +162,6 @@ class MyCv extends StatelessWidget {
               SizedBox(
                 height: 5.0,
               ),
-              Card(
-                elevation: 2.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Hello Flutter",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
               Text(
                 "My Products",
                 style: TextStyle(
@@ -189,14 +172,15 @@ class MyCv extends StatelessWidget {
               Card(
                 elevation: 2.0,
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ElevatedButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MessageCard()),
+                            builder: (context) => MessageCard(),
+                          ),
                         );
                       },
                       child: Text(
@@ -208,7 +192,7 @@ class MyCv extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ElevatedButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
