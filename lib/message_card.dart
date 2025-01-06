@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 class MessageCard extends StatelessWidget {
   static var themeColor = Colors.red;
@@ -82,7 +81,7 @@ class _HomePageState extends State {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () {
                 controller.clear();
               },
@@ -94,7 +93,7 @@ class _HomePageState extends State {
                   color: Colors.white,
                 ),
               ),
-              color: themeColor,
+
             ),
           ),
           Padding(
