@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class MessageCard extends StatelessWidget {
   static var themeColor = Colors.red;
@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State {
-  TextEditingController controller=TextEditingController();
+  TextEditingController controller = TextEditingController();
   String message = "Welcome to message card!";
   Color themeColor = Colors.red;
 
@@ -41,7 +41,6 @@ class _HomePageState extends State {
             child: Container(
               height: 200.0,
               color: themeColor,
-
               child: Center(
                 child: Text(
                   message,
@@ -66,10 +65,12 @@ class _HomePageState extends State {
               maxLength: 30,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide(
-                  width: 2.0,
-                  color: themeColor,
-                ),),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2.0,
+                    color: themeColor,
+                  ),
+                ),
                 prefixIcon: Icon(
                   Icons.edit,
                   color: themeColor,
@@ -93,7 +94,6 @@ class _HomePageState extends State {
                   color: Colors.white,
                 ),
               ),
-
             ),
           ),
           Padding(

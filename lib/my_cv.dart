@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:untitled/widgets/app_bar.dart';
+import 'package:untitled/widgets/circle_avatar.dart';
+import 'package:untitled/widgets/drawer.dart';
 import 'package:untitled/word_shortcut.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,11 +12,8 @@ class MyCv extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "My Resume",
-        ),
-      ),
+      appBar: CustomAppBar(),
+      drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -27,9 +27,9 @@ class MyCv extends StatelessWidget {
                       EdgeInsets.symmetric(vertical: 30.2, horizontal: 20.0),
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      CustomCircleAvatar(
                         radius: 60.0,
-                        backgroundImage: AssetImage("assets/images/beach.jpg"),
+                        imagePath: "assets/images/beach.jpg",
                       ),
                       SizedBox(
                         height: 15.0,
