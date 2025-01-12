@@ -52,6 +52,7 @@ flutter:
   assets:
     - assets/images/
     - assets/dice-images/
+    - assets/quiz/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
