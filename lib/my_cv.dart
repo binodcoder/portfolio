@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/widgets/app_bar.dart';
 import 'package:untitled/widgets/circle_avatar.dart';
-import 'package:untitled/widgets/drawer.dart';
+import 'package:untitled/widgets/drawer/drawer.dart';
 import 'package:untitled/word_shortcut.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'message_card.dart';
+import 'message_card/message_card.dart';
 
 class MyCv extends StatelessWidget {
   @override
