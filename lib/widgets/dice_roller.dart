@@ -22,22 +22,12 @@ class _DiceRollerState extends State<DiceRoller> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(
-          'assets/dice-images/dice-$currentDiceRoll.png',
-          width: 100,
-        ),
-        TextButton(
-          onPressed: rollDice,
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.only(
-              top: 20,
-            ),
-            foregroundColor: Colors.white,
-            textStyle: TextStyle(
-              fontSize: 28,
-            ),
+        GestureDetector(
+          onTap: rollDice,
+          child: Image.asset(
+            'assets/dice-images/dice-$currentDiceRoll.png',
+            width: 100,
           ),
-          child: Text('Roll Dice'),
         ),
       ],
     );

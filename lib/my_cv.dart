@@ -7,7 +7,6 @@ import 'package:untitled/widgets/gradient_container.dart';
 import 'package:untitled/widgets/styled_text.dart';
 import 'package:untitled/word_shortcut.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'message_card/message_card.dart';
 
 class MyCv extends StatelessWidget {
   @override

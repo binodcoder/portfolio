@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/widgets/dice_roller.dart';
+import 'package:untitled/widgets/message_card.dart';
 import 'package:untitled/widgets/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../message_card/message_card.dart';
 import '../word_shortcut.dart';
 import 'circle_avatar.dart';
 
@@ -71,7 +70,6 @@ class GradientContainer extends StatelessWidget {
                   ),
                 ),
               ),
-              DiceRoller(),
               SizedBox(
                 height: 10.0,
               ),
@@ -178,40 +176,11 @@ class GradientContainer extends StatelessWidget {
               ),
               Card(
                 elevation: 2.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MessageCard(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Message Card",
-                        overflow: TextOverflow.ellipsis,
-                        textWidthBasis: TextWidthBasis.parent,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Shortcut()),
-                        );
-                      },
-                      child: Text(
-                        "Shortcuts",
-                      ),
-                    ),
-                  ],
-                ),
+                child: DiceRoller(),
+              ),
+              Card(
+                elevation: 2.0,
+                child: MessageCard(),
               ),
             ],
           ),
