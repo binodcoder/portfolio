@@ -39,6 +39,11 @@ class MyDrawer extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, '/settings'),
           ),
           DrawerItem(
+            icon: Icons.quiz,
+            text: 'Quiz App',
+            onTap: () => Navigator.pushNamed(context, '/quiz-app'),
+          ),
+          DrawerItem(
             icon: Icons.exit_to_app,
             text: 'Logout',
             onTap: () {
