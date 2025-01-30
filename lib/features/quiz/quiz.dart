@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/quiz/screens/questions_screen.dart';
-import 'package:untitled/quiz/screens/start_screen.dart';
+import 'package:untitled/features/quiz/screens/questions_screen.dart';
+import 'package:untitled/features/quiz/screens/results_screen.dart';
+import 'package:untitled/features/quiz/screens/start_screen.dart';
+
+import 'data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -11,6 +14,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
   void switchScreen() {
@@ -19,9 +23,35 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void restartQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = 'question-screen';
+    });
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        activeScreen = 'results-screen';
+      });
+    }
+  }
+
   @override
   Widget build(context) {
-    final screenWidget = activeScreen == "start-screen" ? StartScreen(switchScreen) : QuestionsScreen();
+    final screenWidget = activeScreen == "start-screen"
+        ? StartScreen(switchScreen)
+        : activeScreen == "question-screen"
+            ? QuestionsScreen(
+                onSelectAnswer: chooseAnswer,
+              )
+            : ResultsScreen(
+                chosenAnswers: selectedAnswers,
+                restartQuiz: restartQuiz,
+              );
 
     return MaterialApp(
       home: Scaffold(
@@ -29,8 +59,8 @@ class _QuizState extends State<Quiz> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 78, 13, 151),
-                Color.fromARGB(255, 107, 15, 168),
+                Color.fromARGB(255, 127, 70, 191),
+                Color.fromARGB(255, 156, 97, 196),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,

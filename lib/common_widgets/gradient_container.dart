@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/widgets/dice_roller.dart';
-import 'package:untitled/widgets/message_card.dart';
-import 'package:untitled/widgets/styled_text.dart';
+import 'package:untitled/common_widgets/styled_text.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import '../word_shortcut.dart';
 import 'circle_avatar.dart';
+import 'dice_roller.dart';
+import 'message_card.dart';
 
 class GradientContainer extends StatelessWidget {
   GradientContainer(this.colors, {super.key});

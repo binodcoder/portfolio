@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/widgets/app_bar.dart';
-import 'package:untitled/widgets/circle_avatar.dart';
-import 'package:untitled/widgets/drawer/drawer.dart';
-import 'package:untitled/widgets/gradient_container.dart';
-import 'package:untitled/widgets/styled_text.dart';
+
 import 'package:untitled/word_shortcut.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'common_widgets/app_bar.dart';
+import 'common_widgets/drawer/drawer.dart';
+import 'common_widgets/gradient_container.dart';
 
 class MyCv extends StatelessWidget {
   @override
