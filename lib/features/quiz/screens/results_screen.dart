@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled/features/quiz/widgets/questions_summary.dart';
+import 'package:untitled/features/quiz/models/result_summary.dart';
+import 'package:untitled/features/quiz/widgets/question_summary/questions_summary.dart';
 
 import '../data/questions.dart';
 
@@ -14,8 +15,8 @@ class ResultsScreen extends StatelessWidget {
   final List<String> chosenAnswers;
   final void Function() restartQuiz;
 
-  List<Map<String, Object>> getSummaryData() {
-    final List<Map<String, Object>> summary = [];
+  List<ResultSummary> get summaryData {
+    final List<ResultSummary> summary = [];
 
     for (var i = 0; i < chosenAnswers.length; i++) {
       final questionIndex = i;
@@ -24,22 +25,21 @@ class ResultsScreen extends StatelessWidget {
       final userAnswer = chosenAnswers[i];
       final isCorrect = correctAnswer == userAnswer;
 
-      summary.add({
-        'question_index': questionIndex,
-        'question': question.text,
-        'correct_answer': correctAnswer,
-        'user_answer': userAnswer,
-        'is_correct': isCorrect,
-      });
+      summary.add(ResultSummary(
+        questionIndex: questionIndex,
+        question: question.text,
+        correctAnswer: correctAnswer,
+        userAnswer: userAnswer,
+        isCorrect: isCorrect,
+      ));
     }
     return summary;
   }
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
-    final numCorrectAnswers = summaryData.where((data) => data['is_correct'] as bool).length;
+    final numCorrectAnswers = summaryData.where((data) => data.isCorrect).length;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
