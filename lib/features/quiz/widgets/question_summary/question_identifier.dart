@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:untitled/features/quiz/models/result_summary.dart';
 
 class QuestionIdentifier extends StatelessWidget {
-  QuestionIdentifier({super.key, required this.isCorrect, required this.questionIndex});
+  QuestionIdentifier({
+    super.key,
+    required this.isCorrect,
+    required this.questionIndex,
+  });
 
   final bool isCorrect;
   final int questionIndex;

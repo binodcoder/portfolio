@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'features/quiz/quiz.dart';
+import 'package:untitled/features/expense_tracker/widgets/expenses.dart';
 
 void main() {
-  runApp(Quiz());
+  runApp(Expenses());
 }
