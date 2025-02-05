@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/common_widgets/styled_text.dart';
-
 import 'package:url_launcher/url_launcher.dart';
-import '../word_shortcut.dart';
 import 'circle_avatar.dart';
 import 'dice_roller.dart';
 import 'message_card.dart';
@@ -93,14 +91,14 @@ class GradientContainer extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {
-                          launch("https://www.linkedin.com/in/binod-bhandari-b40253183/");
+                          launchUrl(Uri.parse("https://www.linkedin.com/in/binod-bhandari-b40253183/"));
                         },
                         icon: Icon(FontAwesomeIcons.linkedin),
                         color: Colors.blueGrey,
                       ),
                       IconButton(
                         onPressed: () {
-                          launch("https://cct.edu.np/");
+                          launchUrl(Uri.parse("https://cct.edu.np/"));
                         },
                         icon: Icon(FontAwesomeIcons.twitter),
                         color: Colors.blueAccent,

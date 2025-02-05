@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled/features/quiz/models/result_summary.dart';
+ import 'package:untitled/features/quiz/models/result_summary.dart';
 import 'package:untitled/features/quiz/widgets/question_summary/question_identifier.dart';
 import 'package:untitled/features/quiz/widgets/question_summary/summary_item.dart';
 

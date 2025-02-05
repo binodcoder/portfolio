@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/features/quiz/models/result_summary.dart';
 
 class QuestionIdentifier extends StatelessWidget {
   QuestionIdentifier({
