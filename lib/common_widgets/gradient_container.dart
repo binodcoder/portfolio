@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/common_widgets/styled_text.dart';
+import 'package:my_cv/common_widgets/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'circle_avatar.dart';
 import 'dice_roller.dart';
@@ -9,7 +9,8 @@ import 'message_card.dart';
 class GradientContainer extends StatelessWidget {
   GradientContainer(this.colors, {super.key});
 
-  GradientContainer.purple({super.key}) : colors = [Colors.deepPurple, Colors.indigo];
+  GradientContainer.purple({super.key})
+      : colors = [Colors.deepPurple, Colors.indigo];
 
   final startAlignment = Alignment.topLeft;
   final endAlignment = Alignment.bottomRight;
@@ -36,7 +37,8 @@ class GradientContainer extends StatelessWidget {
               Card(
                 elevation: 2.0,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30.2, horizontal: 20.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 30.2, horizontal: 20.0),
                   child: Column(
                     children: [
                       CustomCircleAvatar(
@@ -52,7 +54,8 @@ class GradientContainer extends StatelessWidget {
                       ),
                       Text(
                         "Mobile App Developer",
-                        style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.normal),
                       ),
                       SizedBox(
                         height: 15.0,
@@ -91,7 +94,8 @@ class GradientContainer extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {
-                          launchUrl(Uri.parse("https://www.linkedin.com/in/binod-bhandari-b40253183/"));
+                          launchUrl(Uri.parse(
+                              "https://www.linkedin.com/in/binod-bhandari-b40253183/"));
                         },
                         icon: Icon(FontAwesomeIcons.linkedin),
                         color: Colors.blueGrey,

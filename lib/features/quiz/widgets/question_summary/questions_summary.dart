@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
- import 'package:untitled/features/quiz/models/result_summary.dart';
-import 'package:untitled/features/quiz/widgets/question_summary/question_identifier.dart';
-import 'package:untitled/features/quiz/widgets/question_summary/summary_item.dart';
+import 'package:my_cv/features/quiz/widgets/question_summary/question_identifier.dart';
+import 'package:my_cv/features/quiz/widgets/question_summary/summary_item.dart';
+
+import '../../models/result_summary.dart';
 
 class QuestionsSummary extends StatelessWidget {
   const QuestionsSummary({

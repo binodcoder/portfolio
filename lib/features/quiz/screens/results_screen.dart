@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled/features/quiz/models/result_summary.dart';
-import 'package:untitled/features/quiz/widgets/question_summary/questions_summary.dart';
 
 import '../data/questions.dart';
+import '../models/result_summary.dart';
+import '../widgets/question_summary/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
@@ -39,7 +39,8 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final numTotalQuestions = questions.length;
-    final numCorrectAnswers = summaryData.where((data) => data.isCorrect).length;
+    final numCorrectAnswers =
+        summaryData.where((data) => data.isCorrect).length;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,

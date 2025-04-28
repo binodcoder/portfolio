@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/features/expense_tracker/widgets/chat/chat.dart';
-import 'package:untitled/features/expense_tracker/widgets/expenses_list/expenses_list.dart';
-import 'package:untitled/features/expense_tracker/widgets/new_expense.dart';
 
 import '../models/expense.dart';
+import 'chat/chat.dart';
+import 'expenses_list/expenses_list.dart';
+import 'new_expense.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});

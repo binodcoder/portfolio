@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/features/quiz/data/questions.dart';
-import 'package:untitled/features/quiz/widgets/answer_button.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+
+import '../data/questions.dart';
+import '../widgets/answer_button.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key, required this.onSelectAnswer});
