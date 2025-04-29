@@ -13,11 +13,6 @@ class MyDrawer extends StatelessWidget {
         children: <Widget>[
           CustomDrawerHeader(),
           DrawerItem(
-            icon: Icons.person,
-            text: 'Profile',
-            onTap: () => Navigator.pushNamed(context, '/profile'),
-          ),
-          DrawerItem(
             icon: Icons.work,
             text: 'Experience',
             onTap: () => Navigator.pushNamed(context, '/experience'),
@@ -37,11 +32,6 @@ class MyDrawer extends StatelessWidget {
             icon: Icons.settings,
             text: 'Settings',
             onTap: () => Navigator.pushNamed(context, '/settings'),
-          ),
-          DrawerItem(
-            icon: Icons.quiz,
-            text: 'Quiz App',
-            onTap: () => Navigator.pushNamed(context, '/quiz-app'),
           ),
           DrawerItem(
             icon: Icons.exit_to_app,

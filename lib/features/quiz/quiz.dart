@@ -52,21 +52,22 @@ class _QuizState extends State<Quiz> {
                 restartQuiz: restartQuiz,
               );
 
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 127, 70, 191),
-                Color.fromARGB(255, 156, 97, 196),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Quiz'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 127, 70, 191),
+              Color.fromARGB(255, 156, 97, 196),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          child: screenWidget,
         ),
+        child: screenWidget,
       ),
     );
   }

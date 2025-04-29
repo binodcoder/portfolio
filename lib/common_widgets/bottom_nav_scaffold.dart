@@ -14,8 +14,6 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
 
   final List<Widget> _pages = [
     Home(),
-    Quiz(),
-    Expenses(),
     Profile(),
   ];
 
@@ -44,16 +42,6 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.quiz_outlined),
-            activeIcon: Icon(Icons.quiz),
-            label: 'Quiz',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on_outlined),
-            activeIcon: Icon(Icons.monetization_on),
-            label: 'Expenses',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),

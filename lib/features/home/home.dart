@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_cv/features/expense_tracker/widgets/expenses.dart';
+import 'package:my_cv/features/todo/todo.dart';
 import '../../common_widgets/app_bar.dart';
 import 'widgets/drawer/drawer.dart';
 import '../quiz/quiz.dart';
@@ -9,6 +10,7 @@ class Home extends StatelessWidget {
   final List<HomeItem> items = [
     HomeItem('Expenses', Icons.attach_money, Expenses()),
     HomeItem('Quiz', Icons.quiz, Quiz()),
+    HomeItem('Todo', Icons.task, Todos()),
   ];
 
   @override
