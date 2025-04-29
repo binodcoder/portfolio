@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_cv/common_widgets/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'circle_avatar.dart';
+import '../../../common_widgets/circle_avatar.dart';
 import 'dice_roller.dart';
 import 'message_card.dart';
 

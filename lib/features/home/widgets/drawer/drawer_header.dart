@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../circle_avatar.dart';
+import '../../../../common_widgets/circle_avatar.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
-
   const CustomDrawerHeader({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
