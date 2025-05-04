@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_cv/common_widgets/styled_text.dart';
+import 'package:my_cv/features/profile/widgets/youtube_player.dart';
+import 'package:my_cv/features/profile/widgets/youtube_player_web.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../common_widgets/circle_avatar.dart';
 import 'dice_roller.dart';
 import 'message_card.dart';
+import 'package:flutter/foundation.dart';
 
 class GradientContainer extends StatelessWidget {
   GradientContainer(this.colors, {super.key});
@@ -60,8 +66,11 @@ class GradientContainer extends StatelessWidget {
                       SizedBox(
                         height: 15.0,
                       ),
+                      kIsWeb
+                          ? YouTubePlayerWidget(videoId: "X7yJfhYHUIw")
+                          : YouTubePlayerScreen(),
                       Text(
-                        "I am learning dart and flutter eventually and looking for internship. I want to learn  and grow from the organization.",
+                        "MSc Computer Science graduate with distinction and experience in developing mobile and web applications using Flutter, Spring Boot, and MySQL. Skilled in delivering innovative, user-focused solutions. Seeking to contribute technical expertise to a software development role in the UK.",
                         style: TextStyle(
                           fontFamily: "DancingScript",
                           fontSize: 18.0,
