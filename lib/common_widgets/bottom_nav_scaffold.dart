@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/expense_tracker/widgets/expenses.dart';
 import 'package:my_cv/features/home/home.dart';
 import 'package:my_cv/features/profile/profile.dart';
-import 'package:my_cv/features/quiz/quiz.dart';
 
 class BottomNavScaffold extends StatefulWidget {
   @override

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_cv/common_widgets/bottom_nav_scaffold.dart';
-import 'package:my_cv/features/home/home.dart';
 
-import 'features/expense_tracker/widgets/expenses.dart';
 // import 'package:flutter/services.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
