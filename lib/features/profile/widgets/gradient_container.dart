@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_cv/common_widgets/styled_text.dart';
 import 'package:my_cv/features/profile/widgets/youtube_player.dart';
@@ -40,6 +41,21 @@ class GradientContainer extends StatelessWidget {
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Container(
+                width: 50,
+                height: 50,
+                child: SvgPicture.asset(
+                  'assets/images/logo_setting.svg',
+                  semanticsLabel: 'Dart Logo',
+                ),
+              ),
+              Container(
+                width: 50,
+                height: 50,
+                child: Image(
+                  image: AssetImage('assets/images/education.png'),
+                ),
+              ),
               Card(
                 elevation: 2.0,
                 child: Padding(

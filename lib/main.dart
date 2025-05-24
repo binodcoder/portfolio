@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_cv/common_widgets/bottom_nav_scaffold.dart';
 
 // import 'package:flutter/services.dart';
@@ -54,13 +55,14 @@ void main() {
             backgroundColor: kColorScheme.primaryContainer,
           ),
         ),
-        textTheme: ThemeData().textTheme.copyWith(
-              titleLarge: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: kColorScheme.onSecondaryContainer,
-                fontSize: 16,
-              ),
-            ),
+        // textTheme: ThemeData().textTheme.copyWith(
+        //       titleLarge: TextStyle(
+        //         fontWeight: FontWeight.bold,
+        //         color: kColorScheme.onSecondaryContainer,
+        //         fontSize: 16,
+        //       ),
+        //     ),
+        textTheme: GoogleFonts.latoTextTheme(),
       ),
       // themeMode: ThemeMode.system,
       home: BottomNavScaffold(),
