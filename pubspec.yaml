@@ -37,6 +37,7 @@ dependencies:
   youtube_player_iframe: ^5.2.1
   flutter_svg: ^2.1.0
   transparent_image: ^2.0.1
+  flutter_riverpod: ^2.6.1
 
 
 dev_dependencies:
