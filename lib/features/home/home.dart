@@ -3,6 +3,7 @@ import 'package:my_cv/features/expense_tracker/widgets/expenses.dart';
 import 'package:my_cv/features/meal/screens/tabs.dart';
 import 'package:my_cv/features/todo/todo.dart';
 import '../../common_widgets/app_bar.dart';
+import '../shopping_list/screens/shopping_list.dart';
 import 'widgets/drawer/drawer.dart';
 import '../quiz/quiz.dart';
 import 'model/home_item.dart';
@@ -13,6 +14,7 @@ class Home extends StatelessWidget {
     HomeItem('Quiz', Icons.quiz, Quiz()),
     HomeItem('Todo', Icons.task, Todos()),
     HomeItem('Meal', Icons.set_meal, TabsScreen()),
+    HomeItem('Shopping List', Icons.shop, ShoppingListScreen()),
   ];
 
   @override
