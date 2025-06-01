@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:my_cv/features/shopping_list/data/categories.dart';
 import 'package:my_cv/features/shopping_list/widgets/grocery_item.dart';
@@ -16,48 +17,59 @@ class ShoppingListScreen extends StatefulWidget {
 
 class _ShoppingListScreenState extends State<ShoppingListScreen> {
   List<Grocery> _groceryItems = [];
-  late Future<List<Grocery>> _loadedItems;
+  var _isLoading = true;
   String? _error;
 
   @override
   void initState() {
     super.initState();
-    _loadedItems = _loadItems();
+    _loadItems();
   }
 
-  Future<List<Grocery>> _loadItems() async {
+  void _loadItems() async {
     final url = Uri.https(
-      'binodfolio-default-rtdb.firebaseio.com',
-      'shopping-list.json',
-    );
+        'binodfolio-default-rtdb.firebaseio.com', 'shopping-list.json');
 
-    final response = await http.get(url);
+    try {
+      final response = await http.get(url);
 
-    if (response.statusCode >= 400) {
-      throw Exception('Failed to fetch grocery items. please try again later.');
+      if (response.statusCode >= 400) {
+        setState(() {
+          _error = 'Failed to fetch data, please try again';
+        });
+      }
+
+      if (response.body == 'null') {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+      final Map<String, dynamic> listData = json.decode(response.body);
+      final List<Grocery> loadedItems = [];
+      for (final item in listData.entries) {
+        final category = categories.entries
+            .firstWhere(
+                (catItem) => catItem.value.title == item.value['category'])
+            .value;
+        loadedItems.add(
+          Grocery(
+            id: item.key,
+            name: item.value['name'],
+            quantity: item.value['quantity'],
+            category: category,
+          ),
+        );
+      }
+      setState(() {
+        _groceryItems = loadedItems;
+        _isLoading = false;
+      });
+    } catch (error) {
+      setState(() {
+        _error = 'Something went wrong, please try again';
+      });
     }
-
-    if (response.body == 'null') {
-      return [];
-    }
-
-    final Map<String, dynamic> listData = json.decode(response.body);
-    final List<Grocery> loadedItems = [];
-    for (final item in listData.entries) {
-      final category = categories.entries
-          .firstWhere(
-              (catItem) => catItem.value.title == item.value['category'])
-          .value;
-      loadedItems.add(
-        Grocery(
-          id: item.key,
-          name: item.value['name'],
-          quantity: item.value['quantity'],
-          category: category,
-        ),
-      );
-    }
-    return loadedItems;
   }
 
   void _addItem() async {
@@ -110,6 +122,44 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget content = Center(
+      child: Text("no item added yet"),
+    );
+
+    if (_isLoading) {
+      content = const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (_groceryItems.isNotEmpty) {
+      content = ListView.builder(
+        itemCount: _groceryItems.length,
+        itemBuilder: (ctx, index) => Dismissible(
+          background: Container(
+            color: Theme.of(context).colorScheme.error.withOpacity(0.55),
+            margin: EdgeInsets.symmetric(
+                horizontal: Theme.of(context).cardTheme.margin!.horizontal),
+          ),
+          key: ValueKey(_groceryItems[index]),
+          onDismissed: (direction) {
+            _removeItem(_groceryItems[index]);
+          },
+          child: GroceryItem(
+            name: _groceryItems[index].name,
+            color: _groceryItems[index].category.color,
+            quantity: _groceryItems[index].quantity,
+          ),
+        ),
+      );
+    }
+
+    if (_error != null) {
+      content = Center(
+        child: Text(_error!),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Shopping List'),
@@ -120,47 +170,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
           )
         ],
       ),
-      body: FutureBuilder<List<Grocery>>(
-          future: _loadedItems,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (snapshot.hasError) {
-              return Center(
-                child: Text(snapshot.error.toString()),
-              );
-            }
-
-            if (snapshot.data!.isEmpty) {
-              return Center(
-                child: Text("no item added yet"),
-              );
-            }
-
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (ctx, index) => Dismissible(
-                background: Container(
-                  color: Theme.of(context).colorScheme.error.withOpacity(0.55),
-                  margin: EdgeInsets.symmetric(
-                      horizontal:
-                          Theme.of(context).cardTheme.margin!.horizontal),
-                ),
-                key: ValueKey(snapshot.data![index]),
-                onDismissed: (direction) {
-                  _removeItem(snapshot.data![index]);
-                },
-                child: GroceryItem(
-                  name: snapshot.data![index].name,
-                  color: snapshot.data![index].category.color,
-                  quantity: snapshot.data![index].quantity,
-                ),
-              ),
-            );
-          }),
+      body: content,
     );
   }
 }
