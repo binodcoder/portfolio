@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:my_cv/features/shopping_list/data/categories.dart';
 import 'package:my_cv/features/shopping_list/widgets/grocery_item.dart';
 import 'package:my_cv/features/shopping_list/widgets/new_item.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/grocery.dart';
 
@@ -12,7 +16,61 @@ class ShoppingListScreen extends StatefulWidget {
 }
 
 class _ShoppingListScreenState extends State<ShoppingListScreen> {
-  final List<Grocery> _groceryItems = [];
+  List<Grocery> _groceryItems = [];
+  var _isLoading = true;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadItems();
+  }
+
+  void _loadItems() async {
+    final url = Uri.https(
+        'binodfolio-default-rtdb.firebaseio.com', 'shopping-list.json');
+
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode >= 400) {
+        setState(() {
+          _error = 'Failed to fetch data, please try again';
+        });
+      }
+
+      if (response.body == 'null') {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+      final Map<String, dynamic> listData = json.decode(response.body);
+      final List<Grocery> loadedItems = [];
+      for (final item in listData.entries) {
+        final category = categories.entries
+            .firstWhere(
+                (catItem) => catItem.value.title == item.value['category'])
+            .value;
+        loadedItems.add(
+          Grocery(
+            id: item.key,
+            name: item.value['name'],
+            quantity: item.value['quantity'],
+            category: category,
+          ),
+        );
+      }
+      setState(() {
+        _groceryItems = loadedItems;
+        _isLoading = false;
+      });
+    } catch (error) {
+      setState(() {
+        _error = 'Something went wrong, please try again';
+      });
+    }
+  }
 
   void _addItem() async {
     final newItem = await Navigator.of(context).push<Grocery>(
@@ -30,11 +88,21 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
     });
   }
 
-  void _removeItem(Grocery grocery) {
+  void _removeItem(Grocery grocery) async {
     int index = _groceryItems.indexOf(grocery);
     setState(() {
       _groceryItems.remove(grocery);
     });
+    final url = Uri.https('binodfolio-default-rtdb.firebaseio.com',
+        'shopping-list/${grocery.id}.json');
+    final response = await http.delete(url);
+
+    if (response.statusCode >= 400) {
+      // Optional : show error message.
+      setState(() {
+        _groceryItems.insert(index, grocery);
+      });
+    }
 
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -58,6 +126,12 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
       child: Text("no item added yet"),
     );
 
+    if (_isLoading) {
+      content = const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     if (_groceryItems.isNotEmpty) {
       content = ListView.builder(
         itemCount: _groceryItems.length,
@@ -77,6 +151,12 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
             quantity: _groceryItems[index].quantity,
           ),
         ),
+      );
+    }
+
+    if (_error != null) {
+      content = Center(
+        child: Text(_error!),
       );
     }
 
