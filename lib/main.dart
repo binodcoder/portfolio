@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:my_cv/common_widgets/bottom_nav_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_cv/features/intro/intro_screen.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: Color.fromARGB(255, 96, 59, 181),
@@ -48,27 +47,15 @@ ThemeData theme = ThemeData().copyWith(
       backgroundColor: kColorScheme.primaryContainer,
     ),
   ),
-  // textTheme: ThemeData().textTheme.copyWith(
-  //       titleLarge: TextStyle(
-  //         fontWeight: FontWeight.bold,
-  //         color: kColorScheme.onSecondaryContainer,
-  //         fontSize: 16,
-  //       ),
-  //     ),
   textTheme: GoogleFonts.latoTextTheme(),
 );
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  // ]).then((fn) {
   runApp(
     ProviderScope(
       child: App(),
     ),
   );
-  // });
 }
 
 class App extends StatelessWidget {
@@ -77,12 +64,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: darkTheme,
-      // theme: ThemeData(useMaterial3: true),
-      theme: theme,
-      // themeMode: ThemeMode.system,
-      home: BottomNavScaffold(),
-      //Expenses(),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
