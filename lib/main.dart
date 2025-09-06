@@ -12,23 +12,6 @@ var kDarkColorScheme = ColorScheme.fromSeed(
   seedColor: Color.fromARGB(255, 5, 99, 125),
 );
 
-ThemeData darkTheme = ThemeData.dark().copyWith(
-  colorScheme: kDarkColorScheme,
-  cardTheme: CardTheme().copyWith(
-    color: kDarkColorScheme.secondaryContainer,
-    margin: EdgeInsets.symmetric(
-      horizontal: 16,
-      vertical: 8,
-    ),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: kDarkColorScheme.primaryContainer,
-      foregroundColor: kDarkColorScheme.onPrimaryContainer,
-    ),
-  ),
-);
-
 ThemeData theme = ThemeData().copyWith(
   colorScheme: kColorScheme,
   appBarTheme: AppBarTheme().copyWith(
@@ -50,6 +33,23 @@ ThemeData theme = ThemeData().copyWith(
   textTheme: GoogleFonts.latoTextTheme(),
 );
 
+ThemeData darkTheme = ThemeData.dark().copyWith(
+  colorScheme: kDarkColorScheme,
+  cardTheme: CardTheme().copyWith(
+    color: kDarkColorScheme.secondaryContainer,
+    margin: EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 8,
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: kDarkColorScheme.primaryContainer,
+      foregroundColor: kDarkColorScheme.onPrimaryContainer,
+    ),
+  ),
+);
+
 void main() {
   runApp(
     ProviderScope(
@@ -58,14 +58,31 @@ void main() {
   );
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  ThemeMode _mode = ThemeMode.system;
+
+  void _setTheme(ThemeMode mode) {
+    setState(() => _mode = mode);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: theme,
+      darkTheme: darkTheme,
+      themeMode: _mode,
+      home: HomePage(
+        onThemeChanged: _setTheme,
+        themeMode: _mode,
+      ),
     );
   }
 }

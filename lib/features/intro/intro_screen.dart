@@ -4,7 +4,12 @@ import 'package:my_cv/common_widgets/bottom_nav_scaffold.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage();
+  final void Function(ThemeMode) onThemeChanged;
+  final ThemeMode themeMode;
+  const HomePage({
+    required this.onThemeChanged,
+    required this.themeMode,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -57,6 +62,8 @@ class _HomePageState extends State<HomePage> {
                   if (isDesktop)
                     _NavBar(
                       onTap: _onNavTap,
+                      onThemeChanged: widget.onThemeChanged,
+                      themeMode: widget.themeMode,
                     )
                   else
                     _MobileMenu(
@@ -125,9 +132,13 @@ class _Brand extends StatelessWidget {
 
 class _NavBar extends StatelessWidget {
   final void Function(String id) onTap;
+  final void Function(ThemeMode) onThemeChanged;
+  final ThemeMode themeMode;
 
   const _NavBar({
     required this.onTap,
+    required this.onThemeChanged,
+    required this.themeMode,
   });
 
   @override
@@ -140,6 +151,10 @@ class _NavBar extends StatelessWidget {
         _NavButton(label: 'Projects', onTap: () => onTap('projects')),
         _NavButton(label: 'Contact', onTap: () => onTap('contact')),
         const SizedBox(width: 16),
+        _ThemeToggle(
+          onChanged: onThemeChanged,
+          themeMode: themeMode,
+        ),
         const SizedBox(width: 8),
         FilledButton.tonal(
           onPressed: () => _launch(
@@ -194,6 +209,25 @@ class _MobileMenu extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ThemeToggle extends StatelessWidget {
+  final ThemeMode themeMode;
+  final void Function(ThemeMode) onChanged;
+  const _ThemeToggle({required this.themeMode, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<ThemeMode>(
+      segments: const [
+        ButtonSegment(value: ThemeMode.light, label: Text('☀️')),
+        ButtonSegment(value: ThemeMode.dark, label: Text('🌙')),
+      ],
+      selected: {themeMode == ThemeMode.system ? ThemeMode.light : themeMode},
+      onSelectionChanged: (s) => onChanged(s.first),
+      showSelectedIcon: false,
     );
   }
 }
