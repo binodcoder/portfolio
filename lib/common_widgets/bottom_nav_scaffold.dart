@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/home/home.dart';
+import 'package:my_cv/features/my_apps/my_apps.dart';
 import 'package:my_cv/features/profile/profile.dart';
 
 class BottomNavScaffold extends StatefulWidget {
@@ -11,7 +11,7 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    Home(),
+    MyApps(),
     Profile(),
   ];
 
@@ -37,9 +37,9 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
         elevation: 8,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.apps_outlined),
+            activeIcon: Icon(Icons.apps),
+            label: 'Apps',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),

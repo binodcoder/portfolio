@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_cv/common_widgets/styled_text.dart';
-import 'package:my_cv/features/profile/widgets/youtube_player.dart';
-import 'package:my_cv/features/profile/widgets/youtube_player_web.dart';
+import 'package:my_cv/features/home/widgets/media/youtube_player.dart';
+import 'package:my_cv/features/home/widgets/media/youtube_player_web.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../common_widgets/circle_avatar.dart';
 import 'dice_roller.dart';
