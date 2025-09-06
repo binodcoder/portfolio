@@ -4,7 +4,7 @@ import 'package:my_cv/common_widgets/bottom_nav_scaffold.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
-  final void Function(ThemeMode) onThemeChanged;
+  final Future<void> Function(ThemeMode) onThemeChanged;
   final ThemeMode themeMode;
   const HomePage({
     required this.onThemeChanged,
@@ -68,6 +68,8 @@ class _HomePageState extends State<HomePage> {
                   else
                     _MobileMenu(
                       onTap: _onNavTap,
+                      onThemeChanged: widget.onThemeChanged,
+                      themeMode: widget.themeMode,
                     ),
                 ],
               ),
@@ -132,7 +134,7 @@ class _Brand extends StatelessWidget {
 
 class _NavBar extends StatelessWidget {
   final void Function(String id) onTap;
-  final void Function(ThemeMode) onThemeChanged;
+  final Future<void> Function(ThemeMode) onThemeChanged;
   final ThemeMode themeMode;
 
   const _NavBar({
@@ -158,7 +160,7 @@ class _NavBar extends StatelessWidget {
         const SizedBox(width: 8),
         FilledButton.tonal(
           onPressed: () => _launch(
-              'mailto:binodbhandari@example.com?subject=Let\'s work together'),
+              'mailto:binodbhandari@gmail.com?subject=Let\'s work together'),
           child: const Text('Hire Me'),
         ),
       ],
@@ -181,10 +183,14 @@ class _NavButton extends StatelessWidget {
 }
 
 class _MobileMenu extends StatelessWidget {
+  final ThemeMode themeMode;
+  final Future<void> Function(ThemeMode) onThemeChanged;
   final void Function(String id) onTap;
 
   const _MobileMenu({
     required this.onTap,
+    required this.onThemeChanged,
+    required this.themeMode,
   });
 
   @override
@@ -205,6 +211,7 @@ class _MobileMenu extends StatelessWidget {
             children: [
               const Text('Theme'),
               const Spacer(),
+              _ThemeToggle(themeMode: themeMode, onChanged: onThemeChanged),
             ],
           ),
         ),
@@ -215,7 +222,7 @@ class _MobileMenu extends StatelessWidget {
 
 class _ThemeToggle extends StatelessWidget {
   final ThemeMode themeMode;
-  final void Function(ThemeMode) onChanged;
+  final Future<void> Function(ThemeMode) onChanged;
   const _ThemeToggle({required this.themeMode, required this.onChanged});
 
   @override

@@ -38,21 +38,21 @@ class GradientContainer extends StatelessWidget {
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                width: 50,
-                height: 50,
-                child: SvgPicture.asset(
-                  'assets/images/logo_setting.svg',
-                  semanticsLabel: 'Dart Logo',
-                ),
-              ),
-              Container(
-                width: 50,
-                height: 50,
-                child: Image(
-                  image: AssetImage('assets/images/education.png'),
-                ),
-              ),
+              // Container(
+              //   width: 50,
+              //   height: 50,
+              //   child: SvgPicture.asset(
+              //     'assets/images/logo_setting.svg',
+              //     semanticsLabel: 'Dart Logo',
+              //   ),
+              // ),
+              // Container(
+              //   width: 50,
+              //   height: 50,
+              //   child: Image(
+              //     image: AssetImage('assets/images/education.png'),
+              //   ),
+              // ),
               Card(
                 elevation: 2.0,
                 child: Padding(

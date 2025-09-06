@@ -18,7 +18,7 @@ class ExpensesList extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (ctx, index) => Dismissible(
         background: Container(
-          color: Theme.of(context).colorScheme.error.withOpacity(0.55),
+          color: Theme.of(context).colorScheme.error.withAlpha(20),
           margin: EdgeInsets.symmetric(
               horizontal: Theme.of(context).cardTheme.margin!.horizontal),
         ),

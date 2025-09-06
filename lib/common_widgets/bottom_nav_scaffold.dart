@@ -31,9 +31,9 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
+        // backgroundColor: Colors.white,
+        //selectedItemColor: Colors.deepPurple,
+        // unselectedItemColor: Colors.grey,
         elevation: 8,
         items: const [
           BottomNavigationBarItem(

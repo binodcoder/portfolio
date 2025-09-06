@@ -38,24 +38,19 @@ class Home extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => item.destination),
                 );
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 4,
-                      offset: Offset(2, 2),
-                    )
-                  ],
-                ),
+              child: Card(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(item.icon, size: 40, color: Colors.deepPurple),
+                    Icon(
+                      item.icon,
+                      size: 40,
+                    ),
                     SizedBox(height: 8),
-                    Text(item.title, style: TextStyle(fontSize: 16)),
+                    Text(
+                      item.title,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ],
                 ),
               ),

@@ -6,13 +6,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         'Apps',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 24.0,
-        ),
+        // style: TextStyle(
+        //   fontWeight: FontWeight.bold,
+        //   fontSize: 24.0,
+        // ),
       ),
       centerTitle: true,
-      backgroundColor: Colors.teal,
+      // backgroundColor: Colors.teal,
       // leading: IconButton(
       //   icon: Icon(Icons.menu),
       //   onPressed: () {

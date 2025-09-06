@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_cv/features/intro/intro_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: Color.fromARGB(255, 96, 59, 181),
@@ -19,7 +20,7 @@ ThemeData theme = ThemeData().copyWith(
     foregroundColor: kColorScheme.primaryContainer,
   ),
   cardTheme: CardTheme().copyWith(
-    color: kColorScheme.secondaryContainer,
+    color: kColorScheme.primaryContainer,
     margin: EdgeInsets.symmetric(
       horizontal: 16,
       vertical: 8,
@@ -31,6 +32,9 @@ ThemeData theme = ThemeData().copyWith(
     ),
   ),
   textTheme: GoogleFonts.latoTextTheme(),
+  iconTheme: IconThemeData().copyWith(
+    color: kColorScheme.onPrimaryContainer,
+  ),
 );
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
@@ -50,26 +54,57 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
   ),
 );
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final saved = prefs.getString('themeMode');
+  final initial = (saved == 'dark')
+      ? ThemeMode.dark
+      : (saved == 'light')
+          ? ThemeMode.light
+          : ThemeMode.system;
   runApp(
     ProviderScope(
-      child: App(),
+      child: App(
+        initialThemeMode: initial,
+      ),
     ),
   );
 }
 
 class App extends StatefulWidget {
-  const App({super.key});
+  final ThemeMode initialThemeMode;
+  const App({super.key, required this.initialThemeMode});
 
   @override
   State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
-  ThemeMode _mode = ThemeMode.system;
+  late ThemeMode _mode;
 
-  void _setTheme(ThemeMode mode) {
+  @override
+  void initState() {
+    super.initState();
+    _mode = widget.initialThemeMode;
+  }
+
+  Future<void> _setTheme(ThemeMode mode) async {
     setState(() => _mode = mode);
+    final prefs = await SharedPreferences.getInstance();
+    final value;
+    switch (mode) {
+      case ThemeMode.dark:
+        value = 'dark';
+        break;
+      case ThemeMode.light:
+        value = 'light';
+        break;
+      case ThemeMode.system:
+        value = 'system';
+        break;
+    }
+    await prefs.setString('themeMode', value);
   }
 
   @override
