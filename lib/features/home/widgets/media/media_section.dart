@@ -1,7 +1,7 @@
+import 'package:binodfolio/features/home/widgets/media/youtube_player.dart';
+import 'package:binodfolio/features/home/widgets/media/youtube_player_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/home/widgets/media/youtube_player.dart';
-import 'package:my_cv/features/home/widgets/media/youtube_player_web.dart';
 
 class MediaSection extends StatelessWidget {
   const MediaSection();

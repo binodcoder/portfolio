@@ -1,6 +1,6 @@
 import 'dart:math';
+import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/core/utils/launch_utils.dart';
 import 'avatar.dart';
 
 class HeroSection extends StatelessWidget {

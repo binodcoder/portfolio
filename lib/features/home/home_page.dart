@@ -1,16 +1,16 @@
+import 'package:binodfolio/features/home/widgets/about_section.dart';
+import 'package:binodfolio/features/home/widgets/apps_section.dart';
+import 'package:binodfolio/features/home/widgets/brand.dart';
+import 'package:binodfolio/features/home/widgets/contact_section.dart';
+import 'package:binodfolio/features/home/widgets/footer.dart';
+import 'package:binodfolio/features/home/widgets/hero_section.dart';
+import 'package:binodfolio/features/home/widgets/media/media_section.dart';
+import 'package:binodfolio/features/home/widgets/mobile_menu.dart';
+import 'package:binodfolio/features/home/widgets/nav_bar.dart';
+import 'package:binodfolio/features/home/widgets/projects_section.dart';
+import 'package:binodfolio/features/home/widgets/section.dart';
+import 'package:binodfolio/features/home/widgets/skills_section.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/home/widgets/about_section.dart';
-import 'package:my_cv/features/home/widgets/apps_section.dart';
-import 'package:my_cv/features/home/widgets/brand.dart';
-import 'package:my_cv/features/home/widgets/contact_section.dart';
-import 'package:my_cv/features/home/widgets/footer.dart';
-import 'package:my_cv/features/home/widgets/hero_section.dart';
-import 'package:my_cv/features/home/widgets/media/media_section.dart';
-import 'package:my_cv/features/home/widgets/mobile_menu.dart';
-import 'package:my_cv/features/home/widgets/nav_bar.dart';
-import 'package:my_cv/features/home/widgets/projects_section.dart';
-import 'package:my_cv/features/home/widgets/section.dart';
-import 'package:my_cv/features/home/widgets/skills_section.dart';
 
 class HomePage extends StatefulWidget {
   final Future<void> Function(ThemeMode) onThemeChanged;

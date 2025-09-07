@@ -1,7 +1,8 @@
+import 'package:binodfolio/features/quiz/screens/questions_screen.dart';
+import 'package:binodfolio/features/quiz/screens/results_screen.dart';
+import 'package:binodfolio/features/quiz/screens/start_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/quiz/screens/questions_screen.dart';
-import 'package:my_cv/features/quiz/screens/results_screen.dart';
-import 'package:my_cv/features/quiz/screens/start_screen.dart';
+
 import 'data/questions.dart';
 
 class Quiz extends StatefulWidget {
@@ -56,19 +57,7 @@ class _QuizState extends State<Quiz> {
       appBar: AppBar(
         title: Text('Quiz'),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 127, 70, 191),
-              Color.fromARGB(255, 156, 97, 196),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: screenWidget,
-      ),
+      body: screenWidget,
     );
   }
 }

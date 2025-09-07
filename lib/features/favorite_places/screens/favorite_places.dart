@@ -1,6 +1,7 @@
+import 'package:binodfolio/features/favorite_places/screens/new_place.dart';
+import 'package:binodfolio/features/favorite_places/widgets/favorite_place_item.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/favorite_places/screens/new_place.dart';
-import 'package:my_cv/features/favorite_places/widgets/favorite_place_item.dart';
+
 import '../models/place.dart';
 
 class FavoritePlaceScreen extends StatefulWidget {

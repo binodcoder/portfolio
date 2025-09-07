@@ -1,5 +1,5 @@
+import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/core/utils/launch_utils.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection();

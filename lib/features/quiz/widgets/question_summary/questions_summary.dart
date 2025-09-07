@@ -1,6 +1,6 @@
+import 'package:binodfolio/features/quiz/widgets/question_summary/question_identifier.dart';
+import 'package:binodfolio/features/quiz/widgets/question_summary/summary_item.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/quiz/widgets/question_summary/question_identifier.dart';
-import 'package:my_cv/features/quiz/widgets/question_summary/summary_item.dart';
 
 import '../../models/result_summary.dart';
 

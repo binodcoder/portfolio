@@ -1,6 +1,6 @@
+import 'package:binodfolio/features/meal/models/meal.dart';
+import 'package:binodfolio/features/meal/widgets/meal_item.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/meal/models/meal.dart';
-import 'package:my_cv/features/meal/widgets/meal_item.dart';
 
 import 'meal_details.dart';
 

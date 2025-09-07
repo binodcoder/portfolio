@@ -1,5 +1,5 @@
+import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/home/widgets/theme_toggle.dart';
 
 class MobileMenu extends StatelessWidget {
   final ThemeMode themeMode;

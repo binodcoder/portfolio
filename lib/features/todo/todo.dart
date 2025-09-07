@@ -1,5 +1,5 @@
+import 'package:binodfolio/features/todo/todo_item.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/todo/todo_item.dart';
 
 class Todo {
   const Todo(this.text, this.priority);

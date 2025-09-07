@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:binodfolio/features/shopping_list/data/categories.dart';
+import 'package:binodfolio/features/shopping_list/widgets/grocery_item.dart';
+import 'package:binodfolio/features/shopping_list/widgets/new_item.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/shopping_list/data/categories.dart';
-import 'package:my_cv/features/shopping_list/widgets/grocery_item.dart';
-import 'package:my_cv/features/shopping_list/widgets/new_item.dart';
+
 import 'package:http/http.dart' as http;
 import '../models/grocery.dart';
 

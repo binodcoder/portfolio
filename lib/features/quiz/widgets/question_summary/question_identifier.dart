@@ -18,13 +18,15 @@ class QuestionIdentifier extends StatelessWidget {
       height: 27,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: isCorrect ? Color.fromARGB(255, 0, 255, 0) : Color.fromARGB(255, 255, 0, 0),
+        color: isCorrect
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.error,
       ),
       child: Text(
         questionNumber.toString(),
         style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255, 22, 2, 56),
+          fontWeight: Theme.of(context).textTheme.bodyMedium!.fontWeight,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
       alignment: Alignment.center,

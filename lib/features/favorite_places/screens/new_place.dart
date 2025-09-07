@@ -1,5 +1,5 @@
+import 'package:binodfolio/features/favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/favorite_places/models/place.dart';
 
 class NewPlaceScreen extends StatefulWidget {
   NewPlaceScreen({super.key});

@@ -1,6 +1,6 @@
+import 'package:binodfolio/core/utils/launch_utils.dart';
+import 'package:binodfolio/features/home/models/project.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/core/utils/launch_utils.dart';
-import 'package:my_cv/features/home/models/project.dart';
 
 class ProjectCard extends StatelessWidget {
   final Project p;

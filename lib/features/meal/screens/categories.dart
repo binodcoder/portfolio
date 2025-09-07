@@ -1,8 +1,9 @@
+import 'package:binodfolio/features/meal/data/dummy_data.dart';
+import 'package:binodfolio/features/meal/models/category.dart';
+import 'package:binodfolio/features/meal/screens/meals.dart';
+import 'package:binodfolio/features/meal/widgets/category_grid_item.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/meal/data/dummy_data.dart';
-import 'package:my_cv/features/meal/models/category.dart';
-import 'package:my_cv/features/meal/screens/meals.dart';
-import 'package:my_cv/features/meal/widgets/category_grid_item.dart';
+
 import '../models/meal.dart';
 
 class CategoriesScreen extends StatefulWidget {

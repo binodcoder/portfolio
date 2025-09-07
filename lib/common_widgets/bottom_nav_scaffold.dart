@@ -1,6 +1,6 @@
+import 'package:binodfolio/features/my_apps/my_apps.dart';
+import 'package:binodfolio/features/profile/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/my_apps/my_apps.dart';
-import 'package:my_cv/features/profile/profile.dart';
 
 class BottomNavScaffold extends StatefulWidget {
   @override

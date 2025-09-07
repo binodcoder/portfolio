@@ -1,6 +1,6 @@
+import 'package:binodfolio/features/home/data/projects.dart';
+import 'package:binodfolio/features/home/widgets/project_card.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/home/data/projects.dart';
-import 'package:my_cv/features/home/widgets/project_card.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection();

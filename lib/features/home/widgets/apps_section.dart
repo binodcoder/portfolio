@@ -1,11 +1,11 @@
+import 'package:binodfolio/features/expense_tracker/widgets/expenses.dart';
+import 'package:binodfolio/features/favorite_places/screens/favorite_places.dart';
+import 'package:binodfolio/features/meal/screens/tabs.dart';
+import 'package:binodfolio/features/my_apps/model/item.dart';
+import 'package:binodfolio/features/quiz/quiz.dart';
+import 'package:binodfolio/features/shopping_list/screens/shopping_list.dart';
+import 'package:binodfolio/features/todo/todo.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/expense_tracker/widgets/expenses.dart';
-import 'package:my_cv/features/favorite_places/screens/favorite_places.dart';
-import 'package:my_cv/features/meal/screens/tabs.dart';
-import 'package:my_cv/features/my_apps/model/item.dart';
-import 'package:my_cv/features/quiz/quiz.dart';
-import 'package:my_cv/features/shopping_list/screens/shopping_list.dart';
-import 'package:my_cv/features/todo/todo.dart';
 
 class AppsSection extends StatelessWidget {
   AppsSection();

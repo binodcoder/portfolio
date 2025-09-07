@@ -22,7 +22,7 @@ class SummaryItem extends StatelessWidget {
           Text(
             question,
             style: GoogleFonts.lato(
-              color: Color.fromARGB(255, 237, 223, 252),
+              // color: Color.fromARGB(255, 237, 223, 252),
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -30,11 +30,11 @@ class SummaryItem extends StatelessWidget {
           SizedBox(height: 5),
           Text(
             userAnswer,
-            style: TextStyle(color: Color.fromARGB(255, 191, 179, 179)),
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
           Text(
             correctAnswer,
-            style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
           SizedBox(height: 10),
         ],

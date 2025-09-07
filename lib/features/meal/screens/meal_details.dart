@@ -1,6 +1,6 @@
+import 'package:binodfolio/features/meal/providers/favorites_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_cv/features/meal/providers/favorites_provider.dart';
 import '../models/meal.dart';
 
 class MealDetailScreen extends ConsumerWidget {

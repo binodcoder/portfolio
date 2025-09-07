@@ -1,10 +1,10 @@
+import 'package:binodfolio/features/meal/providers/favorites_provider.dart';
+import 'package:binodfolio/features/meal/screens/categories.dart';
+import 'package:binodfolio/features/meal/screens/filters.dart';
+import 'package:binodfolio/features/meal/screens/meals.dart';
+import 'package:binodfolio/features/meal/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/meal/screens/categories.dart';
-import 'package:my_cv/features/meal/screens/filters.dart';
-import 'package:my_cv/features/meal/screens/meals.dart';
-import 'package:my_cv/features/meal/widgets/main_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:my_cv/features/meal/providers/favorites_provider.dart';
 
 import '../providers/filters_provider.dart';
 

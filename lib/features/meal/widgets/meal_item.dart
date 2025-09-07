@@ -1,5 +1,5 @@
+import 'package:binodfolio/features/meal/widgets/meal_item_trait.dart';
 import 'package:flutter/material.dart';
-import 'package:my_cv/features/meal/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 import '../models/meal.dart';
 
