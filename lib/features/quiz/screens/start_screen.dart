@@ -8,13 +8,25 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final width = MediaQuery.of(context).size.width;
+    final logoWidth = width < 400
+        ? 180.0
+        : width < 800
+            ? 240.0
+            : 300.0;
+    final titleSize = width < 400
+        ? 20.0
+        : width < 800
+            ? 24.0
+            : 28.0;
+
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(
             'assets/quiz/quiz-logo.png',
-            width: 300,
+            width: logoWidth,
             color: Theme.of(context).colorScheme.onSurface,
             // Color.fromARGB(150, 255, 255, 255),
           ),
@@ -30,7 +42,7 @@ class StartScreen extends StatelessWidget {
             "Learn Flutter the fun way !",
             style: GoogleFonts.lato(
               // color: Color.fromARGB(255, 237, 223, 252),
-              fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
+              fontSize: titleSize,
             ),
           ),
           const SizedBox(height: 30),

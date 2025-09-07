@@ -1,5 +1,5 @@
 # Makefile for deploying the Flutter web projects to GitHub
-# to run this file: make deploy OUTPUT=flutter_binodfolio
+# to run this file: make deploy OUTPUT=binodfolio
 
 BASE_HREF = /$(OUTPUT)/
 # Replace this with your GitHub username
@@ -10,7 +10,7 @@ BUILD_VERSION := $(shell grep 'version:' pubspec.yaml | awk '{print $$2}')
 # Deploy the Flutter web project to GitHub
 deploy:
 ifndef OUTPUT
-  $(error OUTPUT is not set. Usage: make deploy OUTPUT=flutter_binodfolio)
+  $(error OUTPUT is not set. Usage: make deploy OUTPUT=binodfolio)
 endif
 
 	@echo "Clean existing repository"

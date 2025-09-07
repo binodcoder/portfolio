@@ -11,7 +11,7 @@ class MediaSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Gratuation',
+        Text('Graduation',
             style: t.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
         const SizedBox(height: 12),
         kIsWeb

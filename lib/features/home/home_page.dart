@@ -58,15 +58,14 @@ class _HomePageState extends State<HomePage> {
     // final isTablet = width >= 700 && width < 1100;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(64),
-        child: Container(
-          color: Theme.of(context).colorScheme.surface,
-          child: SafeArea(
-            bottom: false,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            // Inline header (replaces Scaffold.appBar)
+            Container(
+              color: Theme.of(context).colorScheme.surface,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Row(
                 children: [
                   const Brand(),
@@ -86,27 +85,31 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-      body: Scrollbar(
-        controller: _scrollController,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Section(key: _homeKey, child: HeroSection(isDesktop: isDesktop)),
-              Section(key: _aboutKey, child: const AboutSection()),
-              Section(key: _skillsKey, child: const SkillsSection()),
-              Section(key: _projectsKey, child: const ProjectsSection()),
-              Section(key: _appsKey, child: AppsSection()),
-              Section(key: _mediaKey, child: const MediaSection()),
-              Section(key: _contactKey, child: const ContactSection()),
-              const SizedBox(height: 32),
-              const Footer(),
-            ],
-          ),
+            const Divider(height: 1),
+            // Scrollable content
+            Expanded(
+              child: Scrollbar(
+                controller: _scrollController,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Section(key: _homeKey, child: HeroSection(isDesktop: isDesktop)),
+                      Section(key: _aboutKey, child: const AboutSection()),
+                      Section(key: _skillsKey, child: const SkillsSection()),
+                      Section(key: _projectsKey, child: const ProjectsSection()),
+                      Section(key: _appsKey, child: AppsSection()),
+                      Section(key: _mediaKey, child: const MediaSection()),
+                      Section(key: _contactKey, child: const ContactSection()),
+                      const SizedBox(height: 32),
+                      const Footer(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

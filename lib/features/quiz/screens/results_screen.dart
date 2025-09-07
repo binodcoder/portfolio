@@ -41,6 +41,12 @@ class ResultsScreen extends StatelessWidget {
     final numTotalQuestions = questions.length;
     final numCorrectAnswers =
         summaryData.where((data) => data.isCorrect).length;
+    final width = MediaQuery.of(context).size.width;
+    final titleSize = width < 400
+        ? 18.0
+        : width < 800
+            ? 22.0
+            : 26.0;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -49,7 +55,7 @@ class ResultsScreen extends StatelessWidget {
             "You scored $numCorrectAnswers out of $numTotalQuestions",
             style: GoogleFonts.lato(
               // color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 24,
+              fontSize: titleSize,
               fontWeight: FontWeight.bold,
             ),
           ),

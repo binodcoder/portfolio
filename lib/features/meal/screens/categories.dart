@@ -1,6 +1,5 @@
 import 'package:binodfolio/features/meal/data/dummy_data.dart';
 import 'package:binodfolio/features/meal/models/category.dart';
-import 'package:binodfolio/features/meal/screens/meals.dart';
 import 'package:binodfolio/features/meal/widgets/category_grid_item.dart';
 import 'package:flutter/material.dart';
 
@@ -43,13 +42,12 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     final filteredMeals = widget.availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => MealsScreen(
-          title: category.title,
-          meals: filteredMeals,
-        ),
-      ),
+    Navigator.of(context).pushNamed(
+      '/meal/category',
+      arguments: {
+        'title': category.title,
+        'meals': filteredMeals,
+      },
     );
   }
 
@@ -57,24 +55,38 @@ class _CategoriesScreenState extends State<CategoriesScreen>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _animationController,
-      child: GridView(
-        padding: EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-        ),
-        children: [
-          for (final category in availableCategories)
-            CategoryGridItem(
-              category: category,
-              onSelectCategory: () => _selectCategory(
-                context,
-                category,
-              ),
-            )
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isWide = constraints.maxWidth >= 900;
+          final gridDelegate = isWide
+              ? const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 400,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                )
+              : const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                );
+
+          return GridView(
+            padding: const EdgeInsets.all(16),
+            gridDelegate: gridDelegate,
+            children: [
+              for (final category in availableCategories)
+                CategoryGridItem(
+                  category: category,
+                  onSelectCategory: () => _selectCategory(
+                    context,
+                    category,
+                  ),
+                )
+            ],
+          );
+        },
       ),
       builder: (context, child) => SlideTransition(
         position: Tween(

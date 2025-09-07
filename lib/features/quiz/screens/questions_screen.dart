@@ -27,34 +27,37 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     final currentQuestion = questions[currentQuestionIndex];
+    final width = MediaQuery.of(context).size.width;
+    final titleSize = width < 400
+        ? 18.0
+        : width < 800
+            ? 22.0
+            : 26.0;
+
     return Center(
-      child: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              currentQuestion.text,
-              style: GoogleFonts.lato(
-                // color: Color.fromARGB(255, 237, 223, 252),
-                fontSize: Theme.of(context).textTheme.headlineSmall!.fontSize,
-                fontWeight:
-                    Theme.of(context).textTheme.headlineSmall!.fontWeight,
-              ),
-              textAlign: TextAlign.center,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            currentQuestion.text,
+            style: GoogleFonts.lato(
+              fontSize: titleSize,
+              fontWeight:
+                  Theme.of(context).textTheme.headlineSmall!.fontWeight,
             ),
-            SizedBox(height: 30),
-            ...currentQuestion.shuffledAnswers.map((answer) {
-              return AnswerButton(
-                answerText: answer,
-                onTap: () {
-                  answerQuestion(answer);
-                },
-              );
-            })
-          ],
-        ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 30),
+          ...currentQuestion.shuffledAnswers.map((answer) {
+            return AnswerButton(
+              answerText: answer,
+              onTap: () {
+                answerQuestion(answer);
+              },
+            );
+          })
+        ],
       ),
     );
   }

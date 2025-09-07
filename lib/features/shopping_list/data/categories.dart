@@ -2,43 +2,43 @@ import 'package:flutter/material.dart';
 import '../models/category.dart';
 
 const categories = {
-  Categories.vegetables: Category(
+  Categories.vegetables: Classification(
     'Vegetables',
     Color.fromARGB(255, 0, 255, 128),
   ),
-  Categories.fruit: Category(
+  Categories.fruit: Classification(
     'Fruit',
     Color.fromARGB(255, 145, 255, 0),
   ),
-  Categories.meat: Category(
+  Categories.meat: Classification(
     'Meat',
     Color.fromARGB(255, 255, 102, 0),
   ),
-  Categories.dairy: Category(
+  Categories.dairy: Classification(
     'Dairy',
     Color.fromARGB(255, 0, 208, 255),
   ),
-  Categories.carbs: Category(
+  Categories.carbs: Classification(
     'Carbs',
     Color.fromARGB(255, 0, 60, 255),
   ),
-  Categories.sweets: Category(
+  Categories.sweets: Classification(
     'Sweets',
     Color.fromARGB(255, 255, 149, 0),
   ),
-  Categories.spices: Category(
+  Categories.spices: Classification(
     'Spices',
     Color.fromARGB(255, 255, 187, 0),
   ),
-  Categories.convenience: Category(
+  Categories.convenience: Classification(
     'Convenience',
     Color.fromARGB(255, 191, 0, 255),
   ),
-  Categories.hygiene: Category(
+  Categories.hygiene: Classification(
     'Hygiene',
     Color.fromARGB(255, 149, 0, 255),
   ),
-  Categories.other: Category(
+  Categories.other: Classification(
     'Other',
     Color.fromARGB(255, 0, 225, 255),
   ),

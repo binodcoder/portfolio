@@ -3,55 +3,82 @@ import 'package:flutter/material.dart';
 import '../../models/expense.dart';
 
 class ExpenseItem extends StatelessWidget {
-  const ExpenseItem(this.expense, {super.key});
+  const ExpenseItem(
+    this.expense, {
+    super.key,
+    this.onRemove,
+    this.showDelete = false,
+  });
 
   final Expense expense;
+  final VoidCallback? onRemove;
+  final bool showDelete;
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
     return Card(
-      child: Row(
-        children: [
-          Container(
-            margin: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 15,
-            ),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-                width: 2,
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+        child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 6,
+                horizontal: 10,
               ),
-            ),
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              '\$${expense.amount.toStringAsFixed(2)}',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Theme.of(context).primaryColor,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: color,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(6),
               ),
-            ),
-          ),
-          Icon(categoryIcons[expense.category]),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                expense.title,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Text(
-                expense.formattedDate,
-                style: const TextStyle(
-                  color: Colors.grey,
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+              child: Text(
+                '\$${expense.amount.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: color,
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+            Icon(categoryIcons[expense.category], color: color.withOpacity(0.8)),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    expense.title,
+                    style: Theme.of(context).textTheme.titleMedium,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    expense.formattedDate,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+            ),
+            if (showDelete)
+              IconButton(
+                tooltip: 'Delete',
+                icon: const Icon(Icons.delete_outline),
+                color: Theme.of(context).colorScheme.error,
+                onPressed: onRemove,
+              ),
+          ],
+        ),
       ),
     );
   }
 }
+

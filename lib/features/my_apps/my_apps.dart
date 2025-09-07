@@ -7,12 +7,14 @@ import '../favorite_places/screens/favorite_places.dart';
 import '../shopping_list/screens/shopping_list.dart';
 import '../quiz/quiz.dart';
 import 'model/item.dart';
+import '../pomodoro/pomodoro.dart';
 
 class MyApps extends StatelessWidget {
   final List<AppItem> items = [
     AppItem('Expenses', Icons.attach_money, Expenses()),
     AppItem('Quiz', Icons.quiz, Quiz()),
     AppItem('Todo', Icons.task, Todos()),
+    AppItem('Pomodoro', Icons.timer, PomodoroApp()),
     AppItem('Meal', Icons.set_meal, TabsScreen()),
     AppItem('Shopping List', Icons.shop, ShoppingListScreen()),
     AppItem('Favorite Places', Icons.favorite, FavoritePlaceScreen()),
@@ -20,45 +22,63 @@ class MyApps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        //Scaffold(
-        // appBar: CustomAppBar(),
-        // drawer: MyDrawer(),
-        //body:
-        Padding(
+    return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        children: items.map((item) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => item.destination),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+
+          int crossAxisCount = 2; // keep mobile at 2
+          if (width >= 600 && width < 900) {
+            crossAxisCount = 3;
+          } else if (width >= 900 && width < 1200) {
+            crossAxisCount = 4;
+          } else if (width >= 1200) {
+            crossAxisCount = 5;
+          }
+
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 1.1,
+            ),
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return GestureDetector(
+                onTap: () {
+                  if (item.title == 'Meal') {
+                    Navigator.pushNamed(context, '/meal');
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => item.destination),
+                    );
+                  }
+                },
+                child: Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        item.icon,
+                        size: 40,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        item.title,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                ),
               );
             },
-            child: Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    item.icon,
-                    size: 40,
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    item.title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
-            ),
           );
-        }).toList(),
+        },
       ),
-      //  ),
     );
   }
 }

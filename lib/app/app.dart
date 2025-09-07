@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_theme.dart';
 import '../core/utils/prefs_helper.dart';
 import '../features/home/home_page.dart';
+import '../features/meal/screens/tabs.dart';
+import '../features/meal/screens/meals.dart';
+import '../features/meal/screens/meal_details.dart';
+import '../features/meal/screens/filters.dart';
+import '../features/meal/models/meal.dart';
 
 class App extends StatefulWidget {
   final ThemeMode initialThemeMode;
@@ -32,10 +37,38 @@ class _AppState extends State<App> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _mode,
-      home: HomePage(
-        onThemeChanged: _setTheme,
-        themeMode: _mode,
-      ),
+      routes: {
+        '/': (ctx) => HomePage(
+              onThemeChanged: _setTheme,
+              themeMode: _mode,
+            ),
+        '/meal': (ctx) => const TabsScreen(),
+      },
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/meal/category':
+            final args = settings.arguments as Map<String, dynamic>;
+            return MaterialPageRoute(
+              builder: (_) => MealsScreen(
+                title: args['title'] as String?,
+                meals: args['meals'] as List<Meal>,
+              ),
+              settings: settings,
+            );
+          case '/meal/details':
+            final meal = settings.arguments as Meal;
+            return MaterialPageRoute(
+              builder: (_) => MealDetailScreen(meal: meal),
+              settings: settings,
+            );
+          case '/meal/filters':
+            return MaterialPageRoute(
+              builder: (_) => const FiltersScreen(),
+              settings: settings,
+            );
+        }
+        return null;
+      },
     );
   }
 }

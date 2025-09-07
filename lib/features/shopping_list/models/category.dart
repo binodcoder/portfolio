@@ -13,8 +13,8 @@ enum Categories {
   other
 }
 
-class Category {
-  const Category(
+class Classification {
+  const Classification(
     this.title,
     this.color,
   );

@@ -3,6 +3,8 @@ import 'package:binodfolio/features/shopping_list/data/categories.dart';
 import 'package:binodfolio/features/shopping_list/widgets/grocery_item.dart';
 import 'package:binodfolio/features/shopping_list/widgets/new_item.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
 import '../models/grocery.dart';
@@ -160,16 +162,37 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Shopping List'),
-        actions: [
-          IconButton(
-            onPressed: _addItem,
-            icon: Icon(Icons.add),
-          )
-        ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  if (Navigator.of(context).canPop()) ...[
+                    const InAppBackButton(),
+                    const SizedBox(width: 8),
+                  ],
+                  Text(
+                    'Shopping List',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: _addItem,
+                    icon: const Icon(Icons.add),
+                    tooltip: 'Add Item',
+                  ),
+                ],
+              ),
+              const Divider(height: 1),
+              const SizedBox(height: 8),
+              Expanded(child: content),
+            ],
+          ),
+        ),
       ),
-      body: content,
     );
   }
 }

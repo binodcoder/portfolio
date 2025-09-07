@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../models/expense.dart';
 
 class NewExpense extends StatefulWidget {
@@ -23,7 +21,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _expenseAmountController = TextEditingController();
   DateTime? _selectedDate;
-  Category _selectedCategory = Category.leisure;
+  Classification _selectedCategory = Classification.leisure;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -154,9 +152,9 @@ class _NewExpenseState extends State<NewExpense> {
                 if (width >= 600)
                   Row(
                     children: [
-                      DropdownButton<Category>(
+                      DropdownButton<Classification>(
                         value: _selectedCategory,
-                        items: Category.values
+                        items: Classification.values
                             .map(
                               (category) => DropdownMenuItem(
                                 value: category,
@@ -252,9 +250,9 @@ class _NewExpenseState extends State<NewExpense> {
                 else
                   Row(
                     children: [
-                      DropdownButton<Category>(
+                      DropdownButton<Classification>(
                         value: _selectedCategory,
-                        items: Category.values
+                        items: Classification.values
                             .map(
                               (category) => DropdownMenuItem(
                                 value: category,

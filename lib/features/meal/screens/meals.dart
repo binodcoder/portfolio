@@ -1,8 +1,7 @@
 import 'package:binodfolio/features/meal/models/meal.dart';
 import 'package:binodfolio/features/meal/widgets/meal_item.dart';
 import 'package:flutter/material.dart';
-
-import 'meal_details.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
@@ -15,12 +14,9 @@ class MealsScreen extends StatelessWidget {
   final List<Meal> meals;
 
   void selectMeal(BuildContext context, Meal meal) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => MealDetailScreen(
-          meal: meal,
-        ),
-      ),
+    Navigator.of(context).pushNamed(
+      '/meal/details',
+      arguments: meal,
     );
   }
 
@@ -51,22 +47,68 @@ class MealsScreen extends StatelessWidget {
     );
 
     if (meals.isNotEmpty) {
-      content = ListView.builder(
-        itemCount: meals.length,
-        itemBuilder: (ctx, index) => MealItem(
-          meal: meals[index],
-          onSelectMeal: (meal) => selectMeal(context, meal),
-        ),
-      );
+      final width = MediaQuery.sizeOf(context).width;
+
+      if (width >= 900) {
+        // On web / wide screens show a responsive grid
+        content = GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 500,
+            childAspectRatio: 3 / 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+          ),
+          itemCount: meals.length,
+          itemBuilder: (ctx, index) => MealItem(
+            meal: meals[index],
+            onSelectMeal: (meal) => selectMeal(context, meal),
+          ),
+        );
+      } else {
+        // On narrow screens, keep a list but constrain item width for web
+        content = ListView.builder(
+          itemCount: meals.length,
+          itemBuilder: (ctx, index) => Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 700),
+              child: MealItem(
+                meal: meals[index],
+                onSelectMeal: (meal) => selectMeal(context, meal),
+              ),
+            ),
+          ),
+        );
+      }
     }
     if (title == null) {
       return content;
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title!),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  if (Navigator.of(context).canPop()) ...[
+                    const InAppBackButton(),
+                    const SizedBox(width: 8),
+                  ],
+                  Text(
+                    title!,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            Expanded(child: content),
+          ],
+        ),
       ),
-      body: content,
     );
   }
 }

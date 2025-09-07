@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/filters_provider.dart';
@@ -10,11 +11,25 @@ class FiltersScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeFilters = ref.watch(filtersProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Filters'),
-      ),
-      body: Column(
+      body: SafeArea(
+        child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              children: [
+                if (Navigator.of(context).canPop()) ...[
+                  const InAppBackButton(),
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  'Your Filters',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1),
           SwitchListTile(
             value: activeFilters[Filter.glutenFree]!,
             onChanged: (isChecked) {
@@ -116,6 +131,7 @@ class FiltersScreen extends ConsumerWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }

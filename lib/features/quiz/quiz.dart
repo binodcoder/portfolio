@@ -2,6 +2,7 @@ import 'package:binodfolio/features/quiz/screens/questions_screen.dart';
 import 'package:binodfolio/features/quiz/screens/results_screen.dart';
 import 'package:binodfolio/features/quiz/screens/start_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 import 'data/questions.dart';
 
@@ -54,10 +55,39 @@ class _QuizState extends State<Quiz> {
               );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Quiz'),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  if (Navigator.of(context).canPop()) ...[
+                    const InAppBackButton(),
+                    const SizedBox(width: 8),
+                  ],
+                  Text(
+                    'Quiz',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            Expanded(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: screenWidget,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      body: screenWidget,
     );
   }
 }

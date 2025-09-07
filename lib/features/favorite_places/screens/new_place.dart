@@ -1,5 +1,6 @@
 import 'package:binodfolio/features/favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 class NewPlaceScreen extends StatefulWidget {
   NewPlaceScreen({super.key});
@@ -26,29 +27,49 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('New Place'),
-      ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              maxLength: 50,
-              decoration: InputDecoration(
-                label: Text(
-                  'Place Name',
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  if (Navigator.of(context).canPop()) ...[
+                    const InAppBackButton(),
+                    const SizedBox(width: 8),
+                  ],
+                  Text(
+                    'New Place',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
+              ),
+              const Divider(height: 1),
+              const SizedBox(height: 8),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      maxLength: 50,
+                      decoration: const InputDecoration(
+                        label: Text('Place Name'),
+                      ),
+                      onSaved: (value) {
+                        _enteredPlaceName = value!;
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: _saveItem,
+                      child: const Text('Add'),
+                    )
+                  ],
                 ),
               ),
-              onSaved: (value) {
-                _enteredPlaceName = value!;
-              },
-            ),
-            ElevatedButton(
-              onPressed: _saveItem,
-              child: Text('Add'),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

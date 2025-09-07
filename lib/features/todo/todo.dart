@@ -1,5 +1,6 @@
 import 'package:binodfolio/features/todo/todo_item.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 class Todo {
   const Todo(this.text, this.priority);
@@ -52,36 +53,59 @@ class _TodosState extends State<Todos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Todo'),
-      ),
-      body: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton.icon(
-              onPressed: _changeOrder,
-              icon: Icon(
-                _order == 'asc' ? Icons.arrow_downward : Icons.arrow_upward,
-              ),
-              label:
-                  Text('Sort ${_order == 'asc' ? 'Descending' : 'Ascending'}'),
-            ),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                // for (final todo in _orderedTodos) TodoItem(todo.text, todo.priority),
-                for (final todo in _orderedTodos)
-                  TodoItem(
-                    key: ObjectKey(todo), // ValueKey()
-                    todo.text,
-                    todo.priority,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      if (Navigator.of(context).canPop()) ...[
+                        const InAppBackButton(),
+                        const SizedBox(width: 8),
+                      ],
+                      Text(
+                        'Todo',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ],
                   ),
-              ],
-            ),
+                  TextButton.icon(
+                    onPressed: _changeOrder,
+                    icon: Icon(
+                      _order == 'asc'
+                          ? Icons.arrow_downward
+                          : Icons.arrow_upward,
+                    ),
+                    label: Text(
+                        'Sort ${_order == 'asc' ? 'Descending' : 'Ascending'}'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _orderedTodos.length,
+                  itemBuilder: (context, index) {
+                    final todo = _orderedTodos[index];
+                    return TodoItem(
+                      key: ObjectKey(todo), // ValueKey()
+                      todo.text,
+                      todo.priority,
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

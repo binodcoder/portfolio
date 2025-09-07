@@ -1,6 +1,7 @@
 import 'package:binodfolio/features/favorite_places/screens/new_place.dart';
 import 'package:binodfolio/features/favorite_places/widgets/favorite_place_item.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 import '../models/place.dart';
 
@@ -43,16 +44,37 @@ class _FavoritePlaceScreenState extends State<FavoritePlaceScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Favorite Places'),
-        actions: [
-          IconButton(
-            onPressed: _addPlace,
-            icon: Icon(Icons.add),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  if (Navigator.of(context).canPop()) ...[
+                    const InAppBackButton(),
+                    const SizedBox(width: 8),
+                  ],
+                  Text(
+                    'Favorite Places',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: _addPlace,
+                    icon: const Icon(Icons.add),
+                    tooltip: 'Add Place',
+                  ),
+                ],
+              ),
+              const Divider(height: 1),
+              const SizedBox(height: 8),
+              Expanded(child: content),
+            ],
           ),
-        ],
+        ),
       ),
-      body: content,
     );
   }
 }

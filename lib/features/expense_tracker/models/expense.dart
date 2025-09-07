@@ -6,13 +6,13 @@ final formatter = DateFormat.yMd();
 
 final uuid = Uuid();
 
-enum Category { food, travel, leisure, work }
+enum Classification { food, travel, leisure, work }
 
 const categoryIcons = {
-  Category.food: Icons.fastfood,
-  Category.travel: Icons.flight,
-  Category.leisure: Icons.sports_soccer,
-  Category.work: Icons.work,
+  Classification.food: Icons.fastfood,
+  Classification.travel: Icons.flight,
+  Classification.leisure: Icons.sports_soccer,
+  Classification.work: Icons.work,
 };
 
 class Expense {
@@ -27,25 +27,25 @@ class Expense {
   final String title;
   final double amount;
   final DateTime date;
-  final Category category;
+  final Classification category;
 
   String get formattedDate => formatter.format(date);
 }
 
 class ExpenseBucket {
   const ExpenseBucket({
-    required this.category,
+    required this.classification,
     required this.expenses,
   });
 
   ExpenseBucket.forCategory(
     List<Expense> allExpenses,
-    this.category,
+    this.classification,
   ) : expenses = allExpenses
-            .where((expense) => expense.category == category)
+            .where((expense) => expense.category == classification)
             .toList();
 
-  final Category category;
+  final Classification classification;
   final List<Expense> expenses;
 
   double get totalExpenses {
