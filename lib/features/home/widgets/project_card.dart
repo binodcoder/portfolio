@@ -83,6 +83,7 @@ class _ProjectCardState extends State<ProjectCard> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -127,8 +128,7 @@ class _ProjectCardState extends State<ProjectCard> {
                             ))
                         .toList(),
                   ),
-                  const Spacer(),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 12),
                   Wrap(
                     spacing: 8,
                     children: [

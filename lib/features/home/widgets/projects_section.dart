@@ -15,31 +15,38 @@ class ProjectsSection extends StatelessWidget {
         const SizedBox(height: 16),
         LayoutBuilder(
           builder: (context, c) {
+            const spacing = 16.0;
             final isWide = c.maxWidth > 1000;
-            final gridCount = isWide ? 3 : (c.maxWidth > 700 ? 2 : 1);
-            return GridView.builder(
-              itemCount: projects.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: gridCount,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: isWide ? 1.25 : 1.05,
-              ),
-              itemBuilder: (context, i) => TweenAnimationBuilder<double>(
-                tween: Tween(begin: 0, end: 1),
-                duration: Duration(milliseconds: 350 + (i % 6) * 60),
-                curve: Curves.easeOutCubic,
-                builder: (context, value, child) => Opacity(
-                  opacity: value,
-                  child: Transform.translate(
-                    offset: Offset(0, (1 - value) * 20),
-                    child: child,
-                  ),
-                ),
-                child: ProjectCard(p: projects[i]),
-              ),
+            final crossAxisCount = isWide ? 3 : (c.maxWidth > 700 ? 2 : 1);
+            final itemWidth =
+                (c.maxWidth - spacing * (crossAxisCount - 1)) / crossAxisCount;
+
+            return Wrap(
+              spacing: spacing,
+              runSpacing: spacing,
+              children: projects
+                  .asMap()
+                  .entries
+                  .map(
+                    (e) => SizedBox(
+                      width: itemWidth,
+                      child: TweenAnimationBuilder<double>(
+                        tween: Tween(begin: 0, end: 1),
+                        duration: Duration(
+                            milliseconds: 350 + (e.key % 6) * 60),
+                        curve: Curves.easeOutCubic,
+                        builder: (context, value, child) => Opacity(
+                          opacity: value,
+                          child: Transform.translate(
+                            offset: Offset(0, (1 - value) * 20),
+                            child: child,
+                          ),
+                        ),
+                        child: ProjectCard(p: e.value),
+                      ),
+                    ),
+                  )
+                  .toList(),
             );
           },
         )

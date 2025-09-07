@@ -45,35 +45,32 @@ class AppsSection extends StatelessWidget {
               crossAxisCount = 5;
             }
 
-            return GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: items.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: crossAxisCount,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                // Slightly tighter aspect to avoid overly tall cards on web.
-                childAspectRatio: 1.1,
-              ),
-              itemBuilder: (context, index) {
-                final item = items[index];
-                return _AppCard(
-                  icon: item.icon,
-                  title: item.title,
-                  onTap: () {
-                    if (item.title == 'Meal') {
-                      Navigator.pushNamed(context, '/meal');
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => item.builder(context)),
-                      );
-                    }
-                  },
+            const spacing = 12.0;
+            final itemWidth =
+                (width - spacing * (crossAxisCount - 1)) / crossAxisCount;
+            return Wrap(
+              spacing: spacing,
+              runSpacing: spacing,
+              children: items.map((item) {
+                return SizedBox(
+                  width: itemWidth,
+                  child: _AppCard(
+                    icon: item.icon,
+                    title: item.title,
+                    onTap: () {
+                      if (item.title == 'Meal') {
+                        Navigator.pushNamed(context, '/meal');
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => item.builder(context)),
+                        );
+                      }
+                    },
+                  ),
                 );
-              },
+              }).toList(),
             );
           },
         ),
