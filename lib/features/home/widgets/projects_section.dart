@@ -10,12 +10,16 @@ class ProjectsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Projects',
-            style: t.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
+        Text(
+          'Projects',
+          style: t.headlineMedium?.copyWith(
+            fontWeight: FontWeight.w800,
+          ),
+        ),
         const SizedBox(height: 16),
         LayoutBuilder(
           builder: (context, c) {
-            const spacing = 16.0;
+            const spacing = 24.0;
             final isWide = c.maxWidth > 1000;
             final crossAxisCount = isWide ? 3 : (c.maxWidth > 700 ? 2 : 1);
             final itemWidth =
@@ -32,8 +36,8 @@ class ProjectsSection extends StatelessWidget {
                       width: itemWidth,
                       child: TweenAnimationBuilder<double>(
                         tween: Tween(begin: 0, end: 1),
-                        duration: Duration(
-                            milliseconds: 350 + (e.key % 6) * 60),
+                        duration:
+                            Duration(milliseconds: 350 + (e.key % 6) * 60),
                         curve: Curves.easeOutCubic,
                         builder: (context, value, child) => Opacity(
                           opacity: value,
@@ -42,7 +46,10 @@ class ProjectsSection extends StatelessWidget {
                             child: child,
                           ),
                         ),
-                        child: ProjectCard(p: e.value),
+                        child: SizedBox(
+                          height: 280,
+                          child: ProjectCard(p: e.value),
+                        ),
                       ),
                     ),
                   )

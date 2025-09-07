@@ -315,7 +315,7 @@ class _ProgressRing extends StatelessWidget {
               value: progress,
               strokeWidth: 14,
               color: color,
-              backgroundColor: color.withOpacity(0.15),
+              backgroundColor: color.withValues(alpha: 0.15),
             ),
           ),
           child,
@@ -345,4 +345,3 @@ class _NumberField extends StatelessWidget {
     );
   }
 }
-

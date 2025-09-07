@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                       Section(key: _appsKey, child: AppsSection()),
                       Section(key: _mediaKey, child: const MediaSection()),
                       Section(key: _contactKey, child: const ContactSection()),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 16),
                       const Footer(),
                     ],
                   ),

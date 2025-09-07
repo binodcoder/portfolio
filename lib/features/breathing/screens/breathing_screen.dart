@@ -9,7 +9,8 @@ class BreathPattern {
   final int exhale;
   final int hold2;
 
-  const BreathPattern(this.name, this.inhale, this.hold1, this.exhale, this.hold2);
+  const BreathPattern(
+      this.name, this.inhale, this.hold1, this.exhale, this.hold2);
 
   int get total => inhale + hold1 + exhale + hold2;
 }
@@ -38,7 +39,8 @@ class BreathingScreen extends StatefulWidget {
   State<BreathingScreen> createState() => _BreathingScreenState();
 }
 
-class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProviderStateMixin {
+class _BreathingScreenState extends State<BreathingScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   BreathPattern _pattern = patterns.first;
   bool _running = false;
@@ -93,7 +95,8 @@ class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProv
       _controller.stop();
     });
     _controller.dispose();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: _pattern.total))
+    _controller = AnimationController(
+        vsync: this, duration: Duration(seconds: _pattern.total))
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed && _running) {
           _controller.forward(from: 0);
@@ -115,24 +118,29 @@ class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProv
     final endIn = _pattern.inhale.toDouble();
     final endH1 = endIn + _pattern.hold1;
     final endEx = endH1 + _pattern.exhale;
-    final endH2 = endEx + _pattern.hold2;
 
     if (seconds < endIn) {
       final local = _pattern.inhale == 0 ? 1.0 : (seconds) / (_pattern.inhale);
-      final remain = (_pattern.inhale - (seconds)).ceil().clamp(0, _pattern.inhale).toInt();
+      final remain = (_pattern.inhale - (seconds))
+          .ceil()
+          .clamp(0, _pattern.inhale)
+          .toInt();
       return PhaseInfo(BreathPhase.inhale, local.clamp(0.0, 1.0), remain);
     } else if (seconds < endH1) {
       final elapsed = seconds - endIn;
-      final remain = (_pattern.hold1 - elapsed).ceil().clamp(0, _pattern.hold1).toInt();
+      final remain =
+          (_pattern.hold1 - elapsed).ceil().clamp(0, _pattern.hold1).toInt();
       return PhaseInfo(BreathPhase.holdFull, 0, remain);
     } else if (seconds < endEx) {
       final elapsed = seconds - endH1;
       final local = _pattern.exhale == 0 ? 1.0 : elapsed / _pattern.exhale;
-      final remain = (_pattern.exhale - elapsed).ceil().clamp(0, _pattern.exhale).toInt();
+      final remain =
+          (_pattern.exhale - elapsed).ceil().clamp(0, _pattern.exhale).toInt();
       return PhaseInfo(BreathPhase.exhale, local.clamp(0.0, 1.0), remain);
     } else {
       final elapsed = seconds - endEx;
-      final remain = (_pattern.hold2 - elapsed).ceil().clamp(0, _pattern.hold2).toInt();
+      final remain =
+          (_pattern.hold2 - elapsed).ceil().clamp(0, _pattern.hold2).toInt();
       return PhaseInfo(BreathPhase.holdEmpty, 0, remain);
     }
   }
@@ -148,9 +156,9 @@ class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProv
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              theme.colorScheme.primary.withOpacity(0.12),
-              theme.colorScheme.secondary.withOpacity(0.10),
-              theme.colorScheme.tertiary.withOpacity(0.08),
+              theme.colorScheme.primary.withValues(alpha: 0.12),
+              theme.colorScheme.secondary.withValues(alpha: 0.10),
+              theme.colorScheme.tertiary.withValues(alpha: 0.08),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -164,7 +172,8 @@ class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProv
               children: [
                 Text(
                   'Just Breathe',
-                  style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                  style: theme.textTheme.headlineSmall
+                      ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 AnimatedBuilder(
@@ -181,7 +190,6 @@ class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProv
                     final a = _pattern.inhale / total;
                     final b = _pattern.hold1 / total;
                     final c = _pattern.exhale / total;
-                    final d = _pattern.hold2 / total;
 
                     double scale;
                     if (t < a) {
@@ -189,7 +197,10 @@ class _BreathingScreenState extends State<BreathingScreen> with SingleTickerProv
                     } else if (t < a + b) {
                       scale = 1.0;
                     } else if (t < a + b + c) {
-                      scale = 1 - Curves.easeInOut.transform(seg(a + b, c)).clamp(0.0, 1.0);
+                      scale = 1 -
+                          Curves.easeInOut
+                              .transform(seg(a + b, c))
+                              .clamp(0.0, 1.0);
                     } else {
                       scale = 0.0;
                     }
@@ -291,12 +302,15 @@ class _GlowCircle extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [color.withOpacity(0.15), color.withOpacity(0.35)],
+                colors: [
+                  color.withValues(alpha: 0.15),
+                  color.withValues(alpha: 0.35)
+                ],
                 stops: const [0.6, 1.0],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: color.withOpacity(0.45),
+                  color: color.withValues(alpha: 0.45),
                   blurRadius: blur,
                   spreadRadius: 6,
                 ),
@@ -312,9 +326,9 @@ class _GlowCircle extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: SweepGradient(
                   colors: [
-                    color.withOpacity(0.85),
-                    color.withOpacity(0.35),
-                    color.withOpacity(0.85),
+                    color.withValues(alpha: 0.85),
+                    color.withValues(alpha: 0.35),
+                    color.withValues(alpha: 0.85),
                   ],
                   stops: const [0.0, 0.5, 1.0],
                   transform: GradientRotation(math.pi / 2),

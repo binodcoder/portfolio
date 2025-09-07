@@ -13,8 +13,8 @@ class Avatar extends StatelessWidget {
         shape: BoxShape.circle,
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.primary.withOpacity(.25),
-            Theme.of(context).colorScheme.secondary.withOpacity(.25),
+            Theme.of(context).colorScheme.primary.withValues(alpha: .25),
+            Theme.of(context).colorScheme.secondary.withValues(alpha: .25),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

@@ -40,8 +40,8 @@ class MyApps extends StatelessWidget {
           return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
               childAspectRatio: 1.1,
             ),
             itemCount: items.length,

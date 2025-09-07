@@ -23,8 +23,9 @@ class AboutSection extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
-                    color: cs.primary.withOpacity(0.12),
-                    border: Border.all(color: cs.primary.withOpacity(0.25)),
+                    color: cs.primary.withValues(alpha: 0.12),
+                    border:
+                        Border.all(color: cs.primary.withValues(alpha: 0.25)),
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text('Flutter • Spring Boot • AWS',
@@ -54,7 +55,7 @@ class AboutSection extends StatelessWidget {
                   children: [
                     FilledButton(
                       onPressed: () => launchUrlSafe(
-                          'mailto:binodbhandari@gmail.com?subject=Project inquiry'),
+                          'mailto:binodcoder@gmail.com?subject=Project inquiry'),
                       child: const Text("Let's collaborate"),
                     ),
                     OutlinedButton(
@@ -73,17 +74,18 @@ class AboutSection extends StatelessWidget {
                 // High-contrast background for mobile visibility
                 gradient: LinearGradient(
                   colors: [
-                    cs.surface.withOpacity(0.98),
-                    cs.surfaceContainerHighest.withOpacity(0.9),
+                    cs.surface.withValues(alpha: 0.98),
+                    cs.surfaceContainerHighest.withValues(alpha: 0.9),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: cs.outlineVariant.withOpacity(0.5)),
+                border:
+                    Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.06),
+                    color: Colors.black.withValues(alpha: 0.06),
                     blurRadius: 14,
                     offset: const Offset(0, 6),
                   ),
@@ -116,8 +118,8 @@ class AboutSection extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    cs.primary.withOpacity(0.06),
-                    cs.secondary.withOpacity(0.05),
+                    cs.primary.withValues(alpha: 0.06),
+                    cs.secondary.withValues(alpha: 0.05),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -169,7 +171,7 @@ class _AboutItem extends StatelessWidget {
             width: 28,
             height: 28,
             decoration: BoxDecoration(
-              color: cs.primary.withOpacity(0.12),
+              color: cs.primary.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(icon, size: 16, color: cs.primary),
@@ -197,7 +199,7 @@ class _Pill extends StatelessWidget {
       decoration: BoxDecoration(
         color: cs.surface,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: cs.outlineVariant.withOpacity(0.4)),
+        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
       ),
       child: Text(text),
     );

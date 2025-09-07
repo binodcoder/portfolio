@@ -24,18 +24,22 @@ class MobileMenu extends StatelessWidget {
           isScrollControlled: true,
           showDragHandle: true,
           builder: (ctx) {
-            final cs = Theme.of(ctx).colorScheme;
             final bottomInset = MediaQuery.of(ctx).viewInsets.bottom;
             return SafeArea(
               child: SingleChildScrollView(
-                padding: EdgeInsets.only(left: 16, right: 16, top: 12, bottom: bottomInset + 12),
+                padding: EdgeInsets.only(
+                    left: 16, right: 16, top: 12, bottom: bottomInset + 12),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Text('Menu', style: Theme.of(ctx).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+                        Text('Menu',
+                            style: Theme.of(ctx)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(fontWeight: FontWeight.w800)),
                         const Spacer(),
                         ThemeToggle(
                           themeMode: themeMode,
@@ -50,12 +54,14 @@ class MobileMenu extends StatelessWidget {
                     _MenuItem(label: 'Home', onTap: () => onTap('home')),
                     _MenuItem(label: 'About', onTap: () => onTap('about')),
                     _MenuItem(label: 'Skills', onTap: () => onTap('skills')),
-                    _MenuItem(label: 'Projects', onTap: () => onTap('projects')),
+                    _MenuItem(
+                        label: 'Projects', onTap: () => onTap('projects')),
                     _MenuItem(label: 'Apps', onTap: () => onTap('apps')),
                     _MenuItem(label: 'Contact', onTap: () => onTap('contact')),
                     const SizedBox(height: 8),
                     FilledButton(
-                      onPressed: () => launchUrlSafe('mailto:binodbhandari@gmail.com?subject=Let\'s work together'),
+                      onPressed: () => launchUrlSafe(
+                          'mailto:binodbhandari@gmail.com?subject=Let\'s work together'),
                       child: const Text('Hire Me'),
                     ),
                   ],
@@ -80,7 +86,8 @@ class _MenuItem extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-      title: Text(label, style: t.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+      title: Text(label,
+          style: t.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
       trailing: Icon(Icons.chevron_right, color: cs.outline),
       onTap: () {
         Navigator.of(context).pop();

@@ -45,7 +45,7 @@ class AppsSection extends StatelessWidget {
               crossAxisCount = 5;
             }
 
-            const spacing = 12.0;
+            const spacing = 20.0;
             final itemWidth =
                 (width - spacing * (crossAxisCount - 1)) / crossAxisCount;
             return Wrap(
@@ -144,20 +144,20 @@ class _AppCardState extends State<_AppCard> {
               duration: const Duration(milliseconds: 220),
               curve: Curves.easeOut,
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
+                color: Theme.of(context).cardTheme.color,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: cs.outlineVariant.withOpacity(0.35)),
+                border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.35)),
                 boxShadow: _hovering
                     ? [
                         BoxShadow(
-                          color: cs.primary.withOpacity(0.18),
+                          color: cs.primary.withValues(alpha: 0.18),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
                       ]
                     : [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black.withValues(alpha: 0.05),
                           blurRadius: 10,
                           offset: const Offset(0, 6),
                         ),
@@ -177,7 +177,7 @@ class _AppCardState extends State<_AppCard> {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: style.colors.first.withOpacity(0.2),
+                              color: style.colors.first.withValues(alpha: 0.2),
                               blurRadius: 12,
                               offset: const Offset(0, 6),
                             ),
@@ -194,8 +194,8 @@ class _AppCardState extends State<_AppCard> {
                         height: 46,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.06),
-                          border: Border.all(color: Colors.white.withOpacity(0.18)),
+                          color: Colors.white.withValues(alpha: 0.06),
+                          border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
                         ),
                       ),
                       Padding(

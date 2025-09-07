@@ -54,20 +54,21 @@ class _ProjectCardState extends State<ProjectCard> {
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOut,
           decoration: BoxDecoration(
-            color: cs.surfaceContainerLow,
+            color: Theme.of(context).cardTheme.color,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: cs.outlineVariant.withOpacity(0.35)),
+            border:
+                Border.all(color: cs.outlineVariant.withValues(alpha: 0.35)),
             boxShadow: _hovering
                 ? [
                     BoxShadow(
-                      color: cs.primary.withOpacity(0.18),
+                      color: cs.primary.withValues(alpha: 0.18),
                       blurRadius: 24,
                       offset: const Offset(0, 10),
                     ),
                   ]
                 : [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.06),
+                      color: Colors.black.withValues(alpha: 0.06),
                       blurRadius: 12,
                       offset: const Offset(0, 6),
                     ),
@@ -123,7 +124,8 @@ class _ProjectCardState extends State<ProjectCard> {
                     children: widget.p.tech
                         .map((t) => Chip(
                               label: Text(t),
-                              padding: const EdgeInsets.symmetric(horizontal: 6),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 6),
                               visualDensity: VisualDensity.compact,
                             ))
                         .toList(),
@@ -176,15 +178,15 @@ class _Badge extends StatelessWidget {
         shape: BoxShape.circle,
         gradient: LinearGradient(
           colors: [
-            color.withOpacity(0.75),
-            color.withOpacity(0.45),
+            color.withValues(alpha: 0.75),
+            color.withValues(alpha: 0.45),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.18),
+            color: color.withValues(alpha: 0.18),
             blurRadius: 10,
             offset: const Offset(0, 5),
           )

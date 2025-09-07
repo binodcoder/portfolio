@@ -20,12 +20,12 @@ class NavBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: cs.surfaceContainerLow.withOpacity(0.8),
+        color: cs.surfaceContainerLow.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(32),
-        border: Border.all(color: cs.outlineVariant.withOpacity(0.4)),
+        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -40,7 +40,7 @@ class NavBar extends StatelessWidget {
           NavButton(label: 'Apps', onTap: () => onTap('apps')),
           NavButton(label: 'Contact', onTap: () => onTap('contact')),
           const SizedBox(width: 12),
-          Container(width: 1, height: 22, color: cs.outlineVariant.withOpacity(0.5)),
+          Container(width: 1, height: 22, color: cs.outlineVariant.withValues(alpha: 0.5)),
           const SizedBox(width: 12),
           ThemeToggle(
             onChanged: onThemeChanged,

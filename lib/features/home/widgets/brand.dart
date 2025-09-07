@@ -23,7 +23,7 @@ class Brand extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: cs.primary.withOpacity(0.35),
+                color: cs.primary.withValues(alpha: 0.35),
                 blurRadius: 16,
                 offset: const Offset(0, 6),
               ),

@@ -48,7 +48,7 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
   @override
   Widget build(BuildContext context) {
     final color = widget.category.color;
-    final onCard = Colors.white.withOpacity(0.92);
+    final onCard = Colors.white.withValues(alpha: 0.92);
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
@@ -68,8 +68,8 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
               borderRadius: BorderRadius.circular(14),
               gradient: LinearGradient(
                 colors: [
-                  color.withOpacity(0.55),
-                  color.withOpacity(0.35),
+                  color.withValues(alpha: 0.55),
+                  color.withValues(alpha: 0.35),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -77,7 +77,7 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
               boxShadow: _hovering
                   ? [
                       BoxShadow(
-                        color: color.withOpacity(0.18),
+                        color: color.withValues(alpha: 0.18),
                         blurRadius: 12,
                         spreadRadius: 0.3,
                         offset: const Offset(0, 6),
@@ -85,7 +85,7 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
                     ]
                   : [
                       BoxShadow(
-                        color: color.withOpacity(0.10),
+                        color: color.withValues(alpha: 0.10),
                         blurRadius: 8,
                         offset: const Offset(0, 4),
                       ),
@@ -107,8 +107,8 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
                       ),
                       gradient: LinearGradient(
                         colors: [
-                          Colors.white.withOpacity(0.10),
-                          Colors.white.withOpacity(0.02),
+                          Colors.white.withValues(alpha: 0.10),
+                          Colors.white.withValues(alpha: 0.02),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -126,7 +126,7 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
                       child: Icon(
                         _iconFor(widget.category.title),
                         size: 28,
-                        color: onCard.withOpacity(0.8),
+                        color: onCard.withValues(alpha: 0.8),
                       ),
                     ),
                     Text(

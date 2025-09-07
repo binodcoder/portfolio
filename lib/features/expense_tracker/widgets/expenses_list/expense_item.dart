@@ -45,7 +45,7 @@ class ExpenseItem extends StatelessWidget {
                 ),
               ),
             ),
-            Icon(categoryIcons[expense.category], color: color.withOpacity(0.8)),
+            Icon(categoryIcons[expense.category], color: color.withValues(alpha: 0.8)),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -81,4 +81,3 @@ class ExpenseItem extends StatelessWidget {
     );
   }
 }
-

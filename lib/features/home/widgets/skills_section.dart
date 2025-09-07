@@ -6,7 +6,7 @@ class SkillsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, c) {
-        const spacing = 16.0;
+        const spacing = 24.0;
         final isWide = c.maxWidth > 900;
         final crossAxisCount = isWide ? 3 : 1;
         final itemWidth = (c.maxWidth - spacing * (crossAxisCount - 1)) / crossAxisCount;
@@ -62,9 +62,9 @@ class _SkillCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: cs.surfaceContainerHighest,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: cs.outlineVariant.withOpacity(0.5)),
+        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

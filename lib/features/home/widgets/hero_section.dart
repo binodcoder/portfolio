@@ -18,8 +18,8 @@ class HeroSection extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                cs.primary.withOpacity(0.06),
-                cs.secondary.withOpacity(0.05),
+                cs.primary.withValues(alpha: 0.06),
+                cs.secondary.withValues(alpha: 0.05),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -43,8 +43,8 @@ class HeroSection extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
-                        color: cs.primary.withOpacity(0.12),
-                        border: Border.all(color: cs.primary.withOpacity(0.25)),
+                        color: cs.primary.withValues(alpha: 0.12),
+                        border: Border.all(color: cs.primary.withValues(alpha: 0.25)),
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text('Available for freelance • Remote & On‑site',
@@ -122,7 +122,7 @@ class _StatChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: cs.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: cs.outlineVariant.withOpacity(0.5)),
+        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

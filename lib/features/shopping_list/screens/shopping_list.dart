@@ -137,7 +137,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
         itemCount: _groceryItems.length,
         itemBuilder: (ctx, index) => Dismissible(
           background: Container(
-            color: Theme.of(context).colorScheme.error.withOpacity(0.55),
+            color: Theme.of(context).colorScheme.error.withValues(alpha: 0.55),
             margin: EdgeInsets.symmetric(
                 horizontal: Theme.of(context).cardTheme.margin!.horizontal),
           ),

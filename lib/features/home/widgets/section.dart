@@ -23,7 +23,7 @@ class _SectionState extends State<Section> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 56),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
       constraints: const BoxConstraints(maxWidth: 1400),
       alignment: Alignment.center,
       child: ConstrainedBox(
