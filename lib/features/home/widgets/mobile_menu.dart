@@ -1,3 +1,4 @@
+import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
 
@@ -14,28 +15,78 @@ class MobileMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<String>(
+    return IconButton(
       tooltip: 'Menu',
-      onSelected: (id) => id == 'theme' ? null : onTap(id),
-      itemBuilder: (ctx) => [
-        const PopupMenuItem(value: 'home', child: Text('Home')),
-        const PopupMenuItem(value: 'about', child: Text('About')),
-        const PopupMenuItem(value: 'skills', child: Text('Skills')),
-        const PopupMenuItem(value: 'projects', child: Text('Projects')),
-        const PopupMenuItem(value: 'apps', child: Text('Apps')),
-        const PopupMenuItem(value: 'contact', child: Text('Contact')),
-        PopupMenuItem(
-          enabled: false,
-          value: 'theme',
-          child: Row(
-            children: [
-              const Text('Theme'),
-              const Spacer(),
-              ThemeToggle(themeMode: themeMode, onChanged: onThemeChanged),
-            ],
-          ),
-        ),
-      ],
+      icon: const Icon(Icons.menu),
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          showDragHandle: true,
+          builder: (ctx) {
+            final cs = Theme.of(ctx).colorScheme;
+            final bottomInset = MediaQuery.of(ctx).viewInsets.bottom;
+            return SafeArea(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(left: 16, right: 16, top: 12, bottom: bottomInset + 12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Menu', style: Theme.of(ctx).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800)),
+                        const Spacer(),
+                        ThemeToggle(
+                          themeMode: themeMode,
+                          onChanged: (mode) async {
+                            Navigator.of(ctx).pop();
+                            await onThemeChanged(mode);
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    _MenuItem(label: 'Home', onTap: () => onTap('home')),
+                    _MenuItem(label: 'About', onTap: () => onTap('about')),
+                    _MenuItem(label: 'Skills', onTap: () => onTap('skills')),
+                    _MenuItem(label: 'Projects', onTap: () => onTap('projects')),
+                    _MenuItem(label: 'Apps', onTap: () => onTap('apps')),
+                    _MenuItem(label: 'Contact', onTap: () => onTap('contact')),
+                    const SizedBox(height: 8),
+                    FilledButton(
+                      onPressed: () => launchUrlSafe('mailto:binodbhandari@gmail.com?subject=Let\'s work together'),
+                      child: const Text('Hire Me'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _MenuItem extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+  const _MenuItem({required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = Theme.of(context).textTheme;
+    final cs = Theme.of(context).colorScheme;
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+      title: Text(label, style: t.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+      trailing: Icon(Icons.chevron_right, color: cs.outline),
+      onTap: () {
+        Navigator.of(context).pop();
+        // Trigger after sheet closes for smoothness
+        WidgetsBinding.instance.addPostFrameCallback((_) => onTap());
+      },
     );
   }
 }

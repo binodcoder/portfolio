@@ -1,7 +1,6 @@
 import 'package:binodfolio/features/meal/providers/favorites_provider.dart';
 import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/meal.dart';
 
@@ -26,7 +25,8 @@ class MealDetailScreen extends ConsumerWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: Row(
                     children: [
                       if (Navigator.of(context).canPop()) ...[
@@ -61,7 +61,8 @@ class MealDetailScreen extends ConsumerWidget {
                           duration: const Duration(milliseconds: 300),
                           transitionBuilder: (child, animation) {
                             return RotationTransition(
-                              turns: Tween<double>(begin: 0.8, end: 1).animate(animation),
+                              turns: Tween<double>(begin: 0.8, end: 1)
+                                  .animate(animation),
                               child: child,
                             );
                           },
@@ -104,11 +105,8 @@ class MealDetailScreen extends ConsumerWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '• $ingredient',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(
-                                color: Theme.of(context).colorScheme.onSurface),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface),
                       ),
                     ),
                   ),
@@ -135,11 +133,8 @@ class MealDetailScreen extends ConsumerWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         step,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(
-                                color: Theme.of(context).colorScheme.onSurface),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface),
                       ),
                     ),
                   ),

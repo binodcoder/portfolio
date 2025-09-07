@@ -11,13 +11,13 @@ import '../pomodoro/pomodoro.dart';
 
 class MyApps extends StatelessWidget {
   final List<AppItem> items = [
-    AppItem('Expenses', Icons.attach_money, Expenses()),
-    AppItem('Quiz', Icons.quiz, Quiz()),
-    AppItem('Todo', Icons.task, Todos()),
-    AppItem('Pomodoro', Icons.timer, PomodoroApp()),
-    AppItem('Meal', Icons.set_meal, TabsScreen()),
-    AppItem('Shopping List', Icons.shop, ShoppingListScreen()),
-    AppItem('Favorite Places', Icons.favorite, FavoritePlaceScreen()),
+    AppItem('Expenses', Icons.attach_money, (_) => Expenses()),
+    AppItem('Quiz', Icons.quiz, (_) => Quiz()),
+    AppItem('Todo', Icons.task, (_) => Todos()),
+    AppItem('Pomodoro', Icons.timer, (_) => const PomodoroApp()),
+    AppItem('Meal', Icons.set_meal, (_) => const TabsScreen()),
+    AppItem('Shopping List', Icons.shop, (_) => const ShoppingListScreen()),
+    AppItem('Favorite Places', Icons.favorite, (_) => FavoritePlaceScreen()),
   ];
 
   @override
@@ -54,7 +54,7 @@ class MyApps extends StatelessWidget {
                   } else {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => item.destination),
+                      MaterialPageRoute(builder: (_) => item.builder(context)),
                     );
                   }
                 },

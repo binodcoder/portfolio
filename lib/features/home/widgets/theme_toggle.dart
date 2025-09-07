@@ -7,14 +7,11 @@ class ThemeToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<ThemeMode>(
-      segments: const [
-        ButtonSegment(value: ThemeMode.light, label: Text('☀️')),
-        ButtonSegment(value: ThemeMode.dark, label: Text('🌙')),
-      ],
-      selected: {themeMode == ThemeMode.system ? ThemeMode.light : themeMode},
-      onSelectionChanged: (s) => onChanged(s.first),
-      showSelectedIcon: false,
+    final isDark = themeMode == ThemeMode.dark;
+    return IconButton(
+      tooltip: isDark ? 'Switch to light' : 'Switch to dark',
+      icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+      onPressed: () => onChanged(isDark ? ThemeMode.light : ThemeMode.dark),
     );
   }
 }

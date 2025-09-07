@@ -38,14 +38,9 @@ class _HomePageState extends State<HomePage> {
   Future<void> _scrollTo(GlobalKey key) async {
     final ctx = key.currentContext;
     if (ctx == null) return;
-    final box = ctx.findRenderObject() as RenderBox?;
-    if (box == null) return;
-    final position = box.localToGlobal(Offset.zero);
-    final offset = _scrollController.offset +
-        position.dy -
-        80; // account for app bar height
-    await _scrollController.animateTo(
-      offset.clamp(0, _scrollController.position.maxScrollExtent),
+    await Scrollable.ensureVisible(
+      ctx,
+      alignment: 0.05, // leave some space under navbar
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
@@ -85,7 +80,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const Divider(height: 1),
             // Scrollable content
             Expanded(
               child: Scrollbar(

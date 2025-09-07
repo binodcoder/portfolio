@@ -16,4 +16,33 @@ const projects = <Project>[
     tech: ['Flutter', 'Firebase', 'Live Video'],
     github: 'https://github.com/binodcoder',
   ),
+  Project(
+    title: 'Blog App',
+    description:
+        'A modern blog platform with markdown editor, offline caching, and dark mode. Supports draft publishing and image uploads.',
+    tech: ['Flutter', 'Riverpod', 'Firebase Auth', 'Cloud Firestore', 'Markdown'],
+    github: 'https://github.com/binodcoder',
+    live: 'https://example.com/blog-app',
+  ),
+  Project(
+    title: 'Tablet POS for Restaurant',
+    description:
+        'Tablet-first POS with table layout, KOT printing, split bills, and offline-first sync. Built for fast counter operations.',
+    tech: ['Flutter', 'SQLite', 'Bluetooth Printing', 'Riverpod', 'REST API'],
+    github: 'https://github.com/binodcoder',
+  ),
+  Project(
+    title: 'Dental Clinic App',
+    description:
+        'Patient management, appointment scheduling, treatment plans, and reminders. Includes charting UI and role-based access.',
+    tech: ['Flutter', 'Firebase', 'Cloud Functions', 'FCM', 'Stripe'],
+    github: 'https://github.com/binodcoder',
+  ),
+  Project(
+    title: 'Accounts App for Hotel & Restaurant Owners',
+    description:
+        'Ledger, expense tracking, daily sales, GST/VAT reports, and exports to Excel/PDF. Multi-outlet support with role permissions.',
+    tech: ['Flutter', 'Hive', 'Riverpod', 'CSV/PDF Export', 'Charts'],
+    github: 'https://github.com/binodcoder',
+  ),
 ];

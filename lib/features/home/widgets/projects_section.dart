@@ -27,7 +27,19 @@ class ProjectsSection extends StatelessWidget {
                 crossAxisSpacing: 16,
                 childAspectRatio: isWide ? 1.25 : 1.05,
               ),
-              itemBuilder: (context, i) => ProjectCard(p: projects[i]),
+              itemBuilder: (context, i) => TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: 1),
+                duration: Duration(milliseconds: 350 + (i % 6) * 60),
+                curve: Curves.easeOutCubic,
+                builder: (context, value, child) => Opacity(
+                  opacity: value,
+                  child: Transform.translate(
+                    offset: Offset(0, (1 - value) * 20),
+                    child: child,
+                  ),
+                ),
+                child: ProjectCard(p: projects[i]),
+              ),
             );
           },
         )

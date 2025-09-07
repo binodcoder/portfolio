@@ -57,34 +57,43 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       animation: _animationController,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final isWide = constraints.maxWidth >= 900;
-          final gridDelegate = isWide
-              ? const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 400,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                )
-              : const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                );
+          final width = constraints.maxWidth;
+          int columns;
+          if (width >= 1200) {
+            columns = 5;
+          } else if (width >= 900) {
+            columns = 4;
+          } else if (width >= 400) {
+            // Make mobile tiles smaller by using 3 columns on typical phones
+            columns = 3;
+          } else {
+            columns = 2;
+          }
 
-          return GridView(
-            padding: const EdgeInsets.all(16),
-            gridDelegate: gridDelegate,
-            children: [
-              for (final category in availableCategories)
-                CategoryGridItem(
-                  category: category,
-                  onSelectCategory: () => _selectCategory(
-                    context,
-                    category,
-                  ),
-                )
-            ],
+          return Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1100),
+              child: GridView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: columns,
+                  childAspectRatio: 1.1,
+                  crossAxisSpacing: 30,
+                  mainAxisSpacing: 25,
+                ),
+                children: [
+                  for (final category in availableCategories)
+                    CategoryGridItem(
+                      category: category,
+                      onSelectCategory: () => _selectCategory(
+                        context,
+                        category,
+                      ),
+                    )
+                ],
+              ),
+            ),
           );
         },
       ),
