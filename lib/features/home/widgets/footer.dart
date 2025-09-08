@@ -11,7 +11,9 @@ class Footer extends StatelessWidget {
         children: [
           const Divider(height: 1),
           const SizedBox(height: 16),
-          Text('© $year Binod Bhandari'),
+          Text(
+            '© $year Binod Bhandari. All rights reserved.',
+          ),
           const SizedBox(height: 8),
         ],
       ),

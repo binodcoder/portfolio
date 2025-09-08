@@ -39,19 +39,6 @@ class HeroSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: cs.primary.withValues(alpha: 0.12),
-                        border: Border.all(color: cs.primary.withValues(alpha: 0.25)),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: Text('Available for freelance • Remote & On‑site',
-                          style: textTheme.labelMedium?.copyWith(
-                              color: cs.primary, fontWeight: FontWeight.w700)),
-                    ),
-                    const SizedBox(height: 12),
                     Text("Hi, I'm Binod 👋",
                         style: textTheme.displaySmall?.copyWith(
                             fontWeight: FontWeight.w800, height: 1.1)),
@@ -65,11 +52,6 @@ class HeroSection extends StatelessWidget {
                       spacing: 12,
                       runSpacing: 12,
                       children: [
-                        FilledButton(
-                          onPressed: () => launchUrlSafe(
-                              'mailto:binodbhandari@gmail.com?subject=Let\'s build something great'),
-                          child: const Text('Hire Me'),
-                        ),
                         OutlinedButton(
                           onPressed: () =>
                               launchUrlSafe('https://github.com/binodcoder'),
@@ -92,9 +74,9 @@ class HeroSection extends StatelessWidget {
                       spacing: 8,
                       runSpacing: 8,
                       children: const [
-                        _StatChip(label: '5+ yrs', sub: 'Experience'),
-                        _StatChip(label: '20+ apps', sub: 'Delivered'),
-                        _StatChip(label: '100k+', sub: 'Users reached'),
+                        _StatChip(label: '3+ yrs', sub: 'Experience'),
+                        _StatChip(label: '5+ apps', sub: 'Delivered'),
+                        _StatChip(label: '100+', sub: 'Users reached'),
                       ],
                     ),
                   ],

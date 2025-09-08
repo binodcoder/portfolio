@@ -60,7 +60,8 @@ class _HomePageState extends State<HomePage> {
             // Inline header (replaces Scaffold.appBar)
             Container(
               color: Theme.of(context).colorScheme.surface,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Row(
                 children: [
                   const Brand(),
@@ -89,10 +90,13 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Section(key: _homeKey, child: HeroSection(isDesktop: isDesktop)),
+                      Section(
+                          key: _homeKey,
+                          child: HeroSection(isDesktop: isDesktop)),
                       Section(key: _aboutKey, child: const AboutSection()),
                       Section(key: _skillsKey, child: const SkillsSection()),
-                      Section(key: _projectsKey, child: const ProjectsSection()),
+                      Section(
+                          key: _projectsKey, child: const ProjectsSection()),
                       Section(key: _appsKey, child: AppsSection()),
                       Section(key: _mediaKey, child: const MediaSection()),
                       Section(key: _contactKey, child: const ContactSection()),

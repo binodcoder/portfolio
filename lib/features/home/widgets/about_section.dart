@@ -1,4 +1,3 @@
-import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:flutter/material.dart';
 
 class AboutSection extends StatelessWidget {
@@ -19,19 +18,19 @@ class AboutSection extends StatelessWidget {
             final left = Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: cs.primary.withValues(alpha: 0.12),
-                    border:
-                        Border.all(color: cs.primary.withValues(alpha: 0.25)),
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  child: Text('Flutter • Spring Boot • AWS',
-                      style: t.labelMedium?.copyWith(
-                          color: cs.primary, fontWeight: FontWeight.w700)),
-                ),
+                // Container(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                //   decoration: BoxDecoration(
+                //     color: cs.primary.withValues(alpha: 0.12),
+                //     border:
+                //         Border.all(color: cs.primary.withValues(alpha: 0.25)),
+                //     borderRadius: BorderRadius.circular(999),
+                //   ),
+                //   child: Text('Flutter • Spring Boot • AWS',
+                //       style: t.labelMedium?.copyWith(
+                //           color: cs.primary, fontWeight: FontWeight.w700)),
+                // ),
                 const SizedBox(height: 10),
                 Text(
                   "I build fast, reliable apps with a product mindset. Comfortable across the stack: Flutter on the front, Spring Boot on the back, with practical cloud know‑how.",
@@ -44,27 +43,10 @@ class AboutSection extends StatelessWidget {
                   children: const [
                     _Pill(text: 'Performance first'),
                     _Pill(text: 'Clean architecture'),
-                    _Pill(text: 'DX focused'),
                     _Pill(text: 'Accessibility'),
                   ],
                 ),
                 const SizedBox(height: 14),
-                Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  children: [
-                    FilledButton(
-                      onPressed: () => launchUrlSafe(
-                          'mailto:binodcoder@gmail.com?subject=Project inquiry'),
-                      child: const Text("Let's collaborate"),
-                    ),
-                    OutlinedButton(
-                      onPressed: () =>
-                          launchUrlSafe('https://github.com/binodcoder'),
-                      child: const Text('GitHub'),
-                    ),
-                  ],
-                ),
               ],
             );
 
@@ -101,7 +83,7 @@ class AboutSection extends StatelessWidget {
                   _AboutItem(
                       icon: Icons.work_history,
                       label: 'Experience',
-                      value: '5+ years'),
+                      value: '3+ years'),
                   _AboutItem(
                       icon: Icons.rocket_launch,
                       label: 'Focus',

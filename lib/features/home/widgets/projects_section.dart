@@ -47,7 +47,7 @@ class ProjectsSection extends StatelessWidget {
                           ),
                         ),
                         child: SizedBox(
-                          height: 280,
+                          height: 320,
                           child: ProjectCard(p: e.value),
                         ),
                       ),

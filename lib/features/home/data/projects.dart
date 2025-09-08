@@ -7,8 +7,8 @@ const projects = <Project>[
     tech: ['Flutter', 'Spring Boot', 'JWT', 'AES-256', 'MySQL'],
     github: 'https://github.com/binodcoder',
     live: 'https://example.com/merokaam',
-    playStore:
-        'https://play.google.com/store/apps/details?id=com.example.merokaam',
+    // playStore:
+    //     'https://play.google.com/store/apps/details?id=com.example.merokaam',
   ),
   Project(
     title: 'Fitness App',
@@ -20,7 +20,13 @@ const projects = <Project>[
     title: 'Blog App',
     description:
         'A modern blog platform with markdown editor, offline caching, and dark mode. Supports draft publishing and image uploads.',
-    tech: ['Flutter', 'Riverpod', 'Firebase Auth', 'Cloud Firestore', 'Markdown'],
+    tech: [
+      'Flutter',
+      'Riverpod',
+      'Firebase Auth',
+      'Cloud Firestore',
+      'Markdown'
+    ],
     github: 'https://github.com/binodcoder',
     live: 'https://example.com/blog-app',
   ),
