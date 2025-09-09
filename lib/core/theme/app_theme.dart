@@ -36,6 +36,7 @@ final lightTheme = ThemeData(useMaterial3: true).copyWith(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   ),
+  // Base typography; final sizes are responsively scaled in MaterialApp.builder
   textTheme: GoogleFonts.latoTextTheme(),
   iconTheme: const IconThemeData().copyWith(
     color: kColorScheme.onPrimaryContainer,
@@ -52,6 +53,8 @@ final lightTheme = ThemeData(useMaterial3: true).copyWith(
 final darkTheme =
     ThemeData(brightness: Brightness.dark, useMaterial3: true).copyWith(
   colorScheme: kDarkColorScheme,
+  // Keep typography consistent across themes; scaled in MaterialApp.builder
+  textTheme: GoogleFonts.latoTextTheme(),
   cardTheme: CardTheme(
     color: kDarkColorScheme.surfaceContainerHighest,
     elevation: 0,

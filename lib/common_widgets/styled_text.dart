@@ -7,13 +7,7 @@ class StyledText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        color: Colors.black,
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-      ),
-    );
+    final t = Theme.of(context).textTheme;
+    return Text(text, style: t.titleLarge?.copyWith(fontWeight: FontWeight.bold));
   }
 }

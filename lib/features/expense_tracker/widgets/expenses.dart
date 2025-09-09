@@ -121,7 +121,7 @@ class _ExpensesState extends State<Expenses> {
                           const SizedBox(width: 8),
                         ],
                         Text(
-                          'Flutter ExpenseTracker',
+                          'Expense Tracker',
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                       ],
@@ -145,20 +145,28 @@ class _ExpensesState extends State<Expenses> {
                           Expanded(child: mainContent),
                         ],
                       )
-                    : Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    : Column(
                         children: [
+                          header,
+                          const SizedBox(height: 8),
                           Expanded(
-                            child: Column(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                header,
-                                const SizedBox(height: 8),
-                                Chart(expenses: _registeredExpenses),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Chart(expenses: _registeredExpenses),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(child: mainContent),
                               ],
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(child: mainContent),
                         ],
                       );
                 return content;

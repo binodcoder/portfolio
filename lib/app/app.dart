@@ -37,6 +37,29 @@ class _AppState extends State<App> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _mode,
+      // Clamp system text scaling and apply responsive typography
+      builder: (context, child) {
+        final mq = MediaQuery.of(context);
+        final size = mq.size;
+        // Baseline width for phone design (e.g., iPhone 12/13 = 390)
+        const baselineWidth = 390.0;
+        // Scale typography relative to width, softly clamped to avoid extremes
+        final widthScale = (size.width / baselineWidth).clamp(0.90, 1.15);
+
+        // Respect user scaling but clamp to reduce overflow on very large settings
+        final clampedTextScale = mq.textScaleFactor.clamp(0.90, 1.20);
+
+        // Start from current theme and scale its text theme
+        final baseTheme = Theme.of(context);
+        final scaled = baseTheme.copyWith(
+          textTheme: baseTheme.textTheme.apply(fontSizeFactor: widthScale),
+        );
+
+        return MediaQuery(
+          data: mq.copyWith(textScaleFactor: clampedTextScale),
+          child: Theme(data: scaled, child: child!),
+        );
+      },
       routes: {
         '/': (ctx) => HomePage(
               onThemeChanged: _setTheme,
