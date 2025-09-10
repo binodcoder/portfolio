@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class Brand extends StatelessWidget {
   const Brand();
@@ -12,10 +13,10 @@ class Brand extends StatelessWidget {
       children: [
         // Monogram badge
         Container(
-          width: 36,
-          height: 36,
+          width: context.rem(36),
+          height: context.rem(36),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(context.radius(10)),
             gradient: LinearGradient(
               colors: [cs.primary, cs.secondary],
               begin: Alignment.topLeft,
@@ -24,8 +25,8 @@ class Brand extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: cs.primary.withValues(alpha: 0.35),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
+                blurRadius: context.rem(16),
+                offset: Offset(0, context.rem(6)),
               ),
             ],
           ),
@@ -39,7 +40,7 @@ class Brand extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: context.space(10)),
         // Wordmark
         ShaderMask(
           shaderCallback: (rect) => LinearGradient(

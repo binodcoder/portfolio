@@ -1,11 +1,14 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final size = min(MediaQuery.of(context).size.width * 0.35, 260.0);
+    final width = MediaQuery.sizeOf(context).width;
+    final isPortrait = context.orientation == Orientation.portrait;
+    // Scale avatar with orientation; clamp to keep it readable on phones.
+    final raw = (isPortrait ? width * 0.45 : width * 0.30);
+    final size = raw.clamp(120.0, 260.0);
     return Container(
       width: size,
       height: size,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class NavButton extends StatefulWidget {
   final String label;
@@ -23,7 +24,7 @@ class _NavButtonState extends State<NavButton> {
         onTap: widget.onTap,
         borderRadius: BorderRadius.circular(12),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          padding: context.insetsSymmetric(h: 10, v: 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -34,15 +35,15 @@ class _NavButtonState extends State<NavButton> {
                   color: _hovering ? cs.primary : t.titleSmall?.color,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: context.space(4)),
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.easeOut,
-                height: 2,
-                width: _hovering ? 18 : 0,
+                height: context.rem(2),
+                width: _hovering ? context.rem(18) : 0,
                 decoration: BoxDecoration(
                   color: cs.primary,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(context.radius(2)),
                 ),
               ),
             ],

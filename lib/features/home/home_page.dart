@@ -12,6 +12,7 @@ import 'package:binodfolio/features/home/widgets/section.dart';
 import 'package:binodfolio/features/home/widgets/skills_section.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/core/responsive/breakpoints.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class HomePage extends StatefulWidget {
   final Future<void> Function(ThemeMode) onThemeChanged;
@@ -60,8 +61,7 @@ class _HomePageState extends State<HomePage> {
             // Inline header (replaces Scaffold.appBar)
             Container(
               color: Theme.of(context).colorScheme.surface,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+              padding: context.insetsSymmetric(h: 16, v: 8),
               child: Row(
                 children: [
                   const Brand(),

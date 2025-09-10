@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class SkillsSection extends StatelessWidget {
   const SkillsSection();
@@ -6,7 +7,7 @@ class SkillsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, c) {
-        const spacing = 24.0;
+        final spacing = context.space(18);
         final isWide = c.maxWidth > 900;
         final crossAxisCount = isWide ? 3 : 1;
         final itemWidth = (c.maxWidth - spacing * (crossAxisCount - 1)) / crossAxisCount;
@@ -60,10 +61,10 @@ class _SkillCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: context.insetsAll(14),
       decoration: BoxDecoration(
         color: Theme.of(context).cardTheme.color,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(context.radius(12)),
         border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
       ),
       child: Column(
@@ -76,10 +77,10 @@ class _SkillCard extends StatelessWidget {
                 .titleLarge
                 ?.copyWith(fontWeight: FontWeight.w800),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: context.space(10)),
           Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            spacing: context.space(6),
+            runSpacing: context.space(6),
             children: items.map((e) => Chip(label: Text(e))).toList(),
           )
         ],

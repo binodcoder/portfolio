@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class Footer extends StatelessWidget {
   const Footer();
@@ -6,15 +7,15 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     final year = DateTime.now().year;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24),
+      padding: EdgeInsets.symmetric(vertical: context.rem(20)),
       child: Column(
         children: [
           const Divider(height: 1),
-          const SizedBox(height: 16),
+          SizedBox(height: context.space(14)),
           Text(
             '© $year Binod Bhandari. All rights reserved.',
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: context.space(8)),
         ],
       ),
     );

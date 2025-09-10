@@ -8,6 +8,7 @@ import 'package:binodfolio/features/todo/todo.dart';
 import 'package:binodfolio/features/pomodoro/pomodoro.dart';
 import 'package:binodfolio/features/breathing/breathing.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class AppsSection extends StatelessWidget {
   AppsSection();
@@ -30,7 +31,7 @@ class AppsSection extends StatelessWidget {
       children: [
         Text('Apps',
             style: t.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
-        const SizedBox(height: 12),
+        SizedBox(height: context.space(10)),
         LayoutBuilder(
           builder: (context, constraints) {
             final width = constraints.maxWidth;
@@ -45,7 +46,7 @@ class AppsSection extends StatelessWidget {
               crossAxisCount = 5;
             }
 
-            const spacing = 20.0;
+            final spacing = context.space(16);
             final itemWidth =
                 (width - spacing * (crossAxisCount - 1)) / crossAxisCount;
             return Wrap(
@@ -163,7 +164,7 @@ class _AppCardState extends State<_AppCard> {
                         ),
                       ],
               ),
-              padding: const EdgeInsets.all(16),
+              padding: context.insetsAll(14),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -171,15 +172,15 @@ class _AppCardState extends State<_AppCard> {
                     alignment: Alignment.center,
                     children: [
                       Container(
-                        width: 58,
-                        height: 58,
+                        width: context.rem(58),
+                        height: context.rem(58),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
                               color: style.colors.first.withValues(alpha: 0.2),
-                              blurRadius: 12,
-                              offset: const Offset(0, 6),
+                              blurRadius: context.rem(12),
+                              offset: Offset(0, context.rem(6)),
                             ),
                           ],
                           gradient: LinearGradient(
@@ -190,8 +191,8 @@ class _AppCardState extends State<_AppCard> {
                         ),
                       ),
                       Container(
-                        width: 46,
-                        height: 46,
+                        width: context.rem(46),
+                        height: context.rem(46),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.white.withValues(alpha: 0.06),
@@ -199,12 +200,12 @@ class _AppCardState extends State<_AppCard> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Icon(style.icon, color: Colors.white, size: 24),
+                        padding: context.insetsAll(10),
+                        child: Icon(style.icon, color: Colors.white, size: context.icon(24)),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: context.space(10)),
                   Text(widget.title,
                       style: Theme.of(context).textTheme.titleMedium),
                 ],

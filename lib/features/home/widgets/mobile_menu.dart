@@ -1,6 +1,7 @@
 import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class MobileMenu extends StatelessWidget {
   final ThemeMode themeMode;
@@ -28,7 +29,7 @@ class MobileMenu extends StatelessWidget {
             return SafeArea(
               child: SingleChildScrollView(
                 padding: EdgeInsets.only(
-                    left: 16, right: 16, top: 12, bottom: bottomInset + 12),
+                    left: context.rem(16), right: context.rem(16), top: context.rem(12), bottom: bottomInset + context.rem(12)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +51,7 @@ class MobileMenu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: context.space(8)),
                     _MenuItem(label: 'Home', onTap: () => onTap('home')),
                     _MenuItem(label: 'About', onTap: () => onTap('about')),
                     _MenuItem(label: 'Skills', onTap: () => onTap('skills')),
@@ -88,7 +89,8 @@ class _MenuItem extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
       title: Text(label,
           style: t.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
-      trailing: Icon(Icons.chevron_right, color: cs.outline),
+      trailing:
+          Icon(Icons.chevron_right, color: cs.outline, size: context.icon(20)),
       onTap: () {
         Navigator.of(context).pop();
         // Trigger after sheet closes for smoothness

@@ -1,6 +1,7 @@
 import 'package:binodfolio/features/home/data/projects.dart';
 import 'package:binodfolio/features/home/widgets/project_card.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection();
@@ -16,14 +17,17 @@ class ProjectsSection extends StatelessWidget {
             fontWeight: FontWeight.w800,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: context.space(14)),
         LayoutBuilder(
           builder: (context, c) {
-            const spacing = 24.0;
+            final spacing = context.space(18);
             final isWide = c.maxWidth > 1000;
             final crossAxisCount = isWide ? 3 : (c.maxWidth > 700 ? 2 : 1);
             final itemWidth =
                 (c.maxWidth - spacing * (crossAxisCount - 1)) / crossAxisCount;
+            final textScale = MediaQuery.textScaleFactorOf(context);
+            final lockHeight = crossAxisCount >= 2 && textScale <= 1.10;
+            final cardHeight = lockHeight ? context.rem(320) : null;
 
             return Wrap(
               spacing: spacing,
@@ -46,10 +50,12 @@ class ProjectsSection extends StatelessWidget {
                             child: child,
                           ),
                         ),
-                        child: SizedBox(
-                          height: 320,
-                          child: ProjectCard(p: e.value),
-                        ),
+                        child: cardHeight != null
+                            ? SizedBox(
+                                height: cardHeight,
+                                child: ProjectCard(p: e.value),
+                              )
+                            : ProjectCard(p: e.value),
                       ),
                     ),
                   )

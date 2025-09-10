@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class Section extends StatefulWidget {
   final Widget child;
@@ -22,8 +23,12 @@ class _SectionState extends State<Section> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final isPortrait = context.orientation == Orientation.portrait;
+    // Slightly larger vertical padding in portrait, tighter in landscape.
+    final hPad = isPortrait ? 20.0 : 16.0;
+    final vPad = isPortrait ? 28.0 : 22.0;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 28),
+      padding: context.insetsSymmetric(h: hPad, v: vPad),
       constraints: const BoxConstraints(maxWidth: 1400),
       alignment: Alignment.center,
       child: ConstrainedBox(

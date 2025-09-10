@@ -2,6 +2,7 @@ import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:binodfolio/features/home/models/project.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class ProjectCard extends StatefulWidget {
   final Project p;
@@ -82,7 +83,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     ? () => launchUrlSafe(widget.p.github!)
                     : null),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: context.insetsAll(14),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +92,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _Badge(color: badge.color, icon: badge.icon),
-                      const SizedBox(width: 12),
+                      SizedBox(width: context.space(10)),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +106,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                   .titleLarge
                                   ?.copyWith(fontWeight: FontWeight.w800),
                             ),
-                            const SizedBox(height: 6),
+                            SizedBox(height: context.space(6)),
                             Text(
                               widget.p.description,
                               maxLines: 3,
@@ -117,39 +118,41 @@ class _ProjectCardState extends State<ProjectCard> {
                       )
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: context.space(10)),
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                    spacing: context.space(6),
+                    runSpacing: context.space(6),
                     children: widget.p.tech
                         .map((t) => Chip(
                               label: Text(t),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 6),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: context.rem(6)),
                               visualDensity: VisualDensity.compact,
                             ))
                         .toList(),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: context.space(10)),
                   Wrap(
-                    spacing: 8,
+                    spacing: context.space(8),
                     children: [
                       if (widget.p.github != null)
                         OutlinedButton.icon(
                           onPressed: () => launchUrlSafe(widget.p.github!),
-                          icon: const FaIcon(FontAwesomeIcons.github, size: 16),
+                          icon: FaIcon(FontAwesomeIcons.github,
+                              size: context.icon(16)),
                           label: const Text('GitHub'),
                         ),
                       if (widget.p.live != null)
                         FilledButton.tonalIcon(
                           onPressed: () => launchUrlSafe(widget.p.live!),
-                          icon: const Icon(Icons.open_in_new, size: 18),
+                          icon:
+                              Icon(Icons.open_in_new, size: context.icon(18)),
                           label: const Text('Live Demo'),
                         ),
                       if (widget.p.playStore != null)
                         FilledButton.icon(
                           onPressed: () => launchUrlSafe(widget.p.playStore!),
-                          icon: const Icon(Icons.shop_2, size: 18),
+                          icon: Icon(Icons.shop_2, size: context.icon(18)),
                           label: const Text('Play Store'),
                         ),
                     ],
@@ -171,9 +174,10 @@ class _Badge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sz = context.rem(44);
     return Container(
-      width: 44,
-      height: 44,
+      width: sz,
+      height: sz,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -187,12 +191,12 @@ class _Badge extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: color.withValues(alpha: 0.18),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+            blurRadius: context.rem(10),
+            offset: Offset(0, context.rem(5)),
           )
         ],
       ),
-      child: Icon(icon, color: Colors.white),
+      child: Icon(icon, color: Colors.white, size: context.icon(24)),
     );
   }
 }

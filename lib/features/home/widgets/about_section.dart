@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection();
@@ -11,7 +12,7 @@ class AboutSection extends StatelessWidget {
       children: [
         Text('About Me',
             style: t.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
-        const SizedBox(height: 12),
+        SizedBox(height: context.space(10)),
         LayoutBuilder(
           builder: (context, c) {
             final twoCol = c.maxWidth > 860;
@@ -31,27 +32,27 @@ class AboutSection extends StatelessWidget {
                 //       style: t.labelMedium?.copyWith(
                 //           color: cs.primary, fontWeight: FontWeight.w700)),
                 // ),
-                const SizedBox(height: 10),
+                SizedBox(height: context.space(10)),
                 Text(
                   "I build fast, reliable apps with a product mindset. Comfortable across the stack: Flutter on the front, Spring Boot on the back, with practical cloud know‑how.",
                   style: t.titleMedium,
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: context.space(12)),
                 Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
+                  spacing: context.space(6),
+                  runSpacing: context.space(6),
                   children: const [
                     _Pill(text: 'Performance first'),
                     _Pill(text: 'Clean architecture'),
                     _Pill(text: 'Accessibility'),
                   ],
                 ),
-                const SizedBox(height: 14),
+                SizedBox(height: context.space(12)),
               ],
             );
 
             final right = Container(
-              padding: const EdgeInsets.all(16),
+              padding: context.insetsAll(14),
               decoration: BoxDecoration(
                 // High-contrast background for mobile visibility
                 gradient: LinearGradient(
@@ -62,14 +63,14 @@ class AboutSection extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(context.radius(16)),
                 border:
                     Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.06),
-                    blurRadius: 14,
-                    offset: const Offset(0, 6),
+                    blurRadius: context.rem(14),
+                    offset: Offset(0, context.rem(6)),
                   ),
                 ],
               ),
@@ -106,15 +107,15 @@ class AboutSection extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(context.radius(16)),
               ),
-              padding: const EdgeInsets.all(16),
+              padding: context.insetsAll(14),
               child: twoCol
                   ? Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(flex: 3, child: left),
-                        const SizedBox(width: 16),
+                        SizedBox(width: context.space(14)),
                         Expanded(flex: 2, child: right),
                       ],
                     )
@@ -122,7 +123,7 @@ class AboutSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         left,
-                        const SizedBox(height: 16),
+                        SizedBox(height: context.space(14)),
                         right,
                       ],
                     ),
@@ -146,22 +147,22 @@ class _AboutItem extends StatelessWidget {
     final t = Theme.of(context).textTheme;
     final cs = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: EdgeInsets.symmetric(vertical: context.rem(6)),
       child: Row(
         children: [
           Container(
-            width: 28,
-            height: 28,
+            width: context.rem(28),
+            height: context.rem(28),
             decoration: BoxDecoration(
               color: cs.primary.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(context.radius(8)),
             ),
-            child: Icon(icon, size: 16, color: cs.primary),
+            child: Icon(icon, size: context.icon(16), color: cs.primary),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: context.space(10)),
           Text('$label:',
               style: t.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-          const SizedBox(width: 6),
+          SizedBox(width: context.space(6)),
           Expanded(child: Text(value, style: t.labelLarge)),
         ],
       ),
@@ -177,10 +178,11 @@ class _Pill extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      padding: EdgeInsets.symmetric(
+          horizontal: context.rem(10), vertical: context.rem(8)),
       decoration: BoxDecoration(
         color: cs.surface,
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular(context.radius(999)),
         border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
       ),
       child: Text(text),

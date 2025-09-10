@@ -2,6 +2,7 @@ import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:binodfolio/features/home/widgets/nav_button.dart';
 import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class NavBar extends StatelessWidget {
   final void Function(String id) onTap;
@@ -18,16 +19,16 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: context.insetsSymmetric(h: 12, v: 8),
       decoration: BoxDecoration(
         color: cs.surfaceContainerLow.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(32),
+        borderRadius: BorderRadius.circular(context.radius(32)),
         border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 18,
-            offset: const Offset(0, 6),
+            blurRadius: context.rem(18),
+            offset: Offset(0, context.rem(6)),
           ),
         ],
       ),
@@ -39,14 +40,14 @@ class NavBar extends StatelessWidget {
           NavButton(label: 'Projects', onTap: () => onTap('projects')),
           NavButton(label: 'Apps', onTap: () => onTap('apps')),
           NavButton(label: 'Contact', onTap: () => onTap('contact')),
-          const SizedBox(width: 12),
-          Container(width: 1, height: 22, color: cs.outlineVariant.withValues(alpha: 0.5)),
-          const SizedBox(width: 12),
+          SizedBox(width: context.space(12)),
+          Container(width: 1, height: context.rem(22), color: cs.outlineVariant.withValues(alpha: 0.5)),
+          SizedBox(width: context.space(12)),
           ThemeToggle(
             onChanged: onThemeChanged,
             themeMode: themeMode,
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: context.space(8)),
           FilledButton(
             onPressed: () => launchUrlSafe(
                 'mailto:binodbhandari@gmail.com?subject=Let\'s work together'),

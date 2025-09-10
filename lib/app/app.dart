@@ -49,10 +49,13 @@ class _AppState extends State<App> {
         // Respect user scaling but clamp to reduce overflow on very large settings
         final clampedTextScale = mq.textScaleFactor.clamp(0.90, 1.20);
 
-        // Start from current theme and scale its text theme
+        // Start from current theme and scale its text + icon themes
         final baseTheme = Theme.of(context);
         final scaled = baseTheme.copyWith(
           textTheme: baseTheme.textTheme.apply(fontSizeFactor: widthScale),
+          iconTheme: baseTheme.iconTheme.copyWith(
+            size: (baseTheme.iconTheme.size ?? 24) * widthScale,
+          ),
         );
 
         return MediaQuery(

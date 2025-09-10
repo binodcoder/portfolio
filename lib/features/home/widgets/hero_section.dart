@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:flutter/material.dart';
 import 'avatar.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 
 class HeroSection extends StatelessWidget {
   final bool isDesktop;
@@ -26,11 +27,11 @@ class HeroSection extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(16),
           ),
-          padding: const EdgeInsets.all(20),
+          padding: context.insetsAll(18),
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
-            runSpacing: 24,
-            spacing: 24,
+            runSpacing: context.space(18),
+            spacing: context.space(18),
             children: [
               SizedBox(
                 width: column
@@ -42,15 +43,15 @@ class HeroSection extends StatelessWidget {
                     Text("Hi, I'm Binod 👋",
                         style: textTheme.displaySmall?.copyWith(
                             fontWeight: FontWeight.w800, height: 1.1)),
-                    const SizedBox(height: 12),
+                    SizedBox(height: context.space(10)),
                     Text(
                       'Flutter Engineer crafting fast, reliable apps. Strong backend chops with Spring Boot and a touch of AWS wizardry.',
                       style: textTheme.titleMedium,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: context.space(16)),
                     Wrap(
-                      spacing: 12,
-                      runSpacing: 12,
+                      spacing: context.space(10),
+                      runSpacing: context.space(10),
                       children: [
                         OutlinedButton(
                           onPressed: () =>
@@ -69,10 +70,10 @@ class HeroSection extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: context.space(14)),
                     Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
+                      spacing: context.space(6),
+                      runSpacing: context.space(6),
                       children: const [
                         _StatChip(label: '3+ yrs', sub: 'Experience'),
                         _StatChip(label: '5+ apps', sub: 'Delivered'),
@@ -100,10 +101,10 @@ class _StatChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: context.insetsSymmetric(h: 10, v: 8),
       decoration: BoxDecoration(
         color: cs.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(context.radius(12)),
         border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
       ),
       child: Column(
