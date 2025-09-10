@@ -6,6 +6,8 @@ import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/filters_provider.dart';
+import 'package:binodfolio/features/meal/widgets/filters_panel.dart';
+import 'package:binodfolio/core/responsive/breakpoints.dart';
 
 // const kInitialFilters = {
 //   Filter.glutenFree: false,
@@ -32,10 +34,6 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     });
   }
 
-  Future<void> _openFilters() async {
-    await Navigator.of(context).pushNamed('/meal/filters');
-  }
-
   @override
   Widget build(BuildContext context) {
     final availableMeals = ref.watch(filteredMealsProvider);
@@ -50,45 +48,96 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
         meals: favoriteMeals,
       );
       activePageTitle = 'Your Favorites';
+    } else if (_selectedPageIndex == 2) {
+      activePage = const FiltersPanel();
+      activePageTitle = 'Setting';
     }
+    final isMobile = context.isMobile; // < 600px
+
+    Widget header = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        children: [
+          if (Navigator.of(context).canPop()) ...[
+            const InAppBackButton(),
+            const SizedBox(width: 8),
+          ],
+          Text(
+            activePageTitle,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const Spacer(),
+        ],
+      ),
+    );
+
+    // Mobile: BottomNavigationBar
+    if (isMobile) {
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              header,
+              const Divider(height: 1),
+              Expanded(child: activePage),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _selectPage,
+          currentIndex: _selectedPageIndex,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.set_meal),
+              label: 'Categories',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              label: 'Favorite',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Setting',
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Tablet/Desktop: Side navigation with NavigationRail
+    final bool isExtended = context.screenWidth >= 900;
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
-                  Text(
-                    activePageTitle,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    tooltip: 'Filters',
-                    icon: const Icon(Icons.settings),
-                    onPressed: _openFilters,
-                  ),
-                ],
-              ),
+            NavigationRail(
+              selectedIndex: _selectedPageIndex,
+              onDestinationSelected: _selectPage,
+              // When `extended` is true, `labelType` must be null or none.
+              labelType: isExtended ? null : NavigationRailLabelType.selected,
+              extended: isExtended, // expand labels on wider screens
+              destinations: const [
+                NavigationRailDestination(
+                  icon: Icon(Icons.set_meal_outlined),
+                  selectedIcon: Icon(Icons.set_meal),
+                  label: Text('Categories'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.star_outline),
+                  selectedIcon: Icon(Icons.star),
+                  label: Text('Favorite'),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.settings_outlined),
+                  selectedIcon: Icon(Icons.settings),
+                  label: Text('Setting'),
+                ),
+              ],
             ),
-            const Divider(height: 1),
+            const VerticalDivider(width: 1),
             Expanded(child: activePage),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectPage,
-        currentIndex: _selectedPageIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.set_meal), label: 'Categories'),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Favorite'),
-        ],
       ),
     );
   }

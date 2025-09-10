@@ -1,6 +1,7 @@
 import 'package:binodfolio/features/expense_tracker/models/expense.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/breakpoints.dart';
 
 import 'chat/chat.dart';
 import 'package:binodfolio/common_widgets/in_app_back_button.dart';
@@ -58,8 +59,7 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _openAddExpenseOverlay() {
-    final width = MediaQuery.of(context).size.width;
-    final useDialog = kIsWeb || width >= 700;
+    final useDialog = kIsWeb || context.screenWidth >= kDialogSheetSwitch;
 
     if (useDialog) {
       showDialog(
@@ -90,7 +90,9 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = context.screenWidth;
+    final isWeb = kIsWeb;
+    final isCompactMobile = !isWeb && width < kDialogSheetSwitch;
 
     Widget mainContent = Center(
       child: Text('No expenses found. Start adding some!'),
@@ -102,7 +104,6 @@ class _ExpensesState extends State<Expenses> {
         onRemoveExpense: _removeExpense,
       );
     }
-    final isWeb = kIsWeb;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -126,7 +127,7 @@ class _ExpensesState extends State<Expenses> {
                         ),
                       ],
                     ),
-                    if (!(!isWeb && width < 700))
+                    if (!isCompactMobile)
                       ElevatedButton.icon(
                         onPressed: _openAddExpenseOverlay,
                         icon: const Icon(Icons.add),
@@ -135,7 +136,7 @@ class _ExpensesState extends State<Expenses> {
                   ],
                 );
 
-                final content = width < 800
+                final content = width < kTwoPaneExpense
                     ? Column(
                         children: [
                           header,
@@ -175,7 +176,7 @@ class _ExpensesState extends State<Expenses> {
           ),
         ),
       ),
-      floatingActionButton: (!isWeb && width < 700)
+      floatingActionButton: isCompactMobile
           ? FloatingActionButton(
               onPressed: _openAddExpenseOverlay,
               tooltip: 'Add Expense',

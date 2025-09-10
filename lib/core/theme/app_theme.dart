@@ -7,8 +7,8 @@ const _radius = 14.0;
 final lightTheme = ThemeData(useMaterial3: true).copyWith(
   colorScheme: kColorScheme,
   appBarTheme: AppBarTheme().copyWith(
-    backgroundColor: kColorScheme.onPrimaryContainer,
-    foregroundColor: kColorScheme.primaryContainer,
+    backgroundColor: kColorScheme.primaryContainer,
+    foregroundColor: kColorScheme.onPrimaryContainer,
   ),
   cardTheme: CardTheme(
     color: kColorScheme.surfaceContainerHighest,
@@ -36,10 +36,11 @@ final lightTheme = ThemeData(useMaterial3: true).copyWith(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
   ),
-  // Base typography; final sizes are responsively scaled in MaterialApp.builder
-  textTheme: GoogleFonts.latoTextTheme(),
+  // Base typography; sizes are responsively scaled in MaterialApp.builder
+  // Use themed bases so colors match the active color scheme.
+  textTheme: GoogleFonts.latoTextTheme(ThemeData.light().textTheme),
   iconTheme: const IconThemeData().copyWith(
-    color: kColorScheme.onPrimaryContainer,
+    color: kColorScheme.onSurface,
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
@@ -54,7 +55,14 @@ final darkTheme =
     ThemeData(brightness: Brightness.dark, useMaterial3: true).copyWith(
   colorScheme: kDarkColorScheme,
   // Keep typography consistent across themes; scaled in MaterialApp.builder
-  textTheme: GoogleFonts.latoTextTheme(),
+  textTheme: GoogleFonts.latoTextTheme(ThemeData.dark().textTheme),
+  appBarTheme: AppBarTheme().copyWith(
+    backgroundColor: kDarkColorScheme.surface,
+    foregroundColor: kDarkColorScheme.onSurface,
+  ),
+  iconTheme: const IconThemeData().copyWith(
+    color: kDarkColorScheme.onSurface,
+  ),
   cardTheme: CardTheme(
     color: kDarkColorScheme.surfaceContainerHighest,
     elevation: 0,

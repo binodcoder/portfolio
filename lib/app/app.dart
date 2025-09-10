@@ -56,7 +56,7 @@ class _AppState extends State<App> {
         );
 
         return MediaQuery(
-          data: mq.copyWith(textScaleFactor: clampedTextScale),
+          data: mq.copyWith(textScaler: TextScaler.linear(clampedTextScale)),
           child: Theme(data: scaled, child: child!),
         );
       },

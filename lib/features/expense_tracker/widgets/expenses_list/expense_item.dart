@@ -63,7 +63,7 @@ class ExpenseItem extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
-                        ?.copyWith(color: Colors.grey[600]),
+                        ?.copyWith(color: Theme.of(context).colorScheme.outline),
                   ),
                 ],
               ),

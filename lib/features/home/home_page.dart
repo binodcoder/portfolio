@@ -11,6 +11,7 @@ import 'package:binodfolio/features/home/widgets/projects_section.dart';
 import 'package:binodfolio/features/home/widgets/section.dart';
 import 'package:binodfolio/features/home/widgets/skills_section.dart';
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/breakpoints.dart';
 
 class HomePage extends StatefulWidget {
   final Future<void> Function(ThemeMode) onThemeChanged;
@@ -48,8 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final isDesktop = width >= 1100;
+    final isDesktop = context.isNavDesktop;
     // final isTablet = width >= 700 && width < 1100;
 
     return Scaffold(
