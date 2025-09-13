@@ -1,7 +1,6 @@
 import 'package:binodfolio/core/utils/launch_utils.dart';
 import 'package:binodfolio/features/home/models/project.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:binodfolio/core/responsive/sizes.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -19,30 +18,6 @@ class _ProjectCardState extends State<ProjectCard> {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
 
-    _BadgeStyle _styleFor(String title) {
-      final t = title.toLowerCase();
-      if (t.contains('fitness')) {
-        return _BadgeStyle(Icons.fitness_center, Colors.pink);
-      }
-      if (t.contains('blog')) {
-        return _BadgeStyle(Icons.article, Colors.indigo);
-      }
-      if (t.contains('pos') || t.contains('restaurant')) {
-        return _BadgeStyle(Icons.point_of_sale, Colors.deepOrange);
-      }
-      if (t.contains('dental') || t.contains('clinic')) {
-        return _BadgeStyle(Icons.medical_services, Colors.teal);
-      }
-      if (t.contains('account') || t.contains('accounts')) {
-        return _BadgeStyle(Icons.account_balance, Colors.green);
-      }
-      if (t.contains('job') || t.contains('portal') || t.contains('merokaam')) {
-        return _BadgeStyle(Icons.work, cs.primary);
-      }
-      return _BadgeStyle(Icons.apps, cs.primary);
-    }
-
-    final badge = _styleFor(widget.p.title);
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
@@ -88,34 +63,25 @@ class _ProjectCardState extends State<ProjectCard> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _Badge(color: badge.color, icon: badge.icon),
-                      SizedBox(width: context.space(10)),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.p.title,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.w800),
-                            ),
-                            SizedBox(height: context.space(6)),
-                            Text(
-                              widget.p.description,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      )
+                      Text(
+                        widget.p.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.w800),
+                      ),
+                      SizedBox(height: context.space(6)),
+                      Text(
+                        widget.p.description,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ],
                   ),
                   SizedBox(height: context.space(10)),
@@ -136,24 +102,19 @@ class _ProjectCardState extends State<ProjectCard> {
                     spacing: context.space(8),
                     children: [
                       if (widget.p.github != null)
-                        OutlinedButton.icon(
+                        OutlinedButton(
                           onPressed: () => launchUrlSafe(widget.p.github!),
-                          icon: FaIcon(FontAwesomeIcons.github,
-                              size: context.icon(16)),
-                          label: const Text('GitHub'),
+                          child: const Text('GitHub'),
                         ),
                       if (widget.p.live != null)
-                        FilledButton.tonalIcon(
+                        FilledButton.tonal(
                           onPressed: () => launchUrlSafe(widget.p.live!),
-                          icon:
-                              Icon(Icons.open_in_new, size: context.icon(18)),
-                          label: const Text('Live Demo'),
+                          child: const Text('Live Demo'),
                         ),
                       if (widget.p.playStore != null)
-                        FilledButton.icon(
+                        FilledButton(
                           onPressed: () => launchUrlSafe(widget.p.playStore!),
-                          icon: Icon(Icons.shop_2, size: context.icon(18)),
-                          label: const Text('Play Store'),
+                          child: const Text('Play Store'),
                         ),
                     ],
                   ),
@@ -167,42 +128,4 @@ class _ProjectCardState extends State<ProjectCard> {
   }
 }
 
-class _Badge extends StatelessWidget {
-  final Color color;
-  final IconData icon;
-  const _Badge({required this.color, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    final sz = context.rem(44);
-    return Container(
-      width: sz,
-      height: sz,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: LinearGradient(
-          colors: [
-            color.withValues(alpha: 0.75),
-            color.withValues(alpha: 0.45),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: 0.18),
-            blurRadius: context.rem(10),
-            offset: Offset(0, context.rem(5)),
-          )
-        ],
-      ),
-      child: Icon(icon, color: Colors.white, size: context.icon(24)),
-    );
-  }
-}
-
-class _BadgeStyle {
-  final IconData icon;
-  final Color color;
-  const _BadgeStyle(this.icon, this.color);
-}
+// Badge and related styles removed as requested

@@ -7,17 +7,9 @@ class MediaSection extends StatelessWidget {
   const MediaSection();
   @override
   Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Graduation',
-            style: t.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
-        const SizedBox(height: 12),
-        kIsWeb
-            ? YouTubePlayerWidget(videoId: "X7yJfhYHUIw")
-            : YouTubePlayerScreen(),
-      ],
-    );
+    // Title removed as requested; render the media only
+    return kIsWeb
+        ? YouTubePlayerWidget(videoId: "X7yJfhYHUIw")
+        : YouTubePlayerScreen();
   }
 }

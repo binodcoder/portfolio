@@ -136,6 +136,7 @@ class _AppCardState extends State<_AppCard> {
         scale: _hovering ? 1.02 : 1.0,
         child: Card(
           elevation: 0,
+          color: Colors.transparent,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAlias,
@@ -144,66 +145,27 @@ class _AppCardState extends State<_AppCard> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 220),
               curve: Curves.easeOut,
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardTheme.color,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.35)),
-                boxShadow: _hovering
-                    ? [
-                        BoxShadow(
-                          color: cs.primary.withValues(alpha: 0.18),
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
-                        ),
-                      ]
-                    : [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.05),
-                          blurRadius: 10,
-                          offset: const Offset(0, 6),
-                        ),
-                      ],
-              ),
               padding: context.insetsAll(14),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Stack(
+                  // Icon style aligned with About section's right-side items
+                  Container(
+                    width: context.rem(40),
+                    height: context.rem(40),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(context.radius(8)),
+                    ),
                     alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: context.rem(58),
-                        height: context.rem(58),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: style.colors.first.withValues(alpha: 0.2),
-                              blurRadius: context.rem(12),
-                              offset: Offset(0, context.rem(6)),
-                            ),
-                          ],
-                          gradient: LinearGradient(
-                            colors: style.colors,
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: context.rem(46),
-                        height: context.rem(46),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white.withValues(alpha: 0.06),
-                          border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
-                        ),
-                      ),
-                      Padding(
-                        padding: context.insetsAll(10),
-                        child: Icon(style.icon, color: Colors.white, size: context.icon(24)),
-                      ),
-                    ],
+                    child: Icon(
+                      style.icon,
+                      size: context.icon(20),
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                   SizedBox(height: context.space(10)),
                   Text(widget.title,

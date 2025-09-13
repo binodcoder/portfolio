@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:binodfolio/core/responsive/sizes.dart';
 import '../models/category.dart';
 
 class CategoryGridItem extends StatefulWidget {
@@ -47,8 +48,7 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
 
   @override
   Widget build(BuildContext context) {
-    final color = widget.category.color;
-    final onCard = Colors.white.withValues(alpha: 0.92);
+    final cs = Theme.of(context).colorScheme;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
@@ -66,80 +66,38 @@ class _CategoryGridItemState extends State<CategoryGridItem> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(14),
-              gradient: LinearGradient(
-                colors: [
-                  color.withValues(alpha: 0.55),
-                  color.withValues(alpha: 0.35),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              boxShadow: _hovering
-                  ? [
-                      BoxShadow(
-                        color: color.withValues(alpha: 0.18),
-                        blurRadius: 12,
-                        spreadRadius: 0.3,
-                        offset: const Offset(0, 6),
-                      ),
-                    ]
-                  : [
-                      BoxShadow(
-                        color: color.withValues(alpha: 0.10),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+              color: Colors.transparent,
             ),
-            child: Stack(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Soft gloss overlay
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 44,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(14),
-                        topRight: Radius.circular(14),
-                      ),
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.white.withValues(alpha: 0.10),
-                          Colors.white.withValues(alpha: 0.02),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
+                Container(
+                  width: context.rem(40),
+                  height: context.rem(40),
+                  decoration: BoxDecoration(
+                    color: cs.primary.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(context.radius(8)),
+                  ),
+                  alignment: Alignment.center,
+                  child: Icon(
+                    _iconFor(widget.category.title),
+                    size: context.icon(20),
+                    color: cs.primary,
                   ),
                 ),
-                // Content
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Icon(
-                        _iconFor(widget.category.title),
-                        size: 28,
-                        color: onCard.withValues(alpha: 0.8),
-                      ),
-                    ),
-                    Text(
-                      widget.category.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: onCard,
+                SizedBox(height: context.space(8)),
+                Text(
+                  widget.category.title,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: cs.onSurface,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.2,
+                        height: 1.1,
                       ),
-                    ),
-                  ],
                 ),
               ],
             ),

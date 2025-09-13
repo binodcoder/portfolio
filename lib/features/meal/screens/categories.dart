@@ -69,6 +69,17 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           } else {
             columns = 2;
           }
+          // Give tiles a bit more vertical room on tighter grids
+          double aspect;
+          if (columns >= 5) {
+            aspect = 1.15; // wider than tall on desktops
+          } else if (columns == 4) {
+            aspect = 1.0; // square-ish on large tablets
+          } else if (columns == 3) {
+            aspect = 0.85; // taller tiles on phones
+          } else {
+            aspect = 0.9; // slight extra height for 2-column layouts
+          }
 
           return Center(
             child: ConstrainedBox(
@@ -78,7 +89,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: columns,
-                  childAspectRatio: 1.1,
+                  childAspectRatio: aspect,
                   crossAxisSpacing: 30,
                   mainAxisSpacing: 25,
                 ),

@@ -11,7 +11,8 @@ final lightTheme = ThemeData(useMaterial3: true).copyWith(
     foregroundColor: kColorScheme.onPrimaryContainer,
   ),
   cardTheme: CardTheme(
-    color: kColorScheme.surfaceContainerHighest,
+    color: kColorScheme.surfaceContainerLow,
+    surfaceTintColor: Colors.transparent,
     elevation: 0,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_radius)),
     margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -44,7 +45,7 @@ final lightTheme = ThemeData(useMaterial3: true).copyWith(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: kColorScheme.surfaceContainerHighest,
+    fillColor: kColorScheme.surfaceContainerLow,
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
     isDense: true,
   ),
@@ -64,7 +65,8 @@ final darkTheme =
     color: kDarkColorScheme.onSurface,
   ),
   cardTheme: CardTheme(
-    color: kDarkColorScheme.surfaceContainerHighest,
+    color: kDarkColorScheme.surfaceContainerLow,
+    surfaceTintColor: Colors.transparent,
     elevation: 0,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(_radius)),
     margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -92,7 +94,7 @@ final darkTheme =
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: kDarkColorScheme.surfaceContainerHighest,
+    fillColor: kDarkColorScheme.surfaceContainerLow,
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
     isDense: true,
   ),

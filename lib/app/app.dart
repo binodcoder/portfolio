@@ -47,7 +47,8 @@ class _AppState extends State<App> {
         final widthScale = (size.width / baselineWidth).clamp(0.90, 1.15);
 
         // Respect user scaling but clamp to reduce overflow on very large settings
-        final clampedTextScale = mq.textScaleFactor.clamp(0.90, 1.20);
+        final clampedTextScale =
+            mq.textScaler.clamp(minScaleFactor: 0.90, maxScaleFactor: 1.20);
 
         // Start from current theme and scale its text + icon themes
         final baseTheme = Theme.of(context);
@@ -59,7 +60,7 @@ class _AppState extends State<App> {
         );
 
         return MediaQuery(
-          data: mq.copyWith(textScaler: TextScaler.linear(clampedTextScale)),
+          data: mq.copyWith(textScaler: clampedTextScale),
           child: Theme(data: scaled, child: child!),
         );
       },

@@ -17,13 +17,20 @@ extension ResponsiveSizes on BuildContext {
 
   // Scale factor softly clamped to avoid extremes; slightly more generous on XL.
   double get _scale {
-    final raw = _reference / _baselineWidth;
+    final ref = _reference;
+    if (!ref.isFinite || ref <= 0) return 1.0;
+    final raw = ref / _baselineWidth;
     final max = isXL ? 1.35 : (isDesktop ? 1.25 : 1.20);
-    return raw.clamp(0.85, max);
+    final clamped = raw.clamp(0.85, max);
+    return clamped.isFinite ? clamped : 1.0;
   }
 
   // Scale a base value (e.g., 16) responsively.
-  double rem(double base) => base * _scale;
+  double rem(double base) {
+    final s = _scale;
+    final v = base * s;
+    return v.isFinite ? v : base;
+  }
 
   // Spacing helpers.
   double space(double base) => rem(base);
