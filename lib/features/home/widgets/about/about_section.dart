@@ -1,3 +1,5 @@
+import 'package:binodfolio/features/home/widgets/about/about_item.dart';
+import 'package:binodfolio/features/home/widgets/about/pill.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/core/responsive/sizes.dart';
 
@@ -19,19 +21,6 @@ class AboutSection extends StatelessWidget {
             final left = Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Container(
-                //   padding:
-                //       const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                //   decoration: BoxDecoration(
-                //     color: cs.primary.withValues(alpha: 0.12),
-                //     border:
-                //         Border.all(color: cs.primary.withValues(alpha: 0.25)),
-                //     borderRadius: BorderRadius.circular(999),
-                //   ),
-                //   child: Text('Flutter • Spring Boot • AWS',
-                //       style: t.labelMedium?.copyWith(
-                //           color: cs.primary, fontWeight: FontWeight.w700)),
-                // ),
                 SizedBox(height: context.space(10)),
                 Text(
                   "I build fast, reliable apps with a product mindset. Comfortable across the stack: Flutter on the front, Spring Boot on the back, with practical cloud know‑how.",
@@ -42,9 +31,9 @@ class AboutSection extends StatelessWidget {
                   spacing: context.space(6),
                   runSpacing: context.space(6),
                   children: const [
-                    _Pill(text: 'Performance first'),
-                    _Pill(text: 'Clean architecture'),
-                    _Pill(text: 'Accessibility'),
+                    Pill(text: 'Performance first'),
+                    Pill(text: 'Clean architecture'),
+                    Pill(text: 'Accessibility'),
                   ],
                 ),
                 SizedBox(height: context.space(12)),
@@ -77,19 +66,19 @@ class AboutSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  _AboutItem(
+                  AboutItem(
                       icon: Icons.place,
                       label: 'Based in',
                       value: 'UK / Remote'),
-                  _AboutItem(
+                  AboutItem(
                       icon: Icons.work_history,
                       label: 'Experience',
                       value: '3+ years'),
-                  _AboutItem(
+                  AboutItem(
                       icon: Icons.rocket_launch,
                       label: 'Focus',
                       value: 'Mobile + Backend'),
-                  _AboutItem(
+                  AboutItem(
                       icon: Icons.favorite,
                       label: 'Values',
                       value: 'Craft • Speed • Empathy'),
@@ -131,61 +120,6 @@ class AboutSection extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class _AboutItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String value;
-  const _AboutItem(
-      {required this.icon, required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
-    final cs = Theme.of(context).colorScheme;
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: context.rem(6)),
-      child: Row(
-        children: [
-          Container(
-            width: context.rem(28),
-            height: context.rem(28),
-            decoration: BoxDecoration(
-              color: cs.primary.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(context.radius(8)),
-            ),
-            child: Icon(icon, size: context.icon(16), color: cs.primary),
-          ),
-          SizedBox(width: context.space(10)),
-          Text('$label:',
-              style: t.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-          SizedBox(width: context.space(6)),
-          Expanded(child: Text(value, style: t.labelLarge)),
-        ],
-      ),
-    );
-  }
-}
-
-class _Pill extends StatelessWidget {
-  final String text;
-  const _Pill({required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: context.rem(10), vertical: context.rem(8)),
-      decoration: BoxDecoration(
-        color: cs.surface,
-        borderRadius: BorderRadius.circular(context.radius(999)),
-        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.4)),
-      ),
-      child: Text(text),
     );
   }
 }

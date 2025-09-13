@@ -1,4 +1,5 @@
 import 'package:binodfolio/core/utils/launch_utils.dart';
+import 'package:binodfolio/features/home/widgets/mobile_menu/menu_item.dart';
 import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/core/responsive/sizes.dart';
@@ -55,14 +56,13 @@ class MobileMenu extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: context.space(8)),
-                    _MenuItem(label: 'Home', onTap: () => onTap('home')),
-                    _MenuItem(label: 'About', onTap: () => onTap('about')),
-                    _MenuItem(label: 'Skills', onTap: () => onTap('skills')),
-                    _MenuItem(
-                        label: 'Projects', onTap: () => onTap('projects')),
-                    _MenuItem(label: 'Apps', onTap: () => onTap('apps')),
-                    _MenuItem(label: 'Contact', onTap: () => onTap('contact')),
-                    _MenuItem(label: 'Media', onTap: () => onTap('media')),
+                    MenuItem(label: 'Home', onTap: () => onTap('home')),
+                    MenuItem(label: 'About', onTap: () => onTap('about')),
+                    MenuItem(label: 'Skills', onTap: () => onTap('skills')),
+                    MenuItem(label: 'Projects', onTap: () => onTap('projects')),
+                    MenuItem(label: 'Apps', onTap: () => onTap('apps')),
+                    MenuItem(label: 'Contact', onTap: () => onTap('contact')),
+                    MenuItem(label: 'Media', onTap: () => onTap('media')),
                     const SizedBox(height: 8),
                     FilledButton(
                       onPressed: () => launchUrlSafe(
@@ -75,30 +75,6 @@ class MobileMenu extends StatelessWidget {
             );
           },
         );
-      },
-    );
-  }
-}
-
-class _MenuItem extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-  const _MenuItem({required this.label, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final t = Theme.of(context).textTheme;
-    final cs = Theme.of(context).colorScheme;
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-      title: Text(label,
-          style: t.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
-      trailing:
-          Icon(Icons.chevron_right, color: cs.outline, size: context.icon(20)),
-      onTap: () {
-        Navigator.of(context).pop();
-        // Trigger after sheet closes for smoothness
-        WidgetsBinding.instance.addPostFrameCallback((_) => onTap());
       },
     );
   }

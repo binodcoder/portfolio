@@ -1,5 +1,5 @@
 import 'package:binodfolio/core/utils/launch_utils.dart';
-import 'package:binodfolio/features/home/widgets/nav_button.dart';
+import 'package:binodfolio/features/home/widgets/nav_bar/nav_button.dart';
 import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/core/responsive/sizes.dart';

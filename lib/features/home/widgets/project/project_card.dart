@@ -126,5 +126,3 @@ class _ProjectCardState extends State<ProjectCard> {
     );
   }
 }
-
-// Badge and related styles removed as requested

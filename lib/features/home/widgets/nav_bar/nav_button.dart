@@ -4,7 +4,11 @@ import 'package:binodfolio/core/responsive/sizes.dart';
 class NavButton extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
-  const NavButton({super.key, required this.label, required this.onTap});
+  const NavButton({
+    super.key,
+    required this.label,
+    required this.onTap,
+  });
 
   @override
   State<NavButton> createState() => _NavButtonState();

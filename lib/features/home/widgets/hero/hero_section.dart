@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'package:binodfolio/core/utils/launch_utils.dart';
+import 'package:binodfolio/features/home/widgets/hero/stat_chip.dart';
 import 'package:flutter/material.dart';
-import 'avatar.dart';
+import '../avatar.dart';
 import 'package:binodfolio/core/responsive/sizes.dart';
 
 class HeroSection extends StatelessWidget {
@@ -75,9 +76,9 @@ class HeroSection extends StatelessWidget {
                       spacing: context.space(6),
                       runSpacing: context.space(6),
                       children: const [
-                        _StatChip(label: '3+ yrs', sub: 'Experience'),
-                        _StatChip(label: '5+ apps', sub: 'Delivered'),
-                        _StatChip(label: '100+', sub: 'Users reached'),
+                        StatChip(label: '3+ yrs', sub: 'Experience'),
+                        StatChip(label: '5+ apps', sub: 'Delivered'),
+                        StatChip(label: '100+', sub: 'Users reached'),
                       ],
                     ),
                   ],
@@ -88,37 +89,6 @@ class HeroSection extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _StatChip extends StatelessWidget {
-  final String label;
-  final String sub;
-  const _StatChip({required this.label, required this.sub});
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    return Container(
-      padding: context.insetsSymmetric(h: 10, v: 8),
-      decoration: BoxDecoration(
-        color: cs.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(context.radius(12)),
-        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(fontWeight: FontWeight.w800)),
-          Text(sub, style: Theme.of(context).textTheme.labelMedium),
-        ],
-      ),
     );
   }
 }

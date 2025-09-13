@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:binodfolio/features/shopping_list/data/categories.dart';
 import 'package:binodfolio/features/shopping_list/models/category.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 import '../models/grocery.dart';
 import 'package:http/http.dart' as http;
@@ -74,10 +73,6 @@ class _NewItemState extends State<NewItem> {
           children: [
             Row(
               children: [
-                if (Navigator.of(context).canPop()) ...[
-                  const InAppBackButton(),
-                  const SizedBox(width: 8),
-                ],
                 Text(
                   'Add a new item',
                   style: Theme.of(context).textTheme.titleLarge,
