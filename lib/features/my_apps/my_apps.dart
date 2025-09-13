@@ -49,14 +49,14 @@ class MyApps extends StatelessWidget {
               final item = items[index];
               return GestureDetector(
                 onTap: () {
-                  if (item.title == 'Meal') {
-                    Navigator.pushNamed(context, '/meal');
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => item.builder(context)),
-                    );
-                  }
+                  // if (item.title == 'Meal') {
+                  //   Navigator.pushNamed(context, '/meal');
+                  // } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => item.builder(context)),
+                  );
+                  // }
                 },
                 child: Card(
                   child: Column(
