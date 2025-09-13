@@ -134,7 +134,8 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   @override
   Widget build(BuildContext context) {
     final totalSeconds = _durationForPhase(_phase) * 60;
-    final progress = totalSeconds == 0 ? 0.0 : 1 - (_remainingSeconds / totalSeconds);
+    final progress =
+        totalSeconds == 0 ? 0.0 : 1 - (_remainingSeconds / totalSeconds);
     final minutes = (_remainingSeconds ~/ 60).toString().padLeft(2, '0');
     final seconds = (_remainingSeconds % 60).toString().padLeft(2, '0');
 
@@ -159,14 +160,16 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
             children: [
               Text(
                 _phaseLabel,
-                style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
               _ProgressRing(
                 progress: progress.clamp(0.0, 1.0),
                 child: Text(
                   '$minutes:$seconds',
-                  style: theme.textTheme.displaySmall?.copyWith(fontFeatures: const []),
+                  style: theme.textTheme.displaySmall
+                      ?.copyWith(fontFeatures: const []),
                 ),
               ),
               const SizedBox(height: 20),
@@ -243,17 +246,25 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Expanded(child: _NumberField(label: 'Focus (min)', controller: focusCtrl)),
+                  Expanded(
+                      child: _NumberField(
+                          label: 'Focus (min)', controller: focusCtrl)),
                   const SizedBox(width: 8),
-                  Expanded(child: _NumberField(label: 'Short break', controller: shortCtrl)),
+                  Expanded(
+                      child: _NumberField(
+                          label: 'Short break', controller: shortCtrl)),
                 ],
               ),
               const SizedBox(height: 8),
               Row(
                 children: [
-                  Expanded(child: _NumberField(label: 'Long break', controller: longCtrl)),
+                  Expanded(
+                      child: _NumberField(
+                          label: 'Long break', controller: longCtrl)),
                   const SizedBox(width: 8),
-                  Expanded(child: _NumberField(label: 'Long every', controller: everyCtrl)),
+                  Expanded(
+                      child: _NumberField(
+                          label: 'Long every', controller: everyCtrl)),
                 ],
               ),
               const SizedBox(height: 16),

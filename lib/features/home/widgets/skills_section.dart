@@ -10,7 +10,8 @@ class SkillsSection extends StatelessWidget {
         final spacing = context.space(18);
         final isWide = c.maxWidth > 900;
         final crossAxisCount = isWide ? 3 : 1;
-        final itemWidth = (c.maxWidth - spacing * (crossAxisCount - 1)) / crossAxisCount;
+        final itemWidth =
+            (c.maxWidth - spacing * (crossAxisCount - 1)) / crossAxisCount;
 
         final cards = const [
           _SkillCard(
@@ -21,7 +22,6 @@ class SkillsSection extends StatelessWidget {
               'Riverpod',
               'BLoC',
               'Animations',
-              'Accessibility'
             ],
           ),
           _SkillCard(
@@ -30,13 +30,7 @@ class SkillsSection extends StatelessWidget {
           ),
           _SkillCard(
             title: 'Cloud & DevOps',
-            items: [
-              'AWS',
-              'CI/CD',
-              'GitHub Actions',
-              'Firebase',
-              'Firestore'
-            ],
+            items: ['AWS', 'CI/CD', 'GitHub Actions', 'Firebase', 'Firestore'],
           ),
         ];
 

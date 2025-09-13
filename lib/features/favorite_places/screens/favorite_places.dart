@@ -1,7 +1,6 @@
 import 'package:binodfolio/features/favorite_places/screens/new_place.dart';
 import 'package:binodfolio/features/favorite_places/widgets/favorite_place_item.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 import '../models/place.dart';
 
@@ -52,10 +51,10 @@ class _FavoritePlaceScreenState extends State<FavoritePlaceScreen> {
             children: [
               Row(
                 children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
+                  // if (Navigator.of(context).canPop()) ...[
+                  //   const InAppBackButton(),
+                  //   const SizedBox(width: 8),
+                  // ],
                   Text(
                     'Favorite Places',
                     style: Theme.of(context).textTheme.titleLarge,

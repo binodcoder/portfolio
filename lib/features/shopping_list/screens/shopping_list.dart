@@ -3,7 +3,6 @@ import 'package:binodfolio/features/shopping_list/data/categories.dart';
 import 'package:binodfolio/features/shopping_list/widgets/grocery_item.dart';
 import 'package:binodfolio/features/shopping_list/widgets/new_item.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 import 'package:http/http.dart' as http;
 import '../models/grocery.dart';
@@ -169,10 +168,10 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
             children: [
               Row(
                 children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
+                  // if (Navigator.of(context).canPop()) ...[
+                  //   const InAppBackButton(),
+                  //   const SizedBox(width: 8),
+                  // ],
                   Text(
                     'Shopping List',
                     style: Theme.of(context).textTheme.titleLarge,

@@ -3,50 +3,30 @@ import '../models/project.dart';
 const projects = <Project>[
   Project(
     title: 'MeroKaam — Job Portal',
-    description: 'Flutter + Spring Boot job portal with JWT.',
-    tech: ['Flutter', 'Spring Boot', 'JWT', 'MySQL'],
+    description:
+        'a full-stack job portal web and mobile app with secure JWT authentication, AES-256 encryption, and role-based access. Implemented a responsive UI, job posting and application management features, following SOLID principles and Clean Architecture using Flutter (BLoC), Spring Boot, Thymeleaf, and MySQL.',
+    tech: ['Flutter', 'Spring Boot', 'MySQL'],
     github: 'https://github.com/binodcoder',
-    live: 'https://example.com/merokaam',
+    // live: 'https://example.com/merokaam',
     // playStore:
     //     'https://play.google.com/store/apps/details?id=com.example.merokaam',
   ),
   Project(
     title: 'Fitness App',
-    description: 'Pre-loaded routines, live training, and walks feature...',
+    description:
+        'A fitness app with pre-loaded routines, real-time training sessions, and a domain-restricted “Walks” feature for community engagement. Integrated calendar sync for booking trainer sessions, following SOLID principles and Clean Architecture.',
     tech: ['Flutter', 'Firebase', 'Live Video'],
     github: 'https://github.com/binodcoder',
   ),
   Project(
-    title: 'Blog App',
+    title: 'Portfolio App',
     description:
-        'A modern blog platform with markdown editor, offline caching, and dark mode. Supports draft publishing and image uploads.',
+        'A responsive Flutter web and mobile app with Material 3 design and dark mode support. Included mini apps such as Expenses, Shopping, Pomodoro, Breathing, and Meals, using Riverpod for state management, REST/HTTP APIs, and SharedPreferences. Built with a modular architecture, reusable widgets, and smooth animations for a seamless user experience.',
     tech: [
       'Flutter',
-      'BLoC',
+      'Riverpod',
       'Firebase',
     ],
-    github: 'https://github.com/binodcoder',
-    live: 'https://example.com/blog-app',
-  ),
-  Project(
-    title: 'Tablet POS for Restaurant',
-    description:
-        'Tablet-first POS with table layout, KOT printing, split bills, and offline-first sync. Built for fast counter operations.',
-    tech: ['Flutter', 'Provider', 'Network Printing', 'REST API'],
-    github: 'https://github.com/binodcoder',
-  ),
-  Project(
-    title: 'Dental Clinic App',
-    description:
-        'Patient management, appointment scheduling, treatment plans, and reminders. Includes charting UI and role-based access.',
-    tech: ['Flutter', 'Get', 'REST API'],
-    github: 'https://github.com/binodcoder',
-  ),
-  Project(
-    title: 'Accounts App for Hotel & Restaurant Owners',
-    description:
-        'Ledger, expense tracking, daily sales, GST/VAT reports, and exports to Excel/PDF. Multi-outlet support with role permissions.',
-    tech: ['Flutter', 'Get', 'Charts'],
     github: 'https://github.com/binodcoder',
   ),
 ];

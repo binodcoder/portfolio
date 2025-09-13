@@ -40,8 +40,12 @@ class NavBar extends StatelessWidget {
           NavButton(label: 'Projects', onTap: () => onTap('projects')),
           NavButton(label: 'Apps', onTap: () => onTap('apps')),
           NavButton(label: 'Contact', onTap: () => onTap('contact')),
+          NavButton(label: 'Media', onTap: () => onTap('media')),
           SizedBox(width: context.space(12)),
-          Container(width: 1, height: context.rem(22), color: cs.outlineVariant.withValues(alpha: 0.5)),
+          Container(
+              width: 1,
+              height: context.rem(22),
+              color: cs.outlineVariant.withValues(alpha: 0.5)),
           SizedBox(width: context.space(12)),
           ThemeToggle(
             onChanged: onThemeChanged,
@@ -50,7 +54,7 @@ class NavBar extends StatelessWidget {
           SizedBox(width: context.space(8)),
           FilledButton(
             onPressed: () => launchUrlSafe(
-                'mailto:binodbhandari@gmail.com?subject=Let\'s work together'),
+                'mailto:binodcoder@gmail.com?subject=Let\'s work together'),
             child: const Text('Hire Me'),
           ),
         ],

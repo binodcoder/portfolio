@@ -2,7 +2,6 @@ import 'package:binodfolio/features/meal/providers/favorites_provider.dart';
 import 'package:binodfolio/features/meal/screens/categories.dart';
 import 'package:binodfolio/features/meal/screens/meals.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/filters_provider.dart';
@@ -58,10 +57,10 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          if (Navigator.of(context).canPop()) ...[
-            const InAppBackButton(),
-            const SizedBox(width: 8),
-          ],
+          // if (Navigator.of(context).canPop()) ...[
+          //   const InAppBackButton(),
+          //   const SizedBox(width: 8),
+          // ],
           Text(
             activePageTitle,
             style: Theme.of(context).textTheme.titleLarge,

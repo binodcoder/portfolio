@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_theme.dart';
 import '../core/utils/prefs_helper.dart';
 import '../features/home/home_page.dart';
-import '../features/meal/screens/tabs.dart';
 import '../features/meal/screens/meals.dart';
 import '../features/meal/screens/meal_details.dart';
 import '../features/meal/screens/filters.dart';
@@ -69,7 +68,6 @@ class _AppState extends State<App> {
               onThemeChanged: _setTheme,
               themeMode: _mode,
             ),
-        '/meal': (ctx) => const TabsScreen(),
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {

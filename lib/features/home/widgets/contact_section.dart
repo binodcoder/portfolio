@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:binodfolio/core/responsive/sizes.dart';
-import 'package:binodfolio/features/home/widgets/media/media_section.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection();
@@ -17,9 +16,9 @@ class ContactSection extends StatelessWidget {
           style: t.headlineMedium?.copyWith(fontWeight: FontWeight.w800),
         ),
         SizedBox(height: context.space(10)),
-        // Professional contact form UI (no email/github/twitter shortcuts)
-        ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: context.rem(720)),
+        // Professional contact form UI (use full available width)
+        SizedBox(
+          width: double.infinity,
           child: Card(
             elevation: 1,
             child: Padding(
@@ -29,8 +28,6 @@ class ContactSection extends StatelessWidget {
           ),
         ),
         SizedBox(height: context.space(12)),
-        // Graduation media appended to bottom of Contact
-        const MediaSection(),
       ],
     );
   }
@@ -59,9 +56,8 @@ class _ContactFormState extends State<_ContactForm> {
     super.dispose();
   }
 
-  String? _required(String? v) => (v == null || v.trim().isEmpty)
-      ? 'This field is required'
-      : null;
+  String? _required(String? v) =>
+      (v == null || v.trim().isEmpty) ? 'This field is required' : null;
 
   String? _validateEmail(String? v) {
     if (v == null || v.trim().isEmpty) return 'This field is required';

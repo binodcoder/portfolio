@@ -4,6 +4,7 @@ import 'package:binodfolio/features/home/widgets/brand.dart';
 import 'package:binodfolio/features/home/widgets/contact_section.dart';
 import 'package:binodfolio/features/home/widgets/footer.dart';
 import 'package:binodfolio/features/home/widgets/hero_section.dart';
+import 'package:binodfolio/features/home/widgets/media/media_section.dart';
 import 'package:binodfolio/features/home/widgets/mobile_menu.dart';
 import 'package:binodfolio/features/home/widgets/nav_bar.dart';
 import 'package:binodfolio/features/home/widgets/projects_section.dart';
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   final _projectsKey = GlobalKey();
   final _appsKey = GlobalKey();
   final _contactKey = GlobalKey();
+  final _mediaKey = GlobalKey();
 
   Future<void> _scrollTo(GlobalKey key) async {
     final ctx = key.currentContext;
@@ -97,7 +99,8 @@ class _HomePageState extends State<HomePage> {
                           key: _projectsKey, child: const ProjectsSection()),
                       Section(key: _appsKey, child: AppsSection()),
                       Section(key: _contactKey, child: const ContactSection()),
-                      const SizedBox(height: 16),
+                      Section(key: _mediaKey, child: const MediaSection()),
+                      const SizedBox(height: 8),
                       const Footer(),
                     ],
                   ),
@@ -129,6 +132,9 @@ class _HomePageState extends State<HomePage> {
         break;
       case 'contact':
         _scrollTo(_contactKey);
+        break;
+      case 'media':
+        _scrollTo(_mediaKey);
         break;
     }
   }

@@ -1,7 +1,7 @@
 import 'package:binodfolio/features/expense_tracker/widgets/expenses.dart';
 import 'package:binodfolio/features/favorite_places/screens/favorite_places.dart';
+import 'package:binodfolio/features/home/models/app_item.dart';
 import 'package:binodfolio/features/meal/screens/tabs.dart';
-import 'package:binodfolio/features/my_apps/model/item.dart';
 import 'package:binodfolio/features/quiz/quiz.dart';
 import 'package:binodfolio/features/shopping_list/screens/shopping_list.dart';
 import 'package:binodfolio/features/todo/todo.dart';
@@ -59,15 +59,11 @@ class AppsSection extends StatelessWidget {
                     icon: item.icon,
                     title: item.title,
                     onTap: () {
-                      if (item.title == 'Meal') {
-                        Navigator.pushNamed(context, '/meal');
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => item.builder(context)),
-                        );
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => item.builder(context)),
+                      );
                     },
                   ),
                 );
@@ -97,7 +93,8 @@ class _AppCardState extends State<_AppCard> {
   _AppStyle _styleFor(String title, ColorScheme cs) {
     final t = title.toLowerCase();
     if (t.contains('expense')) {
-      return _AppStyle([Colors.teal, Colors.green], Icons.account_balance_wallet);
+      return _AppStyle(
+          [Colors.teal, Colors.green], Icons.account_balance_wallet);
     }
     if (t.contains('quiz')) {
       return _AppStyle([Colors.deepPurple, Colors.indigo], Icons.quiz);

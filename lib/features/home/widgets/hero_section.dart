@@ -45,7 +45,7 @@ class HeroSection extends StatelessWidget {
                             fontWeight: FontWeight.w800, height: 1.1)),
                     SizedBox(height: context.space(10)),
                     Text(
-                      'Flutter Engineer crafting fast, reliable apps. Strong backend chops with Spring Boot and a touch of AWS wizardry.',
+                      'MSc Computer Science graduate with distinction, experienced in building and publishing mobile and web applications. Proven ability to deliver innovative, user-focused solutions, including launching apps to the Play Store and developing secure, scalable platforms. Eager to contribute technical expertise and problem-solving skills to a software development role.',
                       style: textTheme.titleMedium,
                     ),
                     SizedBox(height: context.space(16)),
@@ -59,13 +59,13 @@ class HeroSection extends StatelessWidget {
                           child: const Text('GitHub'),
                         ),
                         TextButton(
-                          onPressed: () =>
-                              launchUrlSafe('https://linkedin.com'),
+                          onPressed: () => launchUrlSafe(
+                              'https://www.linkedin.com/in/binodcoder/'),
                           child: const Text('LinkedIn'),
                         ),
                         TextButton(
                           onPressed: () =>
-                              launchUrlSafe('assets/Binod_Bhandari_CV.pdf'),
+                              launchUrlSafe('assets/CV_Binod_Bhandari.pdf'),
                           child: const Text('Download CV'),
                         ),
                       ],

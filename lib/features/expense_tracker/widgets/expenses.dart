@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:binodfolio/core/responsive/breakpoints.dart';
 
 import 'chat/chat.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 import 'expenses_list/expenses_list.dart';
 import 'new_expense.dart';
 
@@ -117,10 +116,10 @@ class _ExpensesState extends State<Expenses> {
                   children: [
                     Row(
                       children: [
-                        if (Navigator.of(context).canPop()) ...[
-                          const InAppBackButton(),
-                          const SizedBox(width: 8),
-                        ],
+                        // if (Navigator.of(context).canPop()) ...[
+                        //   const InAppBackButton(),
+                        //   const SizedBox(width: 8),
+                        // ],
                         Text(
                           'Expense Tracker',
                           style: Theme.of(context).textTheme.headlineSmall,

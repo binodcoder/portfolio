@@ -1,7 +1,6 @@
 import 'package:binodfolio/features/meal/models/meal.dart';
 import 'package:binodfolio/features/meal/widgets/meal_item.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
 
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
@@ -93,10 +92,10 @@ class MealsScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
+                  // if (Navigator.of(context).canPop()) ...[
+                  //   const InAppBackButton(),
+                  //   const SizedBox(width: 8),
+                  // ],
                   Text(
                     title!,
                     style: Theme.of(context).textTheme.titleLarge,

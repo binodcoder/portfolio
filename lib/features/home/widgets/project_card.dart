@@ -18,7 +18,6 @@ class _ProjectCardState extends State<ProjectCard> {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
 
-
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
       onExit: (_) => setState(() => _hovering = false),
@@ -69,7 +68,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       Text(
                         widget.p.title,
                         maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        // overflow: TextOverflow.ellipsis,
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge
@@ -78,8 +77,8 @@ class _ProjectCardState extends State<ProjectCard> {
                       SizedBox(height: context.space(6)),
                       Text(
                         widget.p.description,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
+                        //maxLines: 4,
+                        // overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],

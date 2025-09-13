@@ -29,7 +29,10 @@ class MobileMenu extends StatelessWidget {
             return SafeArea(
               child: SingleChildScrollView(
                 padding: EdgeInsets.only(
-                    left: context.rem(16), right: context.rem(16), top: context.rem(12), bottom: bottomInset + context.rem(12)),
+                    left: context.rem(16),
+                    right: context.rem(16),
+                    top: context.rem(12),
+                    bottom: bottomInset + context.rem(12)),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,10 +62,11 @@ class MobileMenu extends StatelessWidget {
                         label: 'Projects', onTap: () => onTap('projects')),
                     _MenuItem(label: 'Apps', onTap: () => onTap('apps')),
                     _MenuItem(label: 'Contact', onTap: () => onTap('contact')),
+                    _MenuItem(label: 'Media', onTap: () => onTap('media')),
                     const SizedBox(height: 8),
                     FilledButton(
                       onPressed: () => launchUrlSafe(
-                          'mailto:binodbhandari@gmail.com?subject=Let\'s work together'),
+                          'mailto:binodcoder@gmail.com?subject=Let\'s work together'),
                       child: const Text('Hire Me'),
                     ),
                   ],

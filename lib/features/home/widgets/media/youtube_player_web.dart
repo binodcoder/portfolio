@@ -35,13 +35,7 @@ class _YouTubePlayerWidgetState extends State<YouTubePlayerWidget> {
   Widget build(BuildContext context) {
     return YoutubePlayerScaffold(
       controller: _controller,
-      builder: (context, player) => Column(
-        children: [
-          player,
-          const SizedBox(height: 20),
-          const Text('Now playing from YouTube'),
-        ],
-      ),
+      builder: (context, player) => player,
     );
   }
 }

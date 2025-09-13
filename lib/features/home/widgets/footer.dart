@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: context.rem(20)),
       child: Column(
         children: [
-          const Divider(height: 1),
+          // const Divider(height: 1),
           SizedBox(height: context.space(14)),
           Text(
             '© $year Binod Bhandari. All rights reserved.',
