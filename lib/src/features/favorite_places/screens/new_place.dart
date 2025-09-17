@@ -1,7 +1,6 @@
 import 'package:binodfolio/features/favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
-
+ 
 class NewPlaceScreen extends StatefulWidget {
   NewPlaceScreen({super.key});
 
@@ -35,10 +34,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
             children: [
               Row(
                 children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
+                 
                   Text(
                     'New Place',
                     style: Theme.of(context).textTheme.titleLarge,

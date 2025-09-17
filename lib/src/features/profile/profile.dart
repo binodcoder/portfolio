@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
-import 'widgets/gradient_container.dart';
+ import 'widgets/gradient_container.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -13,10 +12,7 @@ class Profile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
+                 
                   Text(
                     'Apps',
                     style: Theme.of(context).textTheme.titleLarge,

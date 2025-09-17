@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:binodfolio/common_widgets/in_app_back_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:binodfolio/features/meal/widgets/filters_panel.dart';
 
 class FiltersScreen extends ConsumerWidget {
@@ -16,10 +15,7 @@ class FiltersScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
-                  if (Navigator.of(context).canPop()) ...[
-                    const InAppBackButton(),
-                    const SizedBox(width: 8),
-                  ],
+                  
                   Text(
                     'Your Filters',
                     style: Theme.of(context).textTheme.titleLarge,
