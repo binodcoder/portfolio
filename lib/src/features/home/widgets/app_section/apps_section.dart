@@ -1,28 +1,22 @@
-import 'package:binodfolio/features/expense_tracker/widgets/expenses.dart';
-import 'package:binodfolio/features/favorite_places/screens/favorite_places.dart';
-import 'package:binodfolio/features/home/models/app_item.dart';
-import 'package:binodfolio/features/home/widgets/app_section/app_card.dart';
-import 'package:binodfolio/features/meal/screens/tabs.dart';
-import 'package:binodfolio/features/quiz/quiz.dart';
-import 'package:binodfolio/features/shopping_list/screens/shopping_list.dart';
-import 'package:binodfolio/features/todo/todo.dart';
-import 'package:binodfolio/features/pomodoro/pomodoro.dart';
-import 'package:binodfolio/features/breathing/breathing.dart';
+import 'package:binodfolio/src/features/home/models/app_item.dart';
+import 'package:binodfolio/src/features/home/widgets/app_section/app_card.dart';
+import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
+import 'package:go_router/go_router.dart';
 
 class AppsSection extends StatelessWidget {
-  AppsSection();
+  AppsSection({super.key});
 
   final List<AppItem> items = [
-    AppItem('Expenses', Icons.attach_money, (_) => Expenses()),
-    AppItem('Quiz', Icons.quiz, (_) => Quiz()),
-    AppItem('Todo', Icons.task, (_) => Todos()),
-    AppItem('Pomodoro', Icons.timer, (_) => const PomodoroApp()),
-    AppItem('Breathing', Icons.self_improvement, (_) => const BreathingApp()),
-    AppItem('Meal', Icons.set_meal, (_) => const TabsScreen()),
-    AppItem('Shopping List', Icons.shop, (_) => const ShoppingListScreen()),
-    AppItem('Favorite Places', Icons.favorite, (_) => FavoritePlaceScreen()),
+    AppItem('Expenses', Icons.attach_money, AppRoute.expensesTracker),
+    AppItem('Quiz', Icons.quiz, AppRoute.quiz),
+    AppItem('Todo', Icons.task, AppRoute.todo),
+    AppItem('Pomodoro', Icons.timer, AppRoute.pomodoro),
+    AppItem('Breathing', Icons.self_improvement, AppRoute.breathing),
+    AppItem('Meal', Icons.set_meal, AppRoute.tabs),
+    AppItem('Shopping List', Icons.shop, AppRoute.shoppingList),
+    AppItem('Favorite Places', Icons.favorite, AppRoute.favoritePlaces),
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,11 +54,12 @@ class AppsSection extends StatelessWidget {
                     icon: item.icon,
                     title: item.title,
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => item.builder(context)),
-                      );
+                      context.goNamed(item.appRoute.name);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (_) => item.builder(context)),
+                      // );
                     },
                   ),
                 );

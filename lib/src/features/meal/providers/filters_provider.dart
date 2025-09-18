@@ -1,4 +1,4 @@
-import 'package:binodfolio/features/meal/providers/meals_provider.dart';
+import 'package:binodfolio/src/features/meal/providers/meals_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum Filter {

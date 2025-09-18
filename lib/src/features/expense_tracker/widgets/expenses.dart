@@ -1,106 +1,78 @@
-import 'package:binodfolio/features/expense_tracker/models/expense.dart';
+import 'package:binodfolio/src/features/expense_tracker/models/expense.dart';
+import 'package:binodfolio/src/features/expense_tracker/providers/expenses_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/breakpoints.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:binodfolio/src/core/responsive/breakpoints.dart';
 
 import 'chat/chat.dart';
 import 'expenses_list/expenses_list.dart';
 import 'new_expense.dart';
 
-class Expenses extends StatefulWidget {
+class Expenses extends ConsumerWidget {
   const Expenses({super.key});
 
   @override
-  State<Expenses> createState() => _ExpensesState();
-}
-
-class _ExpensesState extends State<Expenses> {
-  final List<Expense> _registeredExpenses = [
-    Expense(
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-      category: Classification.food,
-    ),
-    Expense(
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-      category: Classification.travel,
-    ),
-  ];
-
-  void _addExpense(Expense expense) {
-    setState(() {
-      _registeredExpenses.add(expense);
-    });
-  }
-
-  void _removeExpense(Expense expense) {
-    final expenseIndex = _registeredExpenses.indexOf(expense);
-    setState(() {
-      _registeredExpenses.remove(expense);
-    });
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: Duration(seconds: 3),
-        content: Text('Expense deleted'),
-        action: SnackBarAction(
-            label: 'Undo',
-            onPressed: () {
-              setState(() {
-                _registeredExpenses.insert(expenseIndex, expense);
-              });
-            }),
-      ),
-    );
-  }
-
-  void _openAddExpenseOverlay() {
-    final useDialog = kIsWeb || context.screenWidth >= kDialogSheetSwitch;
-
-    if (useDialog) {
-      showDialog(
-        context: context,
-        builder: (ctx) => Dialog(
-          insetPadding:
-              const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
-            child: NewExpense(
-              onAddExpense: _addExpense,
-            ),
-          ),
-        ),
-      );
-    } else {
-      showModalBottomSheet(
-        useSafeArea: true,
-        isScrollControlled: true,
-        context: context,
-        showDragHandle: true,
-        builder: (ctx) => NewExpense(
-          onAddExpense: _addExpense,
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final width = context.screenWidth;
     final isWeb = kIsWeb;
     final isCompactMobile = !isWeb && width < kDialogSheetSwitch;
+
+    final expenses = ref.watch(expensesProvider);
+
+    void openAddExpenseOverlay() {
+      final useDialog = kIsWeb || context.screenWidth >= kDialogSheetSwitch;
+
+      if (useDialog) {
+        showDialog(
+          context: context,
+          builder: (ctx) => Dialog(
+            insetPadding:
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 560),
+              child: const NewExpense(),
+            ),
+          ),
+        );
+      } else {
+        showModalBottomSheet(
+          useSafeArea: true,
+          isScrollControlled: true,
+          context: context,
+          showDragHandle: true,
+          builder: (ctx) => const NewExpense(),
+        );
+      }
+    }
+
+    void removeExpense(Expense expense) {
+      final expenseIndex = ref.read(expensesProvider).indexOf(expense);
+      ref.read(expensesProvider.notifier).remove(expense);
+
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: Duration(seconds: 3),
+          content: Text('Expense deleted'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              ref.read(expensesProvider.notifier).insert(expenseIndex, expense);
+            },
+          ),
+        ),
+      );
+    }
 
     Widget mainContent = Center(
       child: Text('No expenses found. Start adding some!'),
     );
 
-    if (_registeredExpenses.isNotEmpty) {
+    if (expenses.isNotEmpty) {
       mainContent = ExpensesList(
-        expenses: _registeredExpenses,
-        onRemoveExpense: _removeExpense,
+        expenses: expenses,
+        onRemoveExpense: removeExpense,
       );
     }
     return Scaffold(
@@ -128,7 +100,7 @@ class _ExpensesState extends State<Expenses> {
                     ),
                     if (!isCompactMobile)
                       ElevatedButton.icon(
-                        onPressed: _openAddExpenseOverlay,
+                        onPressed: openAddExpenseOverlay,
                         icon: const Icon(Icons.add),
                         label: const Text('Add Expense'),
                       ),
@@ -140,7 +112,7 @@ class _ExpensesState extends State<Expenses> {
                         children: [
                           header,
                           const SizedBox(height: 8),
-                          Chart(expenses: _registeredExpenses),
+                          Chart(expenses: expenses),
                           const SizedBox(height: 8),
                           Expanded(child: mainContent),
                         ],
@@ -158,7 +130,7 @@ class _ExpensesState extends State<Expenses> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      Chart(expenses: _registeredExpenses),
+                                      Chart(expenses: expenses),
                                     ],
                                   ),
                                 ),
@@ -177,7 +149,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       floatingActionButton: isCompactMobile
           ? FloatingActionButton(
-              onPressed: _openAddExpenseOverlay,
+              onPressed: openAddExpenseOverlay,
               tooltip: 'Add Expense',
               child: const Icon(Icons.add),
             )

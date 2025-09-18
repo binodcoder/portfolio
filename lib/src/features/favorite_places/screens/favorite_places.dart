@@ -1,46 +1,25 @@
-import 'package:binodfolio/features/favorite_places/screens/new_place.dart';
-import 'package:binodfolio/features/favorite_places/widgets/favorite_place_item.dart';
+import 'package:binodfolio/src/features/favorite_places/providers/favorite_places_provider.dart';
+import 'package:binodfolio/src/features/favorite_places/widgets/favorite_place_item.dart';
+import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import '../models/place.dart';
-
-class FavoritePlaceScreen extends StatefulWidget {
-  @override
-  State<FavoritePlaceScreen> createState() {
-    return _FavoritePlaceScreenState();
-  }
-}
-
-class _FavoritePlaceScreenState extends State<FavoritePlaceScreen> {
-  List<Place> _places = [];
-
-  void _addPlace() async {
-    final place = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => NewPlaceScreen(),
-      ),
-    );
-    setState(() {
-      _places.add(place);
-    });
-  }
+class FavoritePlaceScreen extends ConsumerWidget {
+  const FavoritePlaceScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    Widget content;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final places = ref.watch(favoritePlacesProvider);
 
-    if (_places.isEmpty) {
-      content = Center(
-        child: Text('No item available'),
-      );
-    }
-
-    content = ListView.builder(
-      itemCount: _places.length,
-      itemBuilder: (ctx, index) => FavoritePlaceItem(
-        title: _places[index].title,
-      ),
-    );
+    final Widget content = places.isEmpty
+        ? const Center(child: Text('No item available'))
+        : ListView.builder(
+            itemCount: places.length,
+            itemBuilder: (ctx, index) => FavoritePlaceItem(
+              title: places[index].title,
+            ),
+          );
 
     return Scaffold(
       body: SafeArea(
@@ -51,17 +30,15 @@ class _FavoritePlaceScreenState extends State<FavoritePlaceScreen> {
             children: [
               Row(
                 children: [
-                  // if (Navigator.of(context).canPop()) ...[
-                  //   const InAppBackButton(),
-                  //   const SizedBox(width: 8),
-                  // ],
                   Text(
                     'Favorite Places',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: _addPlace,
+                    onPressed: () => context.goNamed(
+                      AppRoute.addFavoritePlace.name,
+                    ),
                     icon: const Icon(Icons.add),
                     tooltip: 'Add Place',
                   ),

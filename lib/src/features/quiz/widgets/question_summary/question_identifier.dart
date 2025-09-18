@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class QuestionIdentifier extends StatelessWidget {
-  QuestionIdentifier({
+  const QuestionIdentifier({
     super.key,
     required this.isCorrect,
     required this.questionIndex,
@@ -22,6 +22,7 @@ class QuestionIdentifier extends StatelessWidget {
             ? Theme.of(context).colorScheme.primary
             : Theme.of(context).colorScheme.error,
       ),
+      alignment: Alignment.center,
       child: Text(
         questionNumber.toString(),
         style: TextStyle(
@@ -29,7 +30,6 @@ class QuestionIdentifier extends StatelessWidget {
           color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
-      alignment: Alignment.center,
     );
   }
 }

@@ -1,10 +1,10 @@
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 import 'package:flutter/material.dart';
 
 class StatChip extends StatelessWidget {
   final String label;
   final String sub;
-  const StatChip({required this.label, required this.sub});
+  const StatChip({super.key, required this.label, required this.sub});
 
   @override
   Widget build(BuildContext context) {

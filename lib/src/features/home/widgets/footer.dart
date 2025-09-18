@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class Footer extends StatelessWidget {
-  const Footer();
+  const Footer({super.key});
   @override
   Widget build(BuildContext context) {
     final year = DateTime.now().year;

@@ -1,18 +1,15 @@
-import 'package:binodfolio/core/utils/launch_utils.dart';
-import 'package:binodfolio/features/home/widgets/mobile_menu/menu_item.dart';
-import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
+import 'package:binodfolio/src/core/utils/launch_utils.dart';
+import 'package:binodfolio/src/features/home/widgets/mobile_menu/menu_item.dart';
+import 'package:binodfolio/src/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class MobileMenu extends StatelessWidget {
-  final ThemeMode themeMode;
-  final Future<void> Function(ThemeMode) onThemeChanged;
   final void Function(String id) onTap;
 
   const MobileMenu({
+    super.key,
     required this.onTap,
-    required this.onThemeChanged,
-    required this.themeMode,
   });
 
   @override
@@ -46,13 +43,7 @@ class MobileMenu extends StatelessWidget {
                                 .titleLarge
                                 ?.copyWith(fontWeight: FontWeight.w800)),
                         const Spacer(),
-                        ThemeToggle(
-                          themeMode: themeMode,
-                          onChanged: (mode) async {
-                            Navigator.of(ctx).pop();
-                            await onThemeChanged(mode);
-                          },
-                        ),
+                        ThemeToggle(),
                       ],
                     ),
                     SizedBox(height: context.space(8)),

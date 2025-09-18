@@ -1,10 +1,10 @@
-import 'package:binodfolio/features/home/data/projects.dart';
-import 'package:binodfolio/features/home/widgets/project/project_card.dart';
+import 'package:binodfolio/src/features/home/data/projects.dart';
+import 'package:binodfolio/src/features/home/widgets/project/project_card.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class ProjectsSection extends StatelessWidget {
-  const ProjectsSection();
+  const ProjectsSection({super.key});
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;

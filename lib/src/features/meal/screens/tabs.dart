@@ -1,12 +1,12 @@
-import 'package:binodfolio/features/meal/providers/favorites_provider.dart';
-import 'package:binodfolio/features/meal/screens/categories.dart';
-import 'package:binodfolio/features/meal/screens/meals.dart';
+import 'package:binodfolio/src/features/meal/providers/favorites_provider.dart';
+import 'package:binodfolio/src/features/meal/screens/categories.dart';
+import 'package:binodfolio/src/features/meal/screens/meals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/filters_provider.dart';
-import 'package:binodfolio/features/meal/widgets/filters_panel.dart';
-import 'package:binodfolio/core/responsive/breakpoints.dart';
+import 'package:binodfolio/src/features/meal/widgets/filters_panel.dart';
+import 'package:binodfolio/src/core/responsive/breakpoints.dart';
+import 'package:binodfolio/src/features/meal/providers/tabs_provider.dart';
 
 // const kInitialFilters = {
 //   Filter.glutenFree: false,
@@ -15,39 +15,26 @@ import 'package:binodfolio/core/responsive/breakpoints.dart';
 //   Filter.vegan: false,
 // };
 
-class TabsScreen extends ConsumerStatefulWidget {
+class TabsScreen extends ConsumerWidget {
   const TabsScreen({super.key});
 
   @override
-  ConsumerState<TabsScreen> createState() {
-    return _TabsScreenState();
-  }
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIndex = ref.watch(mealTabIndexProvider);
 
-class _TabsScreenState extends ConsumerState<TabsScreen> {
-  int _selectedPageIndex = 0;
+    void selectPage(int index) {
+      ref.read(mealTabIndexProvider.notifier).state = index;
+    }
 
-  void _selectPage(int index) {
-    setState(() {
-      _selectedPageIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final availableMeals = ref.watch(filteredMealsProvider);
-
-    Widget activePage = CategoriesScreen(
-      availableMeals: availableMeals,
-    );
+    Widget activePage = CategoriesScreen();
     String activePageTitle = 'Categories';
-    if (_selectedPageIndex == 1) {
-      final favoriteMeals = ref.watch(favoriteMealsProvider);
+    if (selectedIndex == 1) {
+      final favoriteMeals = ref.watch(favoriteMealsListProvider);
       activePage = MealsScreen(
         meals: favoriteMeals,
       );
       activePageTitle = 'Your Favorites';
-    } else if (_selectedPageIndex == 2) {
+    } else if (selectedIndex == 2) {
       activePage = const FiltersPanel();
       activePageTitle = 'Setting';
     }
@@ -83,8 +70,8 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          onTap: _selectPage,
-          currentIndex: _selectedPageIndex,
+          onTap: selectPage,
+          currentIndex: selectedIndex,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.set_meal),
@@ -110,8 +97,8 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
         child: Row(
           children: [
             NavigationRail(
-              selectedIndex: _selectedPageIndex,
-              onDestinationSelected: _selectPage,
+              selectedIndex: selectedIndex,
+              onDestinationSelected: selectPage,
               // When `extended` is true, `labelType` must be null or none.
               labelType: isExtended ? null : NavigationRailLabelType.selected,
               extended: isExtended, // expand labels on wider screens

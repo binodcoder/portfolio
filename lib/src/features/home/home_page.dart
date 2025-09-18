@@ -1,26 +1,22 @@
-import 'package:binodfolio/features/home/widgets/about/about_section.dart';
-import 'package:binodfolio/features/home/widgets/app_section/apps_section.dart';
-import 'package:binodfolio/features/home/widgets/brand.dart';
-import 'package:binodfolio/features/home/widgets/contact/contact_section.dart';
-import 'package:binodfolio/features/home/widgets/footer.dart';
-import 'package:binodfolio/features/home/widgets/hero/hero_section.dart';
-import 'package:binodfolio/features/home/widgets/media/media_section.dart';
-import 'package:binodfolio/features/home/widgets/mobile_menu/mobile_menu.dart';
-import 'package:binodfolio/features/home/widgets/nav_bar/nav_bar.dart';
-import 'package:binodfolio/features/home/widgets/project/projects_section.dart';
-import 'package:binodfolio/features/home/widgets/section.dart';
-import 'package:binodfolio/features/home/widgets/skill/skills_section.dart';
+import 'package:binodfolio/src/features/home/widgets/about/about_section.dart';
+import 'package:binodfolio/src/features/home/widgets/app_section/apps_section.dart';
+import 'package:binodfolio/src/features/home/widgets/brand.dart';
+import 'package:binodfolio/src/features/home/widgets/contact/contact_section.dart';
+import 'package:binodfolio/src/features/home/widgets/footer.dart';
+import 'package:binodfolio/src/features/home/widgets/hero/hero_section.dart';
+import 'package:binodfolio/src/features/home/widgets/media/media_section.dart';
+import 'package:binodfolio/src/features/home/widgets/mobile_menu/mobile_menu.dart';
+import 'package:binodfolio/src/features/home/widgets/nav_bar/nav_bar.dart';
+import 'package:binodfolio/src/features/home/widgets/project/projects_section.dart';
+import 'package:binodfolio/src/features/home/widgets/section.dart';
+import 'package:binodfolio/src/features/home/widgets/skill/skills_section.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/breakpoints.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/breakpoints.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class HomePage extends StatefulWidget {
-  final Future<void> Function(ThemeMode) onThemeChanged;
-  final ThemeMode themeMode;
-
   const HomePage({
-    required this.onThemeChanged,
-    required this.themeMode,
+    super.key,
   });
 
   @override
@@ -69,14 +65,10 @@ class _HomePageState extends State<HomePage> {
                   if (isDesktop)
                     NavBar(
                       onTap: _onNavTap,
-                      onThemeChanged: widget.onThemeChanged,
-                      themeMode: widget.themeMode,
                     )
                   else
                     MobileMenu(
                       onTap: _onNavTap,
-                      onThemeChanged: widget.onThemeChanged,
-                      themeMode: widget.themeMode,
                     ),
                 ],
               ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class Avatar extends StatelessWidget {
+  const Avatar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;

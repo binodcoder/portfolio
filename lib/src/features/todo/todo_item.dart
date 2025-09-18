@@ -1,36 +1,28 @@
+import 'package:binodfolio/src/features/todo/providers/todos_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum Priority { urgent, normal, low }
+class TodoItem extends ConsumerWidget {
+  const TodoItem({super.key, required this.itemId});
 
-class TodoItem extends StatefulWidget {
-  const TodoItem(this.text, this.priority, {super.key});
-
-  final String text;
-  final Priority priority;
+  final String itemId;
 
   @override
-  State<TodoItem> createState() => _TodoItemState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(todosProvider);
+    final item = state.items.firstWhere((e) => e.id == itemId);
 
-class _TodoItemState extends State<TodoItem> {
-  var _done = false;
-
-  void _setDone(bool? isChecked) {
-    setState(() {
-      _done = isChecked ?? false;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var icon = Icons.low_priority;
-
-    if (widget.priority == Priority.urgent) {
-      icon = Icons.notifications_active;
-    }
-
-    if (widget.priority == Priority.normal) {
-      icon = Icons.list;
+    IconData icon = Icons.low_priority;
+    switch (item.priority) {
+      case Priority.urgent:
+        icon = Icons.notifications_active;
+        break;
+      case Priority.normal:
+        icon = Icons.list;
+        break;
+      case Priority.low:
+        icon = Icons.low_priority;
+        break;
     }
 
     return Padding(
@@ -38,11 +30,14 @@ class _TodoItemState extends State<TodoItem> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Checkbox(value: _done, onChanged: _setDone),
+          Checkbox(
+            value: item.done,
+            onChanged: (_) => ref.read(todosProvider.notifier).toggleDone(item.id),
+          ),
           const SizedBox(width: 6),
           Icon(icon),
           const SizedBox(width: 12),
-          Text(widget.text),
+          Text(item.text),
         ],
       ),
     );

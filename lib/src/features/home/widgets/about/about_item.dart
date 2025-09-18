@@ -1,4 +1,4 @@
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 import 'package:flutter/material.dart';
 
 class AboutItem extends StatelessWidget {
@@ -6,7 +6,7 @@ class AboutItem extends StatelessWidget {
   final String label;
   final String value;
   const AboutItem(
-      {required this.icon, required this.label, required this.value});
+      {super.key, required this.icon, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {

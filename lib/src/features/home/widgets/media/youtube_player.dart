@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YouTubePlayerScreen extends StatefulWidget {
+  const YouTubePlayerScreen({super.key});
+
   @override
   _YouTubePlayerScreenState createState() => _YouTubePlayerScreenState();
 }

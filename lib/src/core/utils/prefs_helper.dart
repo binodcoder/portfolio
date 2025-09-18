@@ -20,7 +20,7 @@ class PrefsHelper {
 
   static Future<void> setThemeMode(ThemeMode mode) async {
     final prefs = await SharedPreferences.getInstance();
-    final value;
+    final String value;
     switch (mode) {
       case ThemeMode.dark:
         value = 'dark';

@@ -1,7 +1,7 @@
-import 'package:binodfolio/core/utils/launch_utils.dart';
-import 'package:binodfolio/features/home/models/project.dart';
+import 'package:binodfolio/src/core/utils/launch_utils.dart';
+import 'package:binodfolio/src/features/home/models/project.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class ProjectCard extends StatefulWidget {
   final Project p;

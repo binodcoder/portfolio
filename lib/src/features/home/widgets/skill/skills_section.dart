@@ -1,9 +1,9 @@
-import 'package:binodfolio/features/home/widgets/skill/skill_card.dart';
+import 'package:binodfolio/src/features/home/widgets/skill/skill_card.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class SkillsSection extends StatelessWidget {
-  const SkillsSection();
+  const SkillsSection({super.key});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(

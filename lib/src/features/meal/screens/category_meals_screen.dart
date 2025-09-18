@@ -1,34 +1,25 @@
-import 'package:binodfolio/src/features/meal/models/meal.dart';
-import 'package:binodfolio/src/features/meal/widgets/meal_item.dart';
+import 'package:binodfolio/src/features/meal/providers/categories_provider.dart';
 import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../widgets/meal_item.dart';
 import 'package:go_router/go_router.dart';
 
-class MealsScreen extends StatelessWidget {
-  const MealsScreen({
+class CategoryMealsScreen extends ConsumerWidget {
+  const CategoryMealsScreen({
     super.key,
-    this.title,
-    required this.meals,
+    required this.categoryId,
   });
 
-  final String? title;
-  final List<Meal> meals;
-
-  void selectMeal(BuildContext context, Meal meal) {
-    // Navigator.of(context).pushNamed(
-    //   '/meal/details',
-    //   arguments: meal,
-    // );
-    context.pushNamed(
-      AppRoute.mealDetails.name,
-      extra: {
-        'meal': meal,
-      },
-    );
-  }
+  final String categoryId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final category = ref.watch(categoryByIdProvider(categoryId));
+    final meals = ref.watch(mealsByCategoryProvider(categoryId));
+
+    final title = category?.title;
+
     Widget content = Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -39,25 +30,28 @@ class MealsScreen extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Text(
             'Try selecting a different category!',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
                 .copyWith(color: Theme.of(context).colorScheme.onSurface),
-          )
+          ),
         ],
       ),
     );
 
+    void selectMeal(String mealId) {
+      context.goNamed(
+        AppRoute.mealDetails.name,
+        pathParameters: {'mealId': mealId},
+      );
+    }
+
     if (meals.isNotEmpty) {
       final width = MediaQuery.sizeOf(context).width;
-
       if (width >= 900) {
-        // On web / wide screens show a responsive grid
         content = GridView.builder(
           padding: const EdgeInsets.all(16),
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -69,11 +63,10 @@ class MealsScreen extends StatelessWidget {
           itemCount: meals.length,
           itemBuilder: (ctx, index) => MealItem(
             meal: meals[index],
-            onSelectMeal: (meal) => selectMeal(context, meal),
+            onSelectMeal: (meal) => selectMeal(meal.id),
           ),
         );
       } else {
-        // On narrow screens, keep a list but constrain item width for web
         content = ListView.builder(
           itemCount: meals.length,
           itemBuilder: (ctx, index) => Align(
@@ -82,16 +75,16 @@ class MealsScreen extends StatelessWidget {
               constraints: const BoxConstraints(maxWidth: 700),
               child: MealItem(
                 meal: meals[index],
-                onSelectMeal: (meal) => selectMeal(context, meal),
+                onSelectMeal: (meal) => selectMeal(meal.id),
               ),
             ),
           ),
         );
       }
     }
-    if (title == null) {
-      return content;
-    }
+
+    if (title == null) return content;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -100,12 +93,8 @@ class MealsScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
-                  // if (Navigator.of(context).canPop()) ...[
-                  //   const InAppBackButton(),
-                  //   const SizedBox(width: 8),
-                  // ],
                   Text(
-                    title!,
+                    title,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SummaryItem extends StatelessWidget {
-  SummaryItem({
+  const SummaryItem({
     super.key,
     required this.question,
     required this.userAnswer,

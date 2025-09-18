@@ -1,9 +1,9 @@
-import 'package:binodfolio/features/home/widgets/contact/contact_form.dart';
+import 'package:binodfolio/src/features/home/widgets/contact/contact_form.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection();
+  const ContactSection({super.key});
 
   @override
   Widget build(BuildContext context) {

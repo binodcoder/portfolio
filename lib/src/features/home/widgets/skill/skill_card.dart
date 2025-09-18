@@ -1,10 +1,10 @@
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 import 'package:flutter/material.dart';
 
 class SkillCard extends StatelessWidget {
   final String title;
   final List<String> items;
-  const SkillCard({required this.title, required this.items});
+  const SkillCard({super.key, required this.title, required this.items});
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,15 @@
-import 'package:binodfolio/core/utils/launch_utils.dart';
-import 'package:binodfolio/features/home/widgets/nav_bar/nav_button.dart';
-import 'package:binodfolio/features/home/widgets/theme_toggle.dart';
+import 'package:binodfolio/src/core/utils/launch_utils.dart';
+import 'package:binodfolio/src/features/home/widgets/nav_bar/nav_button.dart';
+import 'package:binodfolio/src/features/home/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class NavBar extends StatelessWidget {
   final void Function(String id) onTap;
-  final Future<void> Function(ThemeMode) onThemeChanged;
-  final ThemeMode themeMode;
 
   const NavBar({
+    super.key,
     required this.onTap,
-    required this.onThemeChanged,
-    required this.themeMode,
   });
 
   @override
@@ -47,10 +44,7 @@ class NavBar extends StatelessWidget {
               height: context.rem(22),
               color: cs.outlineVariant.withValues(alpha: 0.5)),
           SizedBox(width: context.space(12)),
-          ThemeToggle(
-            onChanged: onThemeChanged,
-            themeMode: themeMode,
-          ),
+          ThemeToggle(),
           SizedBox(width: context.space(8)),
           FilledButton(
             onPressed: () => launchUrlSafe(

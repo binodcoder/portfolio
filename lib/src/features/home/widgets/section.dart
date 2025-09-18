@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class Section extends StatefulWidget {
   final Widget child;

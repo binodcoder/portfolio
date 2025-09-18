@@ -1,56 +1,17 @@
-import 'package:binodfolio/features/todo/todo_item.dart';
+import 'package:binodfolio/src/features/todo/providers/todos_provider.dart';
+import 'package:binodfolio/src/features/todo/todo_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Todo {
-  const Todo(this.text, this.priority);
-
-  final String text;
-  final Priority priority;
-}
-
-class Todos extends StatefulWidget {
+class Todos extends ConsumerWidget {
   const Todos({super.key});
 
   @override
-  State<Todos> createState() {
-    return _TodosState();
-  }
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todosState = ref.watch(todosProvider);
+    final ordered = todosState.orderedItems;
+    final ascending = todosState.ascending;
 
-class _TodosState extends State<Todos> {
-  var _order = 'asc';
-  final _todos = [
-    const Todo(
-      'Learn Flutter',
-      Priority.urgent,
-    ),
-    const Todo(
-      'Practice Flutter',
-      Priority.normal,
-    ),
-    const Todo(
-      'Explore other courses',
-      Priority.low,
-    ),
-  ];
-
-  List<Todo> get _orderedTodos {
-    final sortedTodos = List.of(_todos);
-    sortedTodos.sort((a, b) {
-      final bComesAfterA = a.text.compareTo(b.text);
-      return _order == 'asc' ? bComesAfterA : -bComesAfterA;
-    });
-    return sortedTodos;
-  }
-
-  void _changeOrder() {
-    setState(() {
-      _order = _order == 'asc' ? 'desc' : 'asc';
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -63,10 +24,6 @@ class _TodosState extends State<Todos> {
                 children: [
                   Row(
                     children: [
-                      // if (Navigator.of(context).canPop()) ...[
-                      //   const InAppBackButton(),
-                      //   const SizedBox(width: 8),
-                      // ],
                       Text(
                         'Todo',
                         style: Theme.of(context)
@@ -77,27 +34,23 @@ class _TodosState extends State<Todos> {
                     ],
                   ),
                   TextButton.icon(
-                    onPressed: _changeOrder,
+                    onPressed: () => ref.read(todosProvider.notifier).toggleOrder(),
                     icon: Icon(
-                      _order == 'asc'
-                          ? Icons.arrow_downward
-                          : Icons.arrow_upward,
+                      ascending ? Icons.arrow_downward : Icons.arrow_upward,
                     ),
-                    label: Text(
-                        'Sort ${_order == 'asc' ? 'Descending' : 'Ascending'}'),
+                    label: Text('Sort ${ascending ? 'Descending' : 'Ascending'}'),
                   ),
                 ],
               ),
               const SizedBox(height: 8),
               Expanded(
                 child: ListView.builder(
-                  itemCount: _orderedTodos.length,
+                  itemCount: ordered.length,
                   itemBuilder: (context, index) {
-                    final todo = _orderedTodos[index];
+                    final todo = ordered[index];
                     return TodoItem(
-                      key: ObjectKey(todo), // ValueKey()
-                      todo.text,
-                      todo.priority,
+                      key: ValueKey(todo.id),
+                      itemId: todo.id,
                     );
                   },
                 ),

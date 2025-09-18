@@ -1,10 +1,10 @@
-import 'package:binodfolio/features/home/widgets/about/about_item.dart';
-import 'package:binodfolio/features/home/widgets/about/pill.dart';
+import 'package:binodfolio/src/features/home/widgets/about/about_item.dart';
+import 'package:binodfolio/src/features/home/widgets/about/pill.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class AboutSection extends StatelessWidget {
-  const AboutSection();
+  const AboutSection({super.key});
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context).textTheme;

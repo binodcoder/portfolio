@@ -1,10 +1,10 @@
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 import 'package:flutter/material.dart';
 
 class MenuItem extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
-  const MenuItem({required this.label, required this.onTap});
+  const MenuItem({super.key, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

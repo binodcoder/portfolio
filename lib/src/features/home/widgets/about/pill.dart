@@ -1,9 +1,9 @@
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 import 'package:flutter/material.dart';
 
 class Pill extends StatelessWidget {
   final String text;
-  const Pill({required this.text});
+  const Pill({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

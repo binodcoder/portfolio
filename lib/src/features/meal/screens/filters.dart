@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
  import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:binodfolio/features/meal/widgets/filters_panel.dart';
+import 'package:binodfolio/src/features/meal/widgets/filters_panel.dart';
 
 class FiltersScreen extends ConsumerWidget {
   const FiltersScreen({super.key});

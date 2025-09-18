@@ -1,23 +1,21 @@
-import 'package:binodfolio/features/meal/data/dummy_data.dart';
-import 'package:binodfolio/features/meal/models/category.dart';
-import 'package:binodfolio/features/meal/widgets/category_grid_item.dart';
+import 'package:binodfolio/src/features/meal/models/category.dart';
+import 'package:binodfolio/src/features/meal/providers/categories_provider.dart';
+import 'package:binodfolio/src/features/meal/widgets/category_grid_item.dart';
+import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-import '../models/meal.dart';
-
-class CategoriesScreen extends StatefulWidget {
+class CategoriesScreen extends ConsumerStatefulWidget {
   const CategoriesScreen({
     super.key,
-    required this.availableMeals,
   });
 
-  final List<Meal> availableMeals;
-
   @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
+  ConsumerState<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen>
+class _CategoriesScreenState extends ConsumerState<CategoriesScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   @override
@@ -38,21 +36,16 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     super.dispose();
   }
 
-  void _selectCategory(BuildContext context, Category category) {
-    final filteredMeals = widget.availableMeals
-        .where((meal) => meal.categories.contains(category.id))
-        .toList();
-    Navigator.of(context).pushNamed(
-      '/meal/category',
-      arguments: {
-        'title': category.title,
-        'meals': filteredMeals,
-      },
+  void _selectCategory(BuildContext context, WidgetRef ref, Category category) {
+    context.goNamed(
+      AppRoute.meals.name,
+      pathParameters: {'categoryId': category.id},
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final categories = ref.watch(categoriesProvider);
     return AnimatedBuilder(
       animation: _animationController,
       child: LayoutBuilder(
@@ -94,11 +87,12 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                   mainAxisSpacing: 25,
                 ),
                 children: [
-                  for (final category in availableCategories)
+                  for (final category in categories)
                     CategoryGridItem(
                       category: category,
                       onSelectCategory: () => _selectCategory(
                         context,
+                        ref,
                         category,
                       ),
                     )

@@ -1,20 +1,33 @@
-import 'package:binodfolio/features/meal/providers/favorites_provider.dart';
+import 'package:binodfolio/src/features/meal/providers/favorites_provider.dart';
+import 'package:binodfolio/src/features/meal/providers/meals_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/meal.dart';
 
 class MealDetailScreen extends ConsumerWidget {
   const MealDetailScreen({
     super.key,
-    required this.meal,
+    required this.mealId,
   });
 
-  final Meal meal;
+  final String mealId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteMeals = ref.watch(favoriteMealsProvider);
-    final isFavorite = favoriteMeals.contains(meal);
+    final meal = ref.watch(mealByIdProvider(mealId));
+    if (meal == null) {
+      return Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: Text(
+              'Meal not found',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+        ),
+      );
+    }
+    final favoriteIds = ref.watch(favoriteMealsProvider);
+    final isFavorite = favoriteIds.contains(meal.id);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -44,7 +57,7 @@ class MealDetailScreen extends ConsumerWidget {
                           onPressed: () {
                             final wasAdded = ref
                                 .read(favoriteMealsProvider.notifier)
-                                .toggleMealFavoriteStatus(meal);
+                                .toggleMealFavoriteStatus(meal.id);
 
                             ScaffoldMessenger.of(context).clearSnackBars();
                             ScaffoldMessenger.of(context).showSnackBar(

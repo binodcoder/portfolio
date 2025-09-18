@@ -1,12 +1,12 @@
-import 'package:binodfolio/core/responsive/sizes.dart';
-import 'package:binodfolio/features/home/widgets/app_section/app_style.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
+import 'package:binodfolio/src/features/home/widgets/app_section/app_style.dart';
 import 'package:flutter/material.dart';
 
 class AppCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final VoidCallback onTap;
-  const AppCard({required this.icon, required this.title, required this.onTap});
+  const AppCard({super.key, required this.icon, required this.title, required this.onTap});
 
   @override
   State<AppCard> createState() => _AppCardState();

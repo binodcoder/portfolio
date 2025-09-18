@@ -5,10 +5,10 @@ class CustomCircleAvatar extends StatelessWidget {
   final String imagePath;
 
   const CustomCircleAvatar({
-    Key? key,
+    super.key,
     required this.radius,
     required this.imagePath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

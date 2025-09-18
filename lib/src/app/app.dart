@@ -1,41 +1,22 @@
+import 'package:binodfolio/src/core/theme/theme_controller.dart';
+import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/theme/app_theme.dart';
-import '../core/utils/prefs_helper.dart';
-import '../features/home/home_page.dart';
-import '../features/meal/screens/meals.dart';
-import '../features/meal/screens/meal_details.dart';
-import '../features/meal/screens/filters.dart';
-import '../features/meal/models/meal.dart';
 
-class App extends StatefulWidget {
-  final ThemeMode initialThemeMode;
-  const App({super.key, required this.initialThemeMode});
+class App extends ConsumerWidget {
+  const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  late ThemeMode _mode;
-
-  @override
-  void initState() {
-    super.initState();
-    _mode = widget.initialThemeMode;
-  }
-
-  Future<void> _setTheme(ThemeMode mode) async {
-    setState(() => _mode = mode);
-    await PrefsHelper.setThemeMode(mode);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ThemeMode mode = ref.watch(themeControllerProvider);
+    final goRouter = ref.watch(goRouterProvider);
+    return MaterialApp.router(
+      routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: _mode,
+      themeMode: mode,
       // Clamp system text scaling and apply responsive typography
       builder: (context, child) {
         final mq = MediaQuery.of(context);
@@ -63,37 +44,34 @@ class _AppState extends State<App> {
           child: Theme(data: scaled, child: child!),
         );
       },
-      routes: {
-        '/': (ctx) => HomePage(
-              onThemeChanged: _setTheme,
-              themeMode: _mode,
-            ),
-      },
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/meal/category':
-            final args = settings.arguments as Map<String, dynamic>;
-            return MaterialPageRoute(
-              builder: (_) => MealsScreen(
-                title: args['title'] as String?,
-                meals: args['meals'] as List<Meal>,
-              ),
-              settings: settings,
-            );
-          case '/meal/details':
-            final meal = settings.arguments as Meal;
-            return MaterialPageRoute(
-              builder: (_) => MealDetailScreen(meal: meal),
-              settings: settings,
-            );
-          case '/meal/filters':
-            return MaterialPageRoute(
-              builder: (_) => const FiltersScreen(),
-              settings: settings,
-            );
-        }
-        return null;
-      },
+      // routes: {
+      //   '/': (ctx) => HomePage(),
+      // },
+      // onGenerateRoute: (settings) {
+      //   switch (settings.name) {
+      //     case '/meal/category':
+      //       final args = settings.arguments as Map<String, dynamic>;
+      //       return MaterialPageRoute(
+      //         builder: (_) => MealsScreen(
+      //           title: args['title'] as String?,
+      //           meals: args['meals'] as List<Meal>,
+      //         ),
+      //         settings: settings,
+      //       );
+      //     case '/meal/details':
+      //       final meal = settings.arguments as Meal;
+      //       return MaterialPageRoute(
+      //         builder: (_) => MealDetailScreen(meal: meal),
+      //         settings: settings,
+      //       );
+      //     case '/meal/filters':
+      //       return MaterialPageRoute(
+      //         builder: (_) => const FiltersScreen(),
+      //         settings: settings,
+      //       );
+      //   }
+      //   return null;
+      // },
     );
   }
 }

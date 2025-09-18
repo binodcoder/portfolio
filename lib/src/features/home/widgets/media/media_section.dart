@@ -1,11 +1,11 @@
-import 'package:binodfolio/features/home/widgets/media/youtube_player.dart';
-import 'package:binodfolio/features/home/widgets/media/youtube_player_web.dart';
+import 'package:binodfolio/src/features/home/widgets/media/youtube_player.dart';
+import 'package:binodfolio/src/features/home/widgets/media/youtube_player_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:binodfolio/core/responsive/sizes.dart';
+import 'package:binodfolio/src/core/responsive/sizes.dart';
 
 class MediaSection extends StatelessWidget {
-  const MediaSection();
+  const MediaSection({super.key});
   @override
   Widget build(BuildContext context) {
     // Title removed as requested; render the media only

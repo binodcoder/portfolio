@@ -1,26 +1,27 @@
-import 'package:binodfolio/features/favorite_places/models/place.dart';
+import 'package:binodfolio/src/features/favorite_places/models/place.dart';
+import 'package:binodfolio/src/features/favorite_places/providers/favorite_places_provider.dart';
 import 'package:flutter/material.dart';
- 
-class NewPlaceScreen extends StatefulWidget {
-  NewPlaceScreen({super.key});
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+class NewPlaceScreen extends ConsumerStatefulWidget {
+  const NewPlaceScreen({super.key});
 
   @override
-  State<NewPlaceScreen> createState() => _NewPlaceScreenState();
+  ConsumerState<NewPlaceScreen> createState() => _NewPlaceScreenState();
 }
 
-class _NewPlaceScreenState extends State<NewPlaceScreen> {
+class _NewPlaceScreenState extends ConsumerState<NewPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
   var _enteredPlaceName = '';
 
   void _saveItem() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      Navigator.of(context).pop(
-        Place(
-          title: _enteredPlaceName,
-        ),
-      );
-    }
+    if (!_formKey.currentState!.validate()) return;
+    _formKey.currentState!.save();
+    ref.read(favoritePlacesProvider.notifier).addPlace(
+          Place(title: _enteredPlaceName),
+        );
+    context.pop();
   }
 
   @override
@@ -34,7 +35,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
             children: [
               Row(
                 children: [
-                 
                   Text(
                     'New Place',
                     style: Theme.of(context).textTheme.titleLarge,
@@ -52,15 +52,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                       decoration: const InputDecoration(
                         label: Text('Place Name'),
                       ),
-                      onSaved: (value) {
-                        _enteredPlaceName = value!;
-                      },
+                      onSaved: (value) => _enteredPlaceName = value!,
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
                       onPressed: _saveItem,
                       child: const Text('Add'),
-                    )
+                    ),
                   ],
                 ),
               ),
