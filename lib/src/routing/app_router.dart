@@ -1,18 +1,18 @@
-import 'package:binodfolio/src/features/breathing/breathing.dart';
-import 'package:binodfolio/src/features/expense_tracker/widgets/expenses.dart';
-import 'package:binodfolio/src/features/expense_tracker/widgets/new_expense.dart';
-import 'package:binodfolio/src/features/favorite_places/screens/favorite_places.dart';
-import 'package:binodfolio/src/features/favorite_places/screens/new_place.dart';
-import 'package:binodfolio/src/features/home/home_page.dart';
-import 'package:binodfolio/src/features/meal/screens/categories.dart';
-import 'package:binodfolio/src/features/meal/screens/meal_details.dart';
-import 'package:binodfolio/src/features/meal/screens/category_meals_screen.dart';
-import 'package:binodfolio/src/features/meal/screens/tabs.dart';
+import 'package:binodfolio/src/features/breathing/presentation/breathing_screen.dart';
+import 'package:binodfolio/src/features/expense_tracker/presentation/expenses.dart';
+import 'package:binodfolio/src/features/expense_tracker/presentation/widgets/new_expense.dart';
+import 'package:binodfolio/src/features/favorite_places/presentation/screens/favorite_places.dart';
+import 'package:binodfolio/src/features/favorite_places/presentation/screens/new_place.dart';
+import 'package:binodfolio/src/features/home/presentation/home_page.dart';
+import 'package:binodfolio/src/features/meal/presentation/screens/categories.dart';
+import 'package:binodfolio/src/features/meal/presentation/screens/meal_details.dart';
+import 'package:binodfolio/src/features/meal/presentation/screens/category_meals_screen.dart';
+import 'package:binodfolio/src/features/meal/presentation/screens/tabs.dart';
 import 'package:binodfolio/src/features/pomodoro/pomodoro.dart';
-import 'package:binodfolio/src/features/quiz/quiz.dart';
-import 'package:binodfolio/src/features/shopping_list/screens/shopping_list.dart';
-import 'package:binodfolio/src/features/shopping_list/widgets/new_item.dart';
-import 'package:binodfolio/src/features/todo/todo.dart';
+import 'package:binodfolio/src/features/quiz/presentation/quiz.dart';
+import 'package:binodfolio/src/features/shopping_list/presentation/screens/shopping_list.dart';
+import 'package:binodfolio/src/features/shopping_list/presentation/widgets/new_item.dart';
+import 'package:binodfolio/src/features/todo/presentation/todo.dart';
 import 'package:binodfolio/src/routing/not_found_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -51,7 +51,7 @@ GoRouter goRouter(Ref ref) {
           GoRoute(
             path: 'breathing',
             name: AppRoute.breathing.name,
-            builder: (context, state) => BreathingApp(),
+            builder: (context, state) => BreathingScreen(),
           ),
           GoRoute(
             path: 'expenses_tracker',

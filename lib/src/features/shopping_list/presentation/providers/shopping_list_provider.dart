@@ -106,7 +106,7 @@ class ShoppingListNotifier extends AsyncNotifier<List<Grocery>> {
   }
 }
 
-final shoppingListProvider = AsyncNotifierProvider<ShoppingListNotifier, List<Grocery>>(
+final shoppingListProvider =
+    AsyncNotifierProvider<ShoppingListNotifier, List<Grocery>>(
   ShoppingListNotifier.new,
 );
-

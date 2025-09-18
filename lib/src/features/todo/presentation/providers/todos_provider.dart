@@ -61,9 +61,14 @@ class TodosNotifier extends StateNotifier<TodosState> {
       : super(
           TodosState(
             items: const [
-              TodoItemModel(id: '1', text: 'Learn Flutter', priority: Priority.urgent),
-              TodoItemModel(id: '2', text: 'Practice Flutter', priority: Priority.normal),
-              TodoItemModel(id: '3', text: 'Explore other courses', priority: Priority.low),
+              TodoItemModel(
+                  id: '1', text: 'Learn Flutter', priority: Priority.urgent),
+              TodoItemModel(
+                  id: '2', text: 'Practice Flutter', priority: Priority.normal),
+              TodoItemModel(
+                  id: '3',
+                  text: 'Explore other courses',
+                  priority: Priority.low),
             ],
           ),
         );
@@ -86,11 +91,11 @@ class TodosNotifier extends StateNotifier<TodosState> {
   }
 
   void removeTodo(String id) {
-    state = state.copyWith(items: state.items.where((e) => e.id != id).toList());
+    state =
+        state.copyWith(items: state.items.where((e) => e.id != id).toList());
   }
 }
 
 final todosProvider = StateNotifierProvider<TodosNotifier, TodosState>((ref) {
   return TodosNotifier();
 });
-

@@ -1,4 +1,4 @@
-import 'package:binodfolio/src/features/favorite_places/models/place.dart';
+import 'package:binodfolio/src/features/favorite_places/domain/place.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FavoritePlacesNotifier extends StateNotifier<List<Place>> {
@@ -17,4 +17,3 @@ final favoritePlacesProvider =
     StateNotifierProvider<FavoritePlacesNotifier, List<Place>>(
   (ref) => FavoritePlacesNotifier(),
 );
-

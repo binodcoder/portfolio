@@ -1,13 +1,13 @@
-import 'package:binodfolio/src/features/expense_tracker/models/expense.dart';
-import 'package:binodfolio/src/features/expense_tracker/providers/expenses_provider.dart';
+import 'package:binodfolio/src/features/expense_tracker/domain/expense.dart';
+import 'package:binodfolio/src/features/expense_tracker/presentation/providers/expenses_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:binodfolio/src/core/responsive/breakpoints.dart';
 
-import 'chat/chat.dart';
-import 'expenses_list/expenses_list.dart';
-import 'new_expense.dart';
+import 'widgets/chat/chat.dart';
+import 'widgets/expenses_list/expenses_list.dart';
+import 'widgets/new_expense.dart';
 
 class Expenses extends ConsumerWidget {
   const Expenses({super.key});
