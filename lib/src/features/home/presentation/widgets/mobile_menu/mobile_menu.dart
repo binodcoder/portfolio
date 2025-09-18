@@ -1,6 +1,6 @@
 import 'package:binodfolio/src/core/utils/launch_utils.dart';
-import 'package:binodfolio/src/features/home/widgets/mobile_menu/menu_item.dart';
-import 'package:binodfolio/src/features/home/widgets/theme_toggle.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/mobile_menu/menu_item.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/theme_toggle.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';
 

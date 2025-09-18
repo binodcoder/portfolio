@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
- import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:binodfolio/src/features/meal/widgets/filters_panel.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:binodfolio/src/features/meal/presentation/widgets/filters_panel.dart';
 
 class FiltersScreen extends ConsumerWidget {
   const FiltersScreen({super.key});
@@ -15,7 +15,6 @@ class FiltersScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
-                  
                   Text(
                     'Your Filters',
                     style: Theme.of(context).textTheme.titleLarge,

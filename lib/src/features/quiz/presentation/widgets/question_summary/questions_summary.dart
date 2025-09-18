@@ -1,8 +1,8 @@
-import 'package:binodfolio/src/features/quiz/widgets/question_summary/question_identifier.dart';
-import 'package:binodfolio/src/features/quiz/widgets/question_summary/summary_item.dart';
+import 'package:binodfolio/src/features/quiz/presentation/widgets/question_summary/question_identifier.dart';
+import 'package:binodfolio/src/features/quiz/presentation/widgets/question_summary/summary_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/result_summary.dart';
+import '../../../domain/result_summary.dart';
 
 class QuestionsSummary extends StatelessWidget {
   const QuestionsSummary({

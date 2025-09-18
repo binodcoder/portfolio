@@ -1,6 +1,6 @@
 import 'package:binodfolio/src/features/shopping_list/data/categories.dart';
-import 'package:binodfolio/src/features/shopping_list/models/category.dart';
-import 'package:binodfolio/src/features/shopping_list/providers/shopping_list_provider.dart';
+import 'package:binodfolio/src/features/shopping_list/domain/category.dart';
+import 'package:binodfolio/src/features/shopping_list/presentation/providers/shopping_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -136,8 +136,9 @@ class _NewItemState extends ConsumerState<NewItem> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed:
-                                  _isSending ? null : () => _formKey.currentState!.reset(),
+                              onPressed: _isSending
+                                  ? null
+                                  : () => _formKey.currentState!.reset(),
                               child: const Text('Reset'),
                             ),
                             const SizedBox(width: 12),

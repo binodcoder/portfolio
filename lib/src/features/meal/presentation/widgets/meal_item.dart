@@ -1,7 +1,7 @@
-import 'package:binodfolio/src/features/meal/widgets/meal_item_trait.dart';
+import 'package:binodfolio/src/features/meal/presentation/widgets/meal_item_trait.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
-import '../models/meal.dart';
+import '../../domain/meal.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({

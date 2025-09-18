@@ -1,9 +1,9 @@
-import 'package:binodfolio/src/features/quiz/screens/questions_screen.dart';
-import 'package:binodfolio/src/features/quiz/screens/results_screen.dart';
-import 'package:binodfolio/src/features/quiz/screens/start_screen.dart';
+import 'package:binodfolio/src/features/quiz/presentation/screens/questions_screen.dart';
+import 'package:binodfolio/src/features/quiz/presentation/screens/results_screen.dart';
+import 'package:binodfolio/src/features/quiz/presentation/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'data/questions.dart';
+import '../data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});

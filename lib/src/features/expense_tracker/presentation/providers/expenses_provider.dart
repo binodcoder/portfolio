@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/expense.dart';
+import '../../domain/expense.dart';
 
 class ExpensesNotifier extends StateNotifier<List<Expense>> {
   ExpensesNotifier()
@@ -42,4 +42,3 @@ final expensesProvider =
     StateNotifierProvider<ExpensesNotifier, List<Expense>>((ref) {
   return ExpensesNotifier();
 });
-

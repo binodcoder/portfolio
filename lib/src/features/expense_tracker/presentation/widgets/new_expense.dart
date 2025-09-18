@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/expense.dart';
+import '../../domain/expense.dart';
 import '../providers/expenses_provider.dart';
 
 class NewExpense extends ConsumerStatefulWidget {

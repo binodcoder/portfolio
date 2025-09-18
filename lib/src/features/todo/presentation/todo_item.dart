@@ -1,4 +1,4 @@
-import 'package:binodfolio/src/features/todo/providers/todos_provider.dart';
+import 'package:binodfolio/src/features/todo/presentation/providers/todos_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,7 +32,8 @@ class TodoItem extends ConsumerWidget {
         children: [
           Checkbox(
             value: item.done,
-            onChanged: (_) => ref.read(todosProvider.notifier).toggleDone(item.id),
+            onChanged: (_) =>
+                ref.read(todosProvider.notifier).toggleDone(item.id),
           ),
           const SizedBox(width: 6),
           Icon(icon),

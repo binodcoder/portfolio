@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:binodfolio/src/core/utils/launch_utils.dart';
-import 'package:binodfolio/src/features/home/widgets/hero/stat_chip.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/hero/stat_chip.dart';
 import 'package:flutter/material.dart';
 import '../avatar.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';

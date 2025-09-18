@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/meal/providers/favorites_provider.dart';
-import 'package:binodfolio/src/features/meal/providers/meals_provider.dart';
+import 'package:binodfolio/src/features/meal/presentation/providers/favorites_provider.dart';
+import 'package:binodfolio/src/features/meal/presentation/providers/meals_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/expense.dart';
+import '../../../domain/expense.dart';
 
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem(
@@ -45,7 +45,8 @@ class ExpenseItem extends StatelessWidget {
                 ),
               ),
             ),
-            Icon(categoryIcons[expense.category], color: color.withValues(alpha: 0.8)),
+            Icon(categoryIcons[expense.category],
+                color: color.withValues(alpha: 0.8)),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -60,10 +61,8 @@ class ExpenseItem extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     expense.formattedDate,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: Theme.of(context).colorScheme.outline),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.outline),
                   ),
                 ],
               ),

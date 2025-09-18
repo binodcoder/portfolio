@@ -1,4 +1,4 @@
-import 'package:binodfolio/src/features/home/widgets/contact/contact_form.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/contact/contact_form.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';
 

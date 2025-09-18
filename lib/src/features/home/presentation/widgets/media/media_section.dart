@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/home/widgets/media/youtube_player.dart';
-import 'package:binodfolio/src/features/home/widgets/media/youtube_player_web.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/media/youtube_player.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/media/youtube_player_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';

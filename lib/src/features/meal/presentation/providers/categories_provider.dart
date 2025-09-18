@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/category.dart';
-import '../data/dummy_data.dart';
+import '../../domain/category.dart';
+import '../../data/dummy_data.dart';
 import 'filters_provider.dart';
-import '../models/meal.dart';
+import '../../domain/meal.dart';
 
 /// Exposes the available meal categories.
 final categoriesProvider =

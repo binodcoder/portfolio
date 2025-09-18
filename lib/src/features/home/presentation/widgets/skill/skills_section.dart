@@ -1,4 +1,4 @@
-import 'package:binodfolio/src/features/home/widgets/skill/skill_card.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/skill/skill_card.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';
 

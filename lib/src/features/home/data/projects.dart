@@ -1,4 +1,4 @@
-import '../models/project.dart';
+import '../domain/project.dart';
 
 const projects = <Project>[
   Project(

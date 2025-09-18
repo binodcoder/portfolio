@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/todo/providers/todos_provider.dart';
-import 'package:binodfolio/src/features/todo/todo_item.dart';
+import 'package:binodfolio/src/features/todo/presentation/providers/todos_provider.dart';
+import 'package:binodfolio/src/features/todo/presentation/todo_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,11 +34,13 @@ class Todos extends ConsumerWidget {
                     ],
                   ),
                   TextButton.icon(
-                    onPressed: () => ref.read(todosProvider.notifier).toggleOrder(),
+                    onPressed: () =>
+                        ref.read(todosProvider.notifier).toggleOrder(),
                     icon: Icon(
                       ascending ? Icons.arrow_downward : Icons.arrow_upward,
                     ),
-                    label: Text('Sort ${ascending ? 'Descending' : 'Ascending'}'),
+                    label:
+                        Text('Sort ${ascending ? 'Descending' : 'Ascending'}'),
                   ),
                 ],
               ),

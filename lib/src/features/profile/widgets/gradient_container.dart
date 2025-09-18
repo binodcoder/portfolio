@@ -1,6 +1,6 @@
 import 'package:binodfolio/src/common_widgets/styled_text.dart';
-import 'package:binodfolio/src/features/home/widgets/media/youtube_player.dart';
-import 'package:binodfolio/src/features/home/widgets/media/youtube_player_web.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/media/youtube_player.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/media/youtube_player_web.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

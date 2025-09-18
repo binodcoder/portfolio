@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/expense.dart';
+import '../../../domain/expense.dart';
 import 'chat_bar.dart';
 
 class Chart extends StatelessWidget {

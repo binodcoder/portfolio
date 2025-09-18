@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/home/models/app_item.dart';
-import 'package:binodfolio/src/features/home/widgets/app_section/app_card.dart';
+import 'package:binodfolio/src/features/home/domain/app_item.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/app_section/app_card.dart';
 import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';

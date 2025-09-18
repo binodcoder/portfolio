@@ -1,6 +1,6 @@
-import 'package:binodfolio/src/features/meal/models/category.dart';
-import 'package:binodfolio/src/features/meal/providers/categories_provider.dart';
-import 'package:binodfolio/src/features/meal/widgets/category_grid_item.dart';
+import 'package:binodfolio/src/features/meal/domain/category.dart';
+import 'package:binodfolio/src/features/meal/presentation/providers/categories_provider.dart';
+import 'package:binodfolio/src/features/meal/presentation/widgets/category_grid_item.dart';
 import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

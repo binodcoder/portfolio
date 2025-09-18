@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/home/widgets/about/about_item.dart';
-import 'package:binodfolio/src/features/home/widgets/about/pill.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/about/about_item.dart';
+import 'package:binodfolio/src/features/home/presentation/widgets/about/pill.dart';
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';
 

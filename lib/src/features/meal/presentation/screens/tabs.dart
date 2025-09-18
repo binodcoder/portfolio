@@ -1,12 +1,12 @@
-import 'package:binodfolio/src/features/meal/providers/favorites_provider.dart';
-import 'package:binodfolio/src/features/meal/screens/categories.dart';
-import 'package:binodfolio/src/features/meal/screens/meals.dart';
+import 'package:binodfolio/src/features/meal/presentation/providers/favorites_provider.dart';
+import 'package:binodfolio/src/features/meal/presentation/screens/categories.dart';
+import 'package:binodfolio/src/features/meal/presentation/screens/meals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:binodfolio/src/features/meal/widgets/filters_panel.dart';
+import 'package:binodfolio/src/features/meal/presentation/widgets/filters_panel.dart';
 import 'package:binodfolio/src/core/responsive/breakpoints.dart';
-import 'package:binodfolio/src/features/meal/providers/tabs_provider.dart';
+import 'package:binodfolio/src/features/meal/presentation/providers/tabs_provider.dart';
 
 // const kInitialFilters = {
 //   Filter.glutenFree: false,

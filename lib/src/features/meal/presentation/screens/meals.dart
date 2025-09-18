@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/meal/models/meal.dart';
-import 'package:binodfolio/src/features/meal/widgets/meal_item.dart';
+import 'package:binodfolio/src/features/meal/domain/meal.dart';
+import 'package:binodfolio/src/features/meal/presentation/widgets/meal_item.dart';
 import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

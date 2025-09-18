@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/meal.dart';
+import '../../domain/meal.dart';
 import 'meals_provider.dart';
 
 /// Stores favorite meals as a set of meal IDs for stability across instances.

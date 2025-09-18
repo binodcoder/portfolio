@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/favorite_places/providers/favorite_places_provider.dart';
-import 'package:binodfolio/src/features/favorite_places/widgets/favorite_place_item.dart';
+import 'package:binodfolio/src/features/favorite_places/presentation/providers/favorite_places_provider.dart';
+import 'package:binodfolio/src/features/favorite_places/presentation/widgets/favorite_place_item.dart';
 import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

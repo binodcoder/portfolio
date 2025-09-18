@@ -1,5 +1,5 @@
-import 'package:binodfolio/src/features/shopping_list/providers/shopping_list_provider.dart';
-import 'package:binodfolio/src/features/shopping_list/widgets/grocery_item.dart';
+import 'package:binodfolio/src/features/shopping_list/presentation/providers/shopping_list_provider.dart';
+import 'package:binodfolio/src/features/shopping_list/presentation/widgets/grocery_item.dart';
 import 'package:binodfolio/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

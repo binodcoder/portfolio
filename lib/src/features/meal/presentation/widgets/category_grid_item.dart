@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:binodfolio/src/core/responsive/sizes.dart';
-import '../models/category.dart';
+import '../../domain/category.dart';
 
 class CategoryGridItem extends StatefulWidget {
   const CategoryGridItem({

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:binodfolio/src/features/shopping_list/data/categories.dart';
-import 'package:binodfolio/src/features/shopping_list/models/grocery.dart';
-import 'package:binodfolio/src/features/shopping_list/models/category.dart';
+import 'package:binodfolio/src/features/shopping_list/domain/grocery.dart';
+import 'package:binodfolio/src/features/shopping_list/domain/category.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
